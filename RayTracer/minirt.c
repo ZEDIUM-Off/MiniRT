@@ -10,11 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <minirt.h>
 
 int	main(int argc, char **argv)
 {
 	t_rt	rt;
+
+	(void)argc;
+	(void)argv;
 
 	init_window(&rt);
 	setup_gl_context(&rt);

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <minirt.h>
+
 t_uint	clean_rt(t_rt *rt)
 {
 	mlx_destroy_image(rt->mxv.mlx, rt->mxv.img);
@@ -19,9 +21,12 @@ t_uint	clean_rt(t_rt *rt)
 	return (CONTINUE);
 }
 
-t_uint	quit_rt(t_rt *rt)
+int	quit_rt(void *rt)
 {
-	clean_rt(rt);
+	t_rt	*_rt;
+
+	_rt = (t_rt *)rt;
+	clean_rt(_rt);
 	exit(0);
 	return (CONTINUE);
 }

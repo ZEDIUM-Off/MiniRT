@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"func.h": "c",
+		"types.h": "c",
+		"const.h": "c",
+		"enums.h": "c",
+		"minirt.h": "c",
+		"rt_includes.h": "c",
+		"mlx.h": "c"
+	}
+}

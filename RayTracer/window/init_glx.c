@@ -31,6 +31,6 @@ t_uint	setup_gl_context(t_rt *rt)
 	if (!init_gl_context(c, settings))
 		return (GLX_INIT_ERR);
 	gl_clear_color(c, BLACK_VEC);
-	gl_enable(&fdf->glx, GL_DEPTH_TEST);
+	gl_enable(&rt->glx, GL_DEPTH_TEST);
 	return (CONTINUE);
 }

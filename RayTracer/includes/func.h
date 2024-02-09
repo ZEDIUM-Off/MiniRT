@@ -15,9 +15,10 @@
 
 t_uint	init_rt(t_rt *rt);
 t_uint	setup_gl_context(t_rt *rt);
-t_uint	quit_rt(t_rt *rt);
 t_uint	clean_rt(t_rt *rt);
+t_uint	init_window(t_rt *rt);
 
+int	quit_rt(void *rt);
 void	set_hooks(t_rt	*rt);
 
 #endif //FUNC_H

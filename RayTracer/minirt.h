@@ -15,20 +15,9 @@
 
 # include <stdio.h>
 # include <lite_gl.h>
+# include <mlx_int.h>
+# include <mlx.h>
 # include "includes/rt_includes.h"
 
-struct s_rt
-{
-	t_gl_context	glx;
-	t_mlx_env		mxv;
-	t_cam			*cam;
-};
-
-struct s_mlx_env
-{
-	t_xvar		*mlx;
-	t_win_list	*win;
-	t_img		*img;
-};
 
 #endif

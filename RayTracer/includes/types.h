@@ -10,13 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
 # define TYPES_H
 
-typedef unsigned int		t_uint;
+typedef unsigned int			t_uint;
 
-typedef struct s_rt			t_rt;
+typedef struct s_rt				t_rt;
 typedef struct s_camera		t_cam;
 typedef struct s_mlx_env	t_mlx_env;
-
-#endif //TYPES_H

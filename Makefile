@@ -41,7 +41,7 @@ OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
 
 FLAGS= -Wall -Wextra -Werror -lX11
-OBJ_FLAGS= -Wall -Wextra -Werror -I$(GL_DIR) -I$(MLX_DIR)
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror
 
 all: $(NAME)
 
@@ -50,13 +50,15 @@ $(NAME): dirs compile
 help :
 	@echo $(SRC)
 	@echo $(OBJECTS)
+	@echo $(HEADERS)
 
 compile: $(OBJECTS) $(MLX) $(GL)
 	@echo "Compiling $(NAME)"
 	@ $(CC) $^ $(FLAGS) -o $(NAME)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	$(CC) $(OBJ_FLAGS) -c $< -o $@ 
+$(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
+	@echo "Compiling $@"
+	$(CC) $(OBJ_FLAGS) -c $< -o $@
 
 dirs : 
 	mkdir -p $(BUILD_DIR)

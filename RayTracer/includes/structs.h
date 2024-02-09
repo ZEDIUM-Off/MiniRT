@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_includes.h                                      :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:09:39 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/07 11:09:52 by mchenava         ###   ########.fr       */
+/*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
+/*   Updated: 2024/02/09 12:46:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_INCLUDES_H
-# define RT_INCLUDES_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-# include "types.h"
-# include "structs.h"
-# include "const.h"
-# include "enums.h"
-# include "func.h"
+#include "types.h"
 
-#endif //RT_INCLUDES_H
+
+struct s_mlx_env
+{
+	t_xvar		*mlx;
+	t_win_list	*win;
+	t_img		*img;
+};
+
+struct s_rt
+{
+	t_gl_context	glx;
+	t_mlx_env		mxv;
+	t_cam			*cam;
+};
+
+#endif
