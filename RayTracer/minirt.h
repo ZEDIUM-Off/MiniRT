@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:04:07 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/12 15:56:09 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:19:05 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define MINIRT_H
 
 # include <stdio.h>
+# include <string.h>
 # include <stdbool.h>
+# include <float.h>
 # include <lite_gl.h>
 # include <mlx_int.h>
 # include <mlx.h>

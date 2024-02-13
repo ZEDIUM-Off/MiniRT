@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:03:15 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/13 11:09:31 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:18:26 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int argc, char** argv)
 {
-	t_rt	rt;
+	t_rt		rt;
+	t_gl_uint	shader;
 
 	(void)argc;
 	(void)argv;

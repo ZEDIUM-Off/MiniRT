@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_includes.h                                      :+:      :+:    :+:   */
+/*   materials.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:09:39 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/20 11:19:23 by agaley           ###   ########lyon.fr   */
+/*   Created: 2024/02/13 03:45:17 by agaley            #+#    #+#             */
+/*   Updated: 2024/02/13 06:11:57 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_INCLUDES_H
-# define RT_INCLUDES_H
+#include <minirt.h>
 
-# include "rt_types.h"
-# include "structs.h"
-# include "const.h"
-# include "enums.h"
-# include "func.h"
-# include "shader.h"
-
-#endif //RT_INCLUDES_H
+t_material material_gold = {
+    (t_vec3){0.24725, 0.1995, 0.0745},
+    (t_vec3){0.75164, 0.60648, 0.22648},
+    (t_vec3){0.628281, 0.555802, 0.366065},
+    0.4 * 128.0,
+    0.47
+};

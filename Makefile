@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/02/20 11:13:37 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/02/20 11:17:59 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CAM_DIR= $(SRC_DIR)/camera
 RENDER_DIR= $(SRC_DIR)/rendering
 CONTROLS_DIR= $(SRC_DIR)/controls
 SCENE_DIR= $(SRC_DIR)/scene
-SHADER_DIR= $(SRC_DIR)/shaders
+SHADER_DIR= $(SRC_DIR)/shader
 
 MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
@@ -53,7 +53,12 @@ CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
 SCENE_SRC=	$(SCENE_DIR)/scene.c
 
 SHADER_SRC= $(SHADER_DIR)/gridshader.c \
-			$(SHADER_DIR)/loadshader.c
+			$(SHADER_DIR)/loadshader.c \
+			$(SHADER_DIR)/raytracing.c \
+			$(SHADER_DIR)/intersect.c \
+			$(SHADER_DIR)/materials.c \
+			$(SHADER_DIR)/scattering.c \
+			$(SHADER_DIR)/utils.c
 
 SRC= $(SRC_DIR)/minirt.c
 SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC)
@@ -61,7 +66,7 @@ SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_S
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
 
-FLAGS= -std=c99 -Wall -Wextra -Werror ${LIBS}
+FLAGS= -std=c99 -Wall -Wextra -Werror -fsanitize=address ${LIBS}
 OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror
 
 all: $(NAME)
