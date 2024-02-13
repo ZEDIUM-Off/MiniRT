@@ -6,7 +6,7 @@
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/02/07 15:11:03 by mchenava         ###   ########.fr        #
+#    Updated: 2024/02/13 10:46:04 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,16 @@ GL_DIR= ./42LiteGL
 
 WIN_DIR= $(SRC_DIR)/window
 UTILS_DIR= $(SRC_DIR)/utils
+CAM_DIR= $(SRC_DIR)/camera
+RENDER_DIR= $(SRC_DIR)/rendering
+CONTROLS_DIR= $(SRC_DIR)/controls
+SCENE_DIR= $(SRC_DIR)/scene
+SHADER_DIR= $(SRC_DIR)/shaders
 
 MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
-S_DIRS = $(WIN_DIR) $(UTILS_DIR)
+S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR)
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
 
 WIN_SRC=	$(WIN_DIR)/init_window.c \
@@ -34,14 +39,28 @@ WIN_SRC=	$(WIN_DIR)/init_window.c \
 UTILS_SRC=	$(UTILS_DIR)/clean.c \
 			$(UTILS_DIR)/init_rt.c
 
+CAM_SRC=	$(CAM_DIR)/init_cam.c \
+			$(CAM_DIR)/move_cam.c
+
+RENDER_SRC= $(RENDER_DIR)/render.c \
+			$(RENDER_DIR)/projection.c
+
+CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
+				$(CONTROLS_DIR)/mouse_ctrl.c
+
+SCENE_SRC=	$(SCENE_DIR)/scene.c
+
+SHADER_SRC= $(SHADER_DIR)/gridshader.c \
+			$(SHADER_DIR)/loadshader.c
+
 SRC= $(SRC_DIR)/minirt.c
-SRC+= $(WIN_SRC) $(UTILS_SRC)
+SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
 
-FLAGS= -Wall -Wextra -Werror -lX11
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -lX11 -lXext -lm -g3 -fsanitize=address
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -fsanitize=address -g3
 
 all: $(NAME)
 
@@ -60,7 +79,7 @@ $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
 	@echo "Compiling $@"
 	$(CC) $(OBJ_FLAGS) -c $< -o $@
 
-dirs : 
+dirs :
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(B_DIRS)
 

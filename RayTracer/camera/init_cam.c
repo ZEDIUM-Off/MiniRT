@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 13:21:00 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/12 16:54:01 by mchenava         ###   ########.fr       */
+/*   Created: 2023/05/02 12:01:30 by  mchenava         #+#    #+#             */
+/*   Updated: 2024/02/13 11:21:08 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#include <minirt.h>
 
-# define WIDTH	800
-# define HEIGHT	800
+void	init_cam(t_rt	*rt)
+{
+	t_cam	*cam;
 
-# define RED_MASK	0x00FF0000
-# define GREEN_MASK	0x0000FF00
-# define BLUE_MASK	0x000000FF
-# define ALPHA_MASK	0xFF000000
-
-# define TITLE "42LiteGL - RayTracer"
-
-# define BLACK_VEC (float [4]){0.0f, 0.0f, 0.0f, 1.0f}
-
-#endif //CONST_H
+	cam = (t_cam *)&rt->cam;
+	cam->pos = (t_vec3){3.0, 3.0, 3.0};
+	cam->target = (t_vec3){0.0, 0.0, 0.0};
+	cam->dir = norm_vec3(sub_vec3s(cam->pos, cam->target));
+	cam->right = norm_vec3(cross_product((t_vec3){0.0, 1.0, 0.0}, cam->dir));
+	cam->up = cross_product(cam->dir, cam->right);
+	cam->fov = 45.0f;
+	cam->speed = 0.0005f;
+}

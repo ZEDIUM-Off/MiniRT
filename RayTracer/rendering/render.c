@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:03:15 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/13 11:09:31 by mchenava         ###   ########.fr       */
+/*   Created: 2024/02/12 10:57:52 by mchenava          #+#    #+#             */
+/*   Updated: 2024/02/13 11:23:04 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-int	main(int argc, char **argv)
+int	render(t_rt *rt)
 {
-	t_rt	rt;
+	t_draw_elements_settings	settings;
 
-	(void)argc;
-	(void)argv;
-	if (init_rt(&rt) != CONTINUE)
-		return (1);
-	mlx_loop(rt.mxv.mlx);
+	cam_proj(rt, &rt->uniforms);
+	gl_clear(&rt->glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	settings = (t_draw_elements_settings){6, GL_UNSIGNED_INT, 0};
+	gl_polygon_mode(&rt->glx, GL_FRONT_AND_BACK, GL_LINE);
+	gl_draw_elements(&rt->glx, GL_TRIANGLES, &settings);
+	mlx_put_image_to_window(rt->mxv.mlx, rt->mxv.win, rt->mxv.img, 0, 0);
+	return (0);
 }

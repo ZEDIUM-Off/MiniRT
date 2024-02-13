@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/07 13:19:44 by mchenava         ###   ########.fr       */
+/*   Created: 2024/02/12 11:00:11 by mchenava          #+#    #+#             */
+/*   Updated: 2024/02/13 11:24:57 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define TYPES_H
+#include <minirt.h>
 
-typedef unsigned int			t_uint;
+void	cam_proj(t_rt *rt, t_uniforms *u)
+{
+	t_cam	*cam;
 
-typedef struct s_rt				t_rt;
-typedef struct s_camera		t_cam;
-typedef struct s_mlx_env	t_mlx_env;
+	cam = (t_cam *)&rt->cam;
+	make_perspective_matrix(u->proj,
+		radians(cam->fov), WIDTH / HEIGHT, (float [2]){0.1, 100.0});
+	look_at(u->view, cam->pos, cam->target, (t_vec3){0, 1, 0});
+}
