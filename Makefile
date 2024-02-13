@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
+#    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/02/13 10:46:04 by mchenava         ###   ########.fr        #
+#    Updated: 2024/02/20 11:13:37 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
 S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR)
+LIBS = -lX11 -lXext -lm
+
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
 
 WIN_SRC=	$(WIN_DIR)/init_window.c \
@@ -59,8 +61,8 @@ SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_S
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
 
-FLAGS= -Wall -Wextra -Werror -lX11 -lXext -lm -g3 -fsanitize=address
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -fsanitize=address -g3
+FLAGS= -std=c99 -Wall -Wextra -Werror ${LIBS}
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror
 
 all: $(NAME)
 
