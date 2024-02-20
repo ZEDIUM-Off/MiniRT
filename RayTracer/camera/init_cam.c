@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:30 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/13 11:21:08 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:34:48 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	init_cam(t_rt	*rt)
 	cam->up = cross_product(cam->dir, cam->right);
 	cam->fov = 45.0f;
 	cam->speed = 0.0005f;
+	rt->uniforms.cam = cam;
 }

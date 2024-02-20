@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gridshader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:08:11 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/13 13:54:22 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:23:56 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ void	grid_vs(float *vs_output, void *vertex_attribs,
 	t_vec4		*v_attribs;
 	t_vec4		repeated_position;
 
+	(void)vs_output;
 	u = (t_uniforms *)uniforms;
 	v_attribs = (t_vec4 *)vertex_attribs;
 	repeated_position = v_attribs[0];
-	((t_vec4 *)vs_output)[0] = v_attribs[4];
-	repeated_position.x = fmod(repeated_position.x, 1.0) - 0.5;
-	repeated_position.z = fmod(repeated_position.z, 1.0) - 0.5;
 	mult_mat4_mat4(u->mvp_mat, u->proj, u->view);
 	builtins->gl_position = mult_mat4_vec4(u->mvp_mat, repeated_position);
 }

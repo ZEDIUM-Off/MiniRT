@@ -6,40 +6,43 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/13 06:26:10 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/02/20 16:09:11 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_vec3 trace_ray(t_vec3 origin, t_vec3 direction, int depth) {
-    t_hit  hit;
-    t_vec3      reflectionDirection;
-    t_vec3      reflectionColor;
-    float       fresnel_effect;
-    t_vec3      finalColor;
+t_vec3	trace_ray(t_vec3 origin, t_vec3 direction, int depth)
+{
+	t_hit	hit;
+	t_vec3	reflect_dir;
+	t_vec3	reflect_color;
+	float	fresnel_effect;
+	t_vec3	color;
 
-    if (depth <= 0) {
-        return COLOR_BLACK; // Base case for recursion: return black
-    }
-    if (intersect_scene(origin, direction, &hit)) {
-        reflectionDirection = reflect_vector(direction, hit.normal);
-        reflectionColor = trace_ray(hit.point, reflectionDirection, depth - 1);
-        fresnel_effect = schlick_approximation(dot_vec3s(direction, hit.normal), hit.material.refraction_index);
-        finalColor = mix_color(hit.material.diffuse, reflectionColor, fresnel_effect);
-        return finalColor;
-    }
-    return COLOR_BG; // If no intersection, return background color
+	if (depth <= 0)
+	{
+		return (COLOR_BLACK);
+	}
+	if (intersect_scene(origin, direction, &hit))
+	{
+		reflect_dir = reflect_vector(direction, hit.normal);
+		reflect_color = trace_ray(hit.point, reflect_dir, depth - 1);
+		fresnel_effect = schlick_approximation(dot_vec3s(direction, hit.normal),
+			hit.material.refraction_index);
+		color = mix_color(hit.material.diffuse, reflect_color, fresnel_effect);
+		return (color);
+	}
+	return (COLOR_BG);
 }
 
-void rt_frag_shader() {
-    t_vec3  ray_origin = {0.0, 0.0, 0.0}; // Camera position
-    t_vec3  ray_direction = {0.0, 0.0, -1.0}; // Camera direction
-    t_vec3  color;
+void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni)
+{
+	t_vec3		color;
+	t_uniforms	*u;
 
-    normalize_vec3(&ray_direction);
-    color = trace_ray(ray_origin, ray_direction, MAX_DEPTH);
-    printf("Color: R=%f, G=%f, B=%f\n", color.x, color.y, color.z);
-    // Output the color
-    // gl_FragColor = vec4(color, 1.0); // Assuming this is a fragment shader
+	(void)fs_input;
+	u = (t_uniforms *)uni;
+	color = trace_ray(u->cam->pos, norm_vec3(u->cam->dir), MAX_DEPTH);
+	builtins->gl_frag_color = (t_vec4){color.x, color.y, color.z, 1.0};
 }

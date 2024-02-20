@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/13 12:46:52 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:49:43 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ struct	s_camera
 
 struct s_mlx_env
 {
-	t_xvar* mlx;
-	t_win_list* win;
-	t_img* img;
+	t_xvar		*mlx;
+	t_win_list	*win;
+	t_img		*img;
 };
 
 struct s_uniforms
@@ -41,6 +41,7 @@ struct s_uniforms
 	t_vec3	near_point;
 	t_vec3	far_point;
 	float	grid_scale;
+	t_cam	*cam;
 };
 
 struct	s_ctrl
@@ -60,7 +61,6 @@ struct s_grid
 	t_gl_uint	vbo;
 	t_gl_uint	ebo;
 };
-
 
 struct s_rt
 {

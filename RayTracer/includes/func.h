@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funct.h                                            :+:      :+:    :+:   */
+/*   func.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/13 11:22:50 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:22:08 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCT_H
-# define FUNCT_H
+#ifndef FUNC_H
+# define FUNC_H
 
 t_uint	init_rt(t_rt *rt);
 t_uint	setup_gl_context(t_rt *rt);
