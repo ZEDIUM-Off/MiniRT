@@ -105,6 +105,6 @@ clean :
 
 fclean : clean
 	$(RM) $(NAME)
-	# $(MAKE) -C $(GL_DIR) fclean
+	$(MAKE) -C $(GL_DIR) fclean
 
 re : fclean all
