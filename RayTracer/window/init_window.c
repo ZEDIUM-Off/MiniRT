@@ -12,7 +12,7 @@
 
 #include <minirt.h>
 
-t_uint	init_window(t_rt *rt)
+t_uint	init_window(t_rt* rt)
 {
 	rt->mxv.mlx = mlx_init();
 	if (!rt->mxv.mlx)

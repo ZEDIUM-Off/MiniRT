@@ -12,13 +12,16 @@
 
 #include <minirt.h>
 
-int	main(int argc, char **argv)
+int	main(int argc, char** argv)
 {
 	t_rt	rt;
 
 	(void)argc;
 	(void)argv;
+	printf("running...");
 	if (init_rt(&rt) != CONTINUE)
 		return (1);
+	printf("grid initialized...");
 	mlx_loop(rt.mxv.mlx);
+	printf("exiting...");
 }

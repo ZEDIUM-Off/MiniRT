@@ -28,9 +28,9 @@ struct	s_camera
 
 struct s_mlx_env
 {
-	t_xvar		*mlx;
-	t_win_list	*win;
-	t_img		*img;
+	t_xvar* mlx;
+	t_win_list* win;
+	t_img* img;
 };
 
 struct s_uniforms
@@ -54,7 +54,7 @@ struct s_grid
 {
 	float		verts[8];
 	t_uint		verts_count;
-	float		indices[6];
+	t_uint		indices[6];
 	t_uint		id_count;
 	t_gl_uint	vao;
 	t_gl_uint	vbo;
