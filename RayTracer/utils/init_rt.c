@@ -6,13 +6,13 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/20 16:47:43 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/02/21 16:52:29 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_uint	init_rt(t_rt *rt)
+t_uint	init_rt(t_rt* rt)
 {
 	t_uint	status;
 
@@ -35,5 +35,6 @@ t_uint	init_rt(t_rt *rt)
 	printf("shaders inited\n");
 	rt->ctrl.rotate = false;
 	rt->ctrl.translate = false;
+	rt->loop = 0;
 	return (CONTINUE);
 }

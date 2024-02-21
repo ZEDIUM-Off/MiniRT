@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:51:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/20 16:41:36 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/02/21 17:30:12 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ float	schlick_approximation(float cosine, float ref_index)
 	float	r0;
 
 	r0 = (1.0 - ref_index) / (1.0 + ref_index);
-	r0 = sqrtf(r0);
+	r0 = r0 * r0;
 	return (r0 + (1.0 - r0) * powf((1.0 - cosine), 5.0));
 }

@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/21 15:20:46 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/02/21 19:53:12 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define SHADER_H
 
 # include <stdlib.h>
+# include "materials.h"
 
-# define MAX_DEPTH 5
+# define MAX_DEPTH 1
 
 # define COLOR_BLACK (t_vec3){0.0, 0.0, 0.0}
 # define COLOR_DGRAY (t_vec3){0.1, 0.1, 0.1}
@@ -33,29 +34,24 @@ typedef struct s_fresnel
 	float	rp;
 }t_fresnel;
 
-typedef struct s_material {
-	t_vec3	ambient;
-	t_vec3	diffuse;
-	t_vec3	specular;
-	float	shininess;
-	float	refraction_index;
-}t_material;
-
 typedef struct s_triangle {
 	t_vec3		v0;
 	t_vec3		v1;
 	t_vec3		v2;
+	t_vec3		color;
 	t_material	material;
 }t_triangle;
 
 typedef struct s_sphere {
 	t_vec3		center;
 	float		radius;
+	t_vec3		color;
 	t_material	material;
 }t_sphere;
 
 typedef struct s_hit {
 	t_material	material;
+	t_vec3		color;
 	t_vec3		point;
 	t_vec3		normal;
 	float		distance;
@@ -67,7 +63,7 @@ t_vec3	mix_color(t_vec3 color1, t_vec3 color2, float ratio);
 float	schlick_approximation(float cosine, float ref_index);
 
 bool	intersect_scene(const t_vec3 ray_origin,
-	const t_vec3 ray_direction, t_hit* hit);
+	const t_vec3 ray_direction, t_hit* hit, t_uniforms* u);
 
 void	rt_frag_shader(float* fs_input, t_shader_builtins* builtins, void* uni);
 
