@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/20 16:49:05 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/02/21 15:20:46 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ typedef struct s_material {
 	float	refraction_index;
 }t_material;
 
+typedef struct s_triangle {
+	t_vec3		v0;
+	t_vec3		v1;
+	t_vec3		v2;
+	t_material	material;
+}t_triangle;
+
 typedef struct s_sphere {
 	t_vec3		center;
 	float		radius;
@@ -60,8 +67,8 @@ t_vec3	mix_color(t_vec3 color1, t_vec3 color2, float ratio);
 float	schlick_approximation(float cosine, float ref_index);
 
 bool	intersect_scene(const t_vec3 ray_origin,
-			const t_vec3 ray_direction, t_hit *hit);
+	const t_vec3 ray_direction, t_hit* hit);
 
-void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni);
+void	rt_frag_shader(float* fs_input, t_shader_builtins* builtins, void* uni);
 
 #endif
