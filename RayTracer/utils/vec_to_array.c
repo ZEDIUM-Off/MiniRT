@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.c                                            :+:      :+:    :+:   */
+/*   vec_to_array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 16:26:29 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/21 16:59:16 by  mchenava        ###   ########.fr       */
+/*   Created: 2024/02/21 14:59:34 by  mchenava         #+#    #+#             */
+/*   Updated: 2024/02/21 17:31:14 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	scene_init(t_rt* rt)
+void	vec3_to_array(t_vec3* vec, float* arr, t_uint start)
 {
-	t_mesh	plane;
-	t_plane_params	params;
+	arr[start * 3] = vec->x;
+	arr[start * 3 + 1] = vec->y;
+	arr[start * 3 + 2] = vec->z;
+}
 
-	rt->scene.meshes = NULL;
-	rt->scene.mesh_count = 0;
-	create_mesh(&plane, MESH_PLANE);
-	printf("plane created...\n");
-	params = (t_plane_params){ &plane, (t_vec3) { -2, -2, 0 }, (t_vec3) { 1, 0, 0 }, (t_vec3) { 0, 0, 1 }, 2, 6, false };
-	make_plane(&plane, &params);
-	printf("plane made...\n");
-	mesh_to_scene(rt, &plane);
-	printf("plane to scene...\n");
+void	ivec3_to_array(t_ivec3* vec, int* arr, t_uint start)
+{
+	arr[start * 3] = vec->x;
+	arr[start * 3 + 1] = vec->y;
+	arr[start * 3 + 2] = vec->z;
+}
+
+void	vec2_to_array(t_vec2* vec, float* arr, t_uint start)
+{
+	arr[start * 2] = vec->x;
+	arr[start * 2 + 1] = vec->y;
 }

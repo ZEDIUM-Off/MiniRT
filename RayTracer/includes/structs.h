@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/13 12:46:52 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:56:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,44 @@ struct s_grid
 	t_gl_uint	ebo;
 };
 
+struct s_vert_attr
+{
+	t_vec3	pos;
+	t_vec3	normal;
+};
+
+struct	s_mesh
+{
+	t_uint	type;
+	float* verts;
+	t_uint		verts_count;
+	int* tris;
+	t_uint		tris_count;
+	float* tex;
+	t_uint		tex_count;
+	float* draw_verts;
+	t_uint		draw_count;
+	t_gl_uint	tri_buffer;
+	t_gl_uint	buffer;
+};
+
+struct s_plane_params
+{
+	t_mesh* curr_mesh;
+	t_vec3	corner;
+	t_vec3	v1;
+	t_vec3	v2;
+	size_t	dim_v1;
+	size_t	dim_v2;
+	bool	tile;
+};
+
+struct s_scene
+{
+	t_mesh* meshes;
+	t_uint	mesh_count;
+	// t_light* lights;
+};
 
 struct s_rt
 {
@@ -69,7 +107,8 @@ struct s_rt
 	t_cam			cam;
 	t_uniforms		uniforms;
 	t_ctrl			ctrl;
-	t_grid			grid;
+	t_scene			scene;
+	t_uint			loop;
 };
 
 #endif

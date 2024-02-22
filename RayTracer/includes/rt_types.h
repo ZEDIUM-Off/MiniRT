@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/12 15:54:45 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:33:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,13 @@ typedef struct s_mlx_env		t_mlx_env;
 typedef struct s_uniforms		t_uniforms;
 typedef struct s_ctrl			t_ctrl;
 typedef struct s_grid			t_grid;
+typedef struct s_mesh			t_mesh;
+typedef struct s_scene			t_scene;
+typedef struct s_vert_attr		t_vert_attr;
+typedef struct s_plane_params	t_plane_params;
+typedef struct s_sphere_params	t_sphere_params;
+typedef struct s_cylinder_params	t_cylinder_params;
+typedef struct s_cone_params	t_cone_params;
+
 
 #endif

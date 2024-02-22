@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:03:15 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/13 11:09:31 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:20:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char** argv)
 	printf("running...");
 	if (init_rt(&rt) != CONTINUE)
 		return (1);
-	printf("grid initialized...");
+	printf("lauching loop...");
 	mlx_loop(rt.mxv.mlx);
 	printf("exiting...");
 }

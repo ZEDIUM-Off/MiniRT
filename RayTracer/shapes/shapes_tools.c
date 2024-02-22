@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.c                                            :+:      :+:    :+:   */
+/*   shapes_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 16:26:29 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/21 16:59:16 by  mchenava        ###   ########.fr       */
+/*   Created: 2024/02/21 15:25:02 by  mchenava         #+#    #+#             */
+/*   Updated: 2024/02/21 15:40:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	scene_init(t_rt* rt)
+void	expand_mesh(t_mesh* mesh)
 {
-	t_mesh	plane;
-	t_plane_params	params;
+	t_uint		i;
 
-	rt->scene.meshes = NULL;
-	rt->scene.mesh_count = 0;
-	create_mesh(&plane, MESH_PLANE);
-	printf("plane created...\n");
-	params = (t_plane_params){ &plane, (t_vec3) { -2, -2, 0 }, (t_vec3) { 1, 0, 0 }, (t_vec3) { 0, 0, 1 }, 2, 6, false };
-	make_plane(&plane, &params);
-	printf("plane made...\n");
-	mesh_to_scene(rt, &plane);
-	printf("plane to scene...\n");
+	i = 0;
+	while (i < mesh->tris_count)
+	{
+		mesh->draw_verts = ft_realloc(mesh->draw_verts, (mesh->draw_count + 1) * sizeof(float) * 3, mesh->draw_count * sizeof(float) * 3);
+		vec3_to_array(&(t_vec3) { mesh->verts[mesh->tris[i * 3] * 3], mesh->verts[mesh->tris[i * 3] * 3 + 1], mesh->verts[mesh->tris[i * 3] * 3 + 2] }, mesh->draw_verts, mesh->draw_count++);
+		i++;
+	}
 }
