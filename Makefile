@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/02/21 15:58:41 by  mchenava        ###   ########.fr        #
+#    Updated: 2024/02/22 16:03:14 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/mesh.c \
+			$(SHAPES_DIR)/sphere.c \
+			$(SHAPES_DIR)/sphere_tri_tex.c \
 			$(SHAPES_DIR)/shapes_tools.c \
 
 SRC= $(SRC_DIR)/minirt.c

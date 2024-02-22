@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/21 15:56:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/02/22 16:22:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,27 @@ struct s_plane_params
 	size_t	dim_v1;
 	size_t	dim_v2;
 	bool	tile;
+};
+
+struct s_sphere_params
+{
+	t_mesh* curr_mesh;
+	float	radius;
+	size_t	slices;
+	size_t	stacks;
+	t_vec3	center;
+};
+
+struct s_shpere_vars
+{
+	float	down;
+	float	around;
+	t_mat3	rotdown;
+	t_mat3	rotaround;
+	t_uint	vert_start;
+	t_uint	tri_start;
+	t_vec3	point;
+	t_vec3	tmp;
 };
 
 struct s_scene

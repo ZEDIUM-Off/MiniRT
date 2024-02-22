@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/21 15:53:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/02/22 15:59:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	init_shader(t_rt* rt);
 
 // Shapes
 void	make_plane(t_mesh* mesh, t_plane_params* params);
+void	make_sphere(t_mesh* mesh, t_sphere_params* params);
+void	push_top_tris_part1(t_mesh* mesh, t_shpere_vars* vars, t_sphere_params* params);
+void	push_top_tris_part2(t_mesh* mesh, t_shpere_vars* vars, t_sphere_params* params);
+void 	add_bottom_cap(t_mesh* mesh, t_shpere_vars* vars, t_sphere_params* params);
 
 // Mesh
 void	mesh_to_scene(t_rt* rt, t_mesh* mesh);
