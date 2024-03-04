@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FUNCT.H                                            :+:      :+:    :+:   */
+/*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/22 15:59:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/04 02:08:17 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // utils
 t_uint	init_rt(t_rt* rt);
 t_uint	clean_rt(t_rt* rt);
+int		handle_error(char* msg, t_rt* rt);
 void	vec3_to_array(t_vec3* vec, float* arr, t_uint start);
 void	ivec3_to_array(t_ivec3* vec, int* arr, t_uint start);
 void	vec2_to_array(t_vec2* vec, float* arr, t_uint start);

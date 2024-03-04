@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/26 21:37:25 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 03:00:40 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 # define PARSER_H
 
 # include "scene_structs.h"
-
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
+# include "parser_errors.h"
 
 /**
  * Parses the scene description from a file.
  *
  * @param file_path The path to the .rt file containing the scene description.
- * @param scene A pointer to the scene structure where the parsed data will be stored.
+ * @param rt A pointer to the rt structure.
  * @return 1 if the file is parsed and scene_input populated, 0 otherwise.
  */
 int	parse_read_file(const char* file_path, t_rt* rt);
@@ -34,10 +31,10 @@ format
  *
  * @param tokens The array containing the shape parameters.
  * @param num_tokens The number of tokens contained by the array.
- * @param shape A pointer to the shape structure where the parsed data will be stored.
+ * @param rt A pointer to the rt structure.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-int parse_shape(char** tokens, int num_tokens, t_shape* shape);
+int parse_shape(char** tokens, int num_tokens, t_rt* rt);
 
 /**
  * Parses a string representing a color in r,g,b.
@@ -57,8 +54,12 @@ int	parse_color(const char* str, t_color* out_color);
  */
 int	parse_vector3(const char* str, t_vec3* out_vec3);
 
-char	**ft_split(char const *str, char c);
+char** ft_split(char const* str, char c);
 
-char	**parse_tokens(const char *str, const char delim, const size_t max_tokens);
+double ft_atof(const char* str);
+
+char** parse_tokens(const char* str, const char delim, const size_t max_tokens);
+
+int	free_tokens(char*** tokens);
 
 #endif

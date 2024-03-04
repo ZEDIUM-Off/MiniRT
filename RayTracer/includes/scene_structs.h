@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:20:09 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/26 20:52:50 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 01:19:59 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ typedef struct s_cylinder
 {
 	float	diameter;
 	float	height;
+	t_vec3	axis;
 }t_cylinder_props;
 
 typedef struct s_cone
 {
 	float	angle;
 	float	height;
+	t_vec3	axis;
 }t_cone_props;
 
 typedef union u_shape_props

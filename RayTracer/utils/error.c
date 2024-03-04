@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_includes.h                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:09:39 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/03 19:26:37 by agaley           ###   ########lyon.fr   */
+/*   Created: 2024/03/04 02:05:47 by agaley            #+#    #+#             */
+/*   Updated: 2024/03/04 02:31:33 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_INCLUDES_H
-# define RT_INCLUDES_H
+#include "minirt.h"
 
-# include "rt_types.h"
-# include "structs.h"
-# include "const.h"
-# include "enums.h"
-# include "funct.h"
-# include "get_next_line.h"
-# include "parser.h"
-
-#endif //RT_INCLUDES_H
+int	handle_error(char* msg, t_rt* rt)
+{
+	rt->err_msg = strdup(msg);
+	return (0);
+}

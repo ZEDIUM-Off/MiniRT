@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/26 20:57:06 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 02:02:56 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ struct s_rt
 	t_sc_input		sc_input;
 	t_scene			scene;
 	t_uint			loop;
+	char* err_msg;
 };
 
 #endif

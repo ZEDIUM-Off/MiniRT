@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/26 21:34:02 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 03:13:11 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
  * @param ambient_light A pointer to the ambient light structure where the parsed data will be stored.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-static int parse_ambient_light(char** tokens, t_sc_input* sc_input)
+static int parse_ambient_light(char** tokens, t_rt* rt)
 {
-	sc_input->a_light.ratio = atof(tokens[1]);
-	return parse_color(tokens[2], &sc_input->a_light.color);
+	t_sc_input* sc_input;
+
+	sc_input = &rt->sc_input;
+	sc_input->a_light.ratio = ft_atof(tokens[1]);
+	if (sc_input->a_light.ratio < 0 || sc_input->a_light.ratio > 1)
+		return (handle_error(ERR_PARSE_AMBIENT_RATIO, rt));
+	if (!parse_color(tokens[2], &sc_input->a_light.color))
+		return (handle_error(ERR_PARSE_AMBIENT_COLOR, rt));
+	return (1);
 }
 
 /**
@@ -32,77 +39,93 @@ static int parse_ambient_light(char** tokens, t_sc_input* sc_input)
  * @param camera A pointer to the camera structure where the parsed data will be stored.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-static int parse_camera(char** tokens, t_cam* camera)
+static int parse_camera(char** tokens, t_rt* rt)
 {
+	t_cam* camera;
+
+	camera = &rt->cam;
 	if (!parse_vector3(tokens[1], &camera->pos))
-		return (0);
+		return (handle_error(ERR_PARSE_CAM_POS, rt));
 	if (!parse_vector3(tokens[2], &camera->dir))
-		return (0);
-	camera->fov = atof(tokens[3]);
+		return (handle_error(ERR_PARSE_CAM_DIR, rt));
+	camera->fov = ft_atof(tokens[3]);
+	if (camera->fov < 0 || camera->fov > 180)
+		return (handle_error(ERR_PARSE_CAM_FOV, rt));
 	return (1);
 }
 
 /**
- * Parses spot light parameters from an array.
- *
- * @param tokens The array containing the spot light parameters.
- * @param light A pointer to the spot light structure where the parsed data will be stored.
- * @return 1 if the parameters were successfully parsed, 0 otherwise.
- */
-static int parse_spot_light(char** tokens, t_sc_input* sc_input)
+* Parses spot light parameters from an array.
+*
+* @param tokens The array containing the spot light parameters.
+* @param light A pointer to the spot light structure where the parsed data will be stored.
+* @return 1 if the parameters were successfully parsed, 0 otherwise.
+*/
+static int parse_spot_light(char** tokens, t_rt* rt)
 {
+	t_sc_input* sc_input;
+
+	sc_input = &rt->sc_input;
 	if (!parse_vector3(tokens[1], &sc_input->s_light.position))
-		return (0);
-	sc_input->s_light.brightness_ratio = atof(tokens[2]);
-	return parse_color(tokens[3], &sc_input->s_light.color);
+		return (handle_error(ERR_PARSE_SPOT_POS, rt));
+	sc_input->s_light.brightness_ratio = ft_atof(tokens[2]);
+	if (sc_input->s_light.brightness_ratio < 0 || sc_input->s_light.brightness_ratio > 1)
+		return (handle_error(ERR_PARSE_SPOT_BRIGHT, rt));
+	if (!parse_color(tokens[3], &sc_input->s_light.color))
+		return (handle_error(ERR_PARSE_SPOT_COLOR, rt));
+	return (1);
 }
 
 static int parse_element(char* line, t_rt* rt)
 {
-	char	**tokens;
-	size_t	nb;
+	char** tokens;
+	size_t nb;
+	int result;
 
 	tokens = parse_tokens(line, ' ', 10);
 	if (!tokens)
-		return (0);
+		return (handle_error(ERR_PARSE_TOKENS, rt));
 	nb = 0;
 	while (tokens[nb])
 		nb++;
 	if (strcmp(tokens[0], "A") == 0 && nb == 3)
-		return (parse_ambient_light(tokens, &rt->sc_input));
+		result = parse_ambient_light(tokens, rt);
 	else if (strcmp(tokens[0], "C") == 0 && nb == 4)
-		return (parse_camera(tokens, &rt->cam));
+		result = parse_camera(tokens, rt);
 	else if (strcmp(tokens[0], "L") == 0 && nb == 4)
-		return (parse_spot_light(tokens, &rt->sc_input));
+		result = parse_spot_light(tokens, rt);
 	else
-	{
-		rt->sc_input.shapes = realloc(rt->sc_input.shapes,
-			(rt->sc_input.shapes_count + 1) * sizeof(t_shape));
-		if (!rt->sc_input.shapes)
-			return (0);
-		rt->sc_input.shapes_count++;
-		return (parse_shape(tokens, nb,
-			&rt->sc_input.shapes[rt->sc_input.shapes_count - 1]));
-	}
+		result = parse_shape(tokens, nb, rt);
+	free_tokens(&tokens);
+	return (result);
 }
 
 int	parse_read_file(const char* file_path, t_rt* rt)
 {
-	FILE* file;
-	char	line[1024];
+	int fd;
+	char* line;
 
-	file = fopen(file_path, "r");
-	if (!file)
-		return (0);
-	while (fgets(line, sizeof(line), file))
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		return (handle_error(ERR_PARSE_FILE_OPEN, rt));
+	while (line)
 	{
-		if (!parse_element(line, rt))
+		line = get_next_line(fd);
+		if (line && line[0] == '\n')
 		{
-			// free(&rt->sc_input.shapes);
-			fclose(file);
+			free(line);
+			continue;
+		}
+		if (line && !parse_element(line, rt))
+		{
+			if (rt->sc_input.shapes)
+				free(rt->sc_input.shapes);
+			close(fd);
+			free(line);
 			return (0);
 		}
+		free(line);
 	}
-	fclose(file);
+	close(fd);
 	return (1);
 }
