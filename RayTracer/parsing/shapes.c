@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:53:38 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 02:58:59 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 16:02:07 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	parse_cone(char **tokens, t_shape *shape, t_rt *rt)
 	if (!parse_vector3(tokens[2], &shape->properties.cone.axis))
 		return (handle_error(ERR_PARSE_CONE_AXIS, rt));
 	shape->properties.cone.angle = ft_atof(tokens[3]);
-	if (shape->properties.cone.angle < 0 || shape->properties.cone.angle > 90)
+	if (shape->properties.cone.angle < 0 || shape->properties.cone.angle > 180)
 		return (handle_error(ERR_PARSE_CONE_ANGLE, rt));
 	shape->properties.cone.height = ft_atof(tokens[4]);
 	if (shape->properties.cone.height < 0)

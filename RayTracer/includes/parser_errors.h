@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_errors.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:53:39 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 02:55:33 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 16:04:01 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define ERR_PARSE_CAM_POS "Failed to parse camera position"
 # define ERR_PARSE_CAM_DIR "Failed to parse camera direction"
-# define ERR_PARSE_CAM_FOV "Camera field of view is invalid. Range: [0,180]"
+# define ERR_PARSE_CAM_FOV "Camera field of view is invalid. Range: ]0,180["
 
 # define ERR_PARSE_SPHERE_ARGS "Invalid number of arguments for a sphere"
 # define ERR_PARSE_SPHERE_POS "Failed to parse sphere position"
@@ -52,7 +52,7 @@
 # define ERR_PARSE_CONE_ARGS "Invalid number of arguments for a cone"
 # define ERR_PARSE_CONE_POS "Failed to parse cone position"
 # define ERR_PARSE_CONE_AXIS "Failed to parse cone axis vector"
-# define ERR_PARSE_CONE_ANGLE "Cone angle is invalid. Range: [0,90]"
+# define ERR_PARSE_CONE_ANGLE "Cone angle is invalid. Range: ]0,180["
 # define ERR_PARSE_CONE_HEIGHT "Cone height is invalid : < 0"
 # define ERR_PARSE_CONE_COLOR "Failed to parse cone color"
 
