@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/04 13:27:49 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/04 02:02:56 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 # include "rt_types.h"
+# include "scene_structs.h"
 
 struct				s_camera
 {
@@ -129,8 +130,10 @@ struct				s_rt
 	t_cam			cam;
 	t_uniforms		uniforms;
 	t_ctrl			ctrl;
+	t_sc_input		sc_input;
 	t_scene			scene;
 	t_uint			loop;
+	char			*err_msg;
 };
 
 #endif
