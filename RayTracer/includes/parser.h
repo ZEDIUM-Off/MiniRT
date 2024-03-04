@@ -13,8 +13,8 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "scene_structs.h"
 # include "parser_errors.h"
+# include "scene_structs.h"
 
 /**
  * Parses the scene description from a file.
@@ -23,7 +23,7 @@
  * @param rt A pointer to the rt structure.
  * @return 1 if the file is parsed and scene_input populated, 0 otherwise.
  */
-int	parse_read_file(const char* file_path, t_rt* rt);
+int		parse_read_file(const char *file_path, t_rt *rt);
 
 /**
  * Parses shape parameters from an array.format
@@ -34,7 +34,7 @@ format
  * @param rt A pointer to the rt structure.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-int parse_shape(char** tokens, int num_tokens, t_rt* rt);
+int		parse_shape(char **tokens, int num_tokens, t_rt *rt);
 
 /**
  * Parses a string representing a color in r,g,b.
@@ -43,7 +43,7 @@ int parse_shape(char** tokens, int num_tokens, t_rt* rt);
  * @param out_color Pointer to t_color where the color will be stored.
  * @return 1 if parsing is successful, 0 otherwise.
  */
-int	parse_color(const char* str, t_color* out_color);
+int		parse_color(const char *str, t_color *out_color);
 
 /**
  * Parses a string representing a 3D vector or point in x,y,z.
@@ -52,14 +52,15 @@ int	parse_color(const char* str, t_color* out_color);
  * @param out_vec3 Pointer to t_vec3 where vector/point will be stored.
  * @return 1 if parsing is successful, 0 otherwise.
  */
-int	parse_vector3(const char* str, t_vec3* out_vec3);
+int		parse_vector3(const char *str, t_vec3 *out_vec3);
 
-char** ft_split(char const* str, char c);
+char	**ft_split(char const *str, char c);
 
-double ft_atof(const char* str);
+double	ft_atof(const char *str);
 
-char** parse_tokens(const char* str, const char delim, const size_t max_tokens);
+char	**parse_tokens(const char *str, const char delim,
+			const size_t max_tokens);
 
-int	free_tokens(char*** tokens);
+int		free_tokens(char ***tokens);
 
 #endif

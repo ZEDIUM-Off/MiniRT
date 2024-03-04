@@ -12,12 +12,12 @@
 
 #include "minirt.h"
 
-static int process_sign(const char** str)
+static int	process_sign(const char **str)
 {
 	if (**str == '-')
 	{
 		(*str)++;
-		return -1;
+		return (-1);
 	}
 	else if (**str == '+')
 	{
@@ -26,9 +26,9 @@ static int process_sign(const char** str)
 	return (1);
 }
 
-static double process_integer(const char** str)
+static double	process_integer(const char **str)
 {
-	double result;
+	double	result;
 
 	result = 0.0;
 	while (**str != '\0' && **str != '.')
@@ -39,15 +39,15 @@ static double process_integer(const char** str)
 			(*str)++;
 		}
 		else
-			return 0.0;
+			return (0.0);
 	}
 	return (result);
 }
 
-static double process_fraction(const char** str)
+static double	process_fraction(const char **str)
 {
-	double fraction;
-	int divisor;
+	double	fraction;
+	int		divisor;
 
 	fraction = 0.0;
 	divisor = 1;
@@ -63,17 +63,17 @@ static double process_fraction(const char** str)
 				(*str)++;
 			}
 			else
-				return 0.0;
+				return (0.0);
 		}
 	}
 	return (fraction / divisor);
 }
 
-double ft_atof(const char* str)
+double	ft_atof(const char *str)
 {
-	double sign;
-	double result;
-	double fraction;
+	double	sign;
+	double	result;
+	double	fraction;
 
 	sign = process_sign(&str);
 	result = process_integer(&str);

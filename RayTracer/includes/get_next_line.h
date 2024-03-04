@@ -13,9 +13,9 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <limits.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -26,18 +26,18 @@ typedef struct s_buff
 	ssize_t	cur;
 	ssize_t	nr;
 	char	str[BUFFER_SIZE];
-}t_buff;
+}			t_buff;
 
 typedef struct s_line
 {
 	ssize_t	cur;
 	char	*str;
-}t_lineread;
+}			t_lineread;
 
-char	*ft_cleanbuf(t_buff *buff, t_lineread *line);
-ssize_t	ft_buffeol_nextpos(char *buf, ssize_t start, ssize_t size);
-char	*ft_realloc_str(char *p, size_t size);
+char		*ft_cleanbuf(t_buff *buff, t_lineread *line);
+ssize_t		ft_buffeol_nextpos(char *buf, ssize_t start, ssize_t size);
+char		*ft_realloc_str(char *p, size_t size);
 
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 #endif

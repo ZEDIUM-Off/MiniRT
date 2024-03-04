@@ -6,17 +6,18 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:35:15 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 03:11:35 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 14:55:12 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-char** parse_tokens(const char* str, const char delim, const size_t max_tokens)
+char	**parse_tokens(const char *str, const char delim,
+		const size_t max_tokens)
 {
-	char** tokens;
+	char	**tokens;
 	size_t	nb;
-	size_t	last_token_len;
+	size_t	l;
 
 	nb = 0;
 	tokens = ft_split(str, delim);
@@ -32,19 +33,19 @@ char** parse_tokens(const char* str, const char delim, const size_t max_tokens)
 	}
 	if (nb > 0)
 	{
-		last_token_len = strlen(tokens[nb - 1]);
-		while (last_token_len > 0 && (tokens[nb - 1][last_token_len - 1] == ' '
-			|| tokens[nb - 1][last_token_len - 1] == '\n'))
-			tokens[nb - 1][--last_token_len] = '\0';
+		nb = nb - 1;
+		l = strlen(tokens[nb]) - 1;
+		while ((tokens[nb][l] == ' ' || tokens[nb][l] == '\n'))
+			tokens[nb][l--] = '\0';
 	}
 	return (tokens);
 }
 
-int	parse_color(const char* str, t_color* out_color)
+int	parse_color(const char *str, t_color *out_color)
 {
-	char** tokens;
+	char	**tokens;
 	size_t	i;
-	int color_values[3];
+	int		color_values[3];
 
 	tokens = parse_tokens(str, ',', 3);
 	if (!tokens)
@@ -66,9 +67,9 @@ int	parse_color(const char* str, t_color* out_color)
 	return (1);
 }
 
-int	parse_vector3(const char* str, t_vec3* out_vec3)
+int	parse_vector3(const char *str, t_vec3 *out_vec3)
 {
-	char** tokens;
+	char	**tokens;
 	size_t	i;
 
 	tokens = parse_tokens(str, ',', 3);
@@ -81,14 +82,14 @@ int	parse_vector3(const char* str, t_vec3* out_vec3)
 	while (i < 3)
 		free(tokens[i++]);
 	free(tokens);
-	// Check reverse if ft_atof worked
 	return (1);
 }
 
-int free_tokens(char*** tokens)
+int	free_tokens(char ***tokens)
 {
-	size_t	i = 0;
+	size_t	i;
 
+	i = 0;
 	if (tokens && *tokens)
 	{
 		while ((*tokens)[i])

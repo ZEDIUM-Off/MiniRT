@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static int parse_sphere(char** tokens, t_shape* shape, t_rt* rt)
+static int	parse_sphere(char **tokens, t_shape *shape, t_rt *rt)
 {
 	shape->type = SPHERE;
 	if (!parse_vector3(tokens[1], &shape->position))
@@ -25,7 +25,7 @@ static int parse_sphere(char** tokens, t_shape* shape, t_rt* rt)
 	return (1);
 }
 
-static int parse_plane(char** tokens, t_shape* shape, t_rt* rt)
+static int	parse_plane(char **tokens, t_shape *shape, t_rt *rt)
 {
 	shape->type = PLANE;
 	if (!parse_vector3(tokens[1], &shape->position))
@@ -37,7 +37,7 @@ static int parse_plane(char** tokens, t_shape* shape, t_rt* rt)
 	return (1);
 }
 
-static int parse_cylinder(char** tokens, t_shape* shape, t_rt* rt)
+static int	parse_cylinder(char **tokens, t_shape *shape, t_rt *rt)
 {
 	shape->type = CYLINDER;
 	if (!parse_vector3(tokens[1], &shape->position))
@@ -55,7 +55,7 @@ static int parse_cylinder(char** tokens, t_shape* shape, t_rt* rt)
 	return (1);
 }
 
-static int parse_cone(char** tokens, t_shape* shape, t_rt* rt)
+static int	parse_cone(char **tokens, t_shape *shape, t_rt *rt)
 {
 	shape->type = CONE;
 	if (!parse_vector3(tokens[1], &shape->position))
@@ -73,12 +73,12 @@ static int parse_cone(char** tokens, t_shape* shape, t_rt* rt)
 	return (1);
 }
 
-int parse_shape(char** tokens, int num_tokens, t_rt* rt)
+int	parse_shape(char **tokens, int num_tokens, t_rt *rt)
 {
-	t_shape* shape;
+	t_shape	*shape;
 
 	rt->sc_input.shapes = realloc(rt->sc_input.shapes,
-		(rt->sc_input.shapes_count + 1) * sizeof(t_shape));
+			(rt->sc_input.shapes_count + 1) * sizeof(t_shape));
 	if (!rt->sc_input.shapes)
 		return (handle_error(ERR_PARSE_SHAPE_REALLOC, rt));
 	shape = &rt->sc_input.shapes[rt->sc_input.shapes_count];
