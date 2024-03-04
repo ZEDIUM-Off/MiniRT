@@ -40,19 +40,20 @@ void	cam_rotate(t_rt *rt, float delta_x, float delta_y);
 void	cam_translate(t_rt *rt, int x_offset, int y_offset);
 void	cam_proj(t_rt *rt, t_uniforms *u);
 void	scene_init(t_rt *rt);
+
+// Shaders
 void	grid_vs(float *vs_output, void *vertex_attribs,
 			t_shader_builtins *builtins, void *uniforms);
 void	grid_fs(float *fs_input, t_shader_builtins *builtins, void *uniforms);
 void	init_shader(t_rt *rt);
+void	base_vs(float *vs_output, void *vertex_attribs,
+			t_shader_builtins *builtins, void *uniforms);
+void	base_fs(float *fs_input, t_shader_builtins *builtins, void *uniforms);
 
 // Shapes
 void	make_plane(t_mesh *mesh, t_plane_params *params);
 void	make_sphere(t_mesh *mesh, t_sphere_params *params);
-void	push_top_tris_part1(t_mesh *mesh, t_shpere_vars *vars,
-			t_sphere_params *params);
-void	push_top_tris_part2(t_mesh *mesh, t_shpere_vars *vars,
-			t_sphere_params *params);
-void	add_bottom_cap(t_mesh *mesh, t_shpere_vars *vars,
+void	sphere_push_tris(t_mesh *mesh, t_shpere_vars *vars,
 			t_sphere_params *params);
 
 // Mesh

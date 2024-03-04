@@ -75,8 +75,8 @@ struct				s_mesh
 	t_uint			verts_count;
 	int				*tris;
 	t_uint			tris_count;
-	float			*tex;
-	t_uint			tex_count;
+	// float* tex;
+	// t_uint		tex_count;
 	float			*draw_verts;
 	t_uint			draw_count;
 	t_gl_uint		tri_buffer;
@@ -105,14 +105,15 @@ struct				s_sphere_params
 
 struct				s_shpere_vars
 {
-	float			down;
-	float			around;
-	t_mat3			rotdown;
-	t_mat3			rotaround;
+	size_t			tot_verts;
+	size_t			tot_tris;
+	float			phi;
+	float			theta;
 	t_uint			vert_start;
 	t_uint			tri_start;
-	t_vec3			point;
-	t_vec3			tmp;
+	int				pole_top;
+	int				pole_bot;
+	int				offset;
 };
 
 struct				s_scene
