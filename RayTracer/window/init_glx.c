@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_glx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:17:58 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/07 13:25:44 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/21 01:13:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_uint	setup_gl_context(t_rt *rt)
 	settings.a_mask = ALPHA_MASK;
 	if (!init_gl_context(c, settings))
 		return (GLX_INIT_ERR);
-	gl_clear_color(c, BLACK_VEC);
+	gl_clear_color(c, (float[4]){0.0f, 0.0f, 0.0f, 1.0f});
 	gl_enable(&rt->glx, GL_DEPTH_TEST);
+	// gl_enable(&rt->glx, GL_CULL_FACE);
 	return (CONTINUE);
 }

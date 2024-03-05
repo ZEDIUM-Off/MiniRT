@@ -6,35 +6,35 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/21 16:52:29 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/05 01:36:17 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_uint	init_rt(t_rt* rt)
+t_uint	init_rt(t_rt *rt)
 {
 	t_uint	status;
 
-	printf("init RT...\n");
 	status = init_window(rt);
 	if (status != CONTINUE)
 		return (status);
-	printf("window inited\n");
 	status = setup_gl_context(rt);
 	if (status != CONTINUE)
 		return (status);
-	printf("gl inited\n");
 	init_cam(rt);
-	printf("cam inited\n");
+	printf("cam inited...\n");
 	set_hooks(rt);
-	printf("hooks inited\n");
+	printf("hooks set...\n");
 	scene_init(rt);
-	printf("grid inited\n");
+	rt->sc_input.shapes_count = 0;
+	rt->sc_input.shapes = NULL;
+	printf("scene inited...\n");
 	init_shader(rt);
-	printf("shaders inited\n");
+	printf("init done\n");
 	rt->ctrl.rotate = false;
 	rt->ctrl.translate = false;
-	rt->loop = 0;
+	rt->loop = 10000;
+	rt->err_msg = NULL;
 	return (CONTINUE);
 }

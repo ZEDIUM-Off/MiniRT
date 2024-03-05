@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/02/20 11:39:39 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/05 01:27:04 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,14 @@ RENDER_DIR= $(SRC_DIR)/rendering
 CONTROLS_DIR= $(SRC_DIR)/controls
 SCENE_DIR= $(SRC_DIR)/scene
 SHADER_DIR= $(SRC_DIR)/shader
+SHAPES_DIR= $(SRC_DIR)/shapes
+READLINE_DIR = $(SRC_DIR)/readline
+PARSING_DIR= $(SRC_DIR)/parsing
 
 MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
-S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR)
+S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
 LIBS = -lX11 -lXext -lm
 
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
@@ -39,7 +42,9 @@ WIN_SRC=	$(WIN_DIR)/init_window.c \
 			$(WIN_DIR)/init_glx.c
 
 UTILS_SRC=	$(UTILS_DIR)/clean.c \
-			$(UTILS_DIR)/init_rt.c
+			$(UTILS_DIR)/init_rt.c \
+			$(UTILS_DIR)/vec_to_array.c \
+			$(UTILS_DIR)/error.c
 
 CAM_SRC=	$(CAM_DIR)/init_cam.c \
 			$(CAM_DIR)/move_cam.c
@@ -58,10 +63,26 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/materials.c \
 			$(SHADER_DIR)/scattering.c \
-			$(SHADER_DIR)/utils.c
+			$(SHADER_DIR)/utils.c \
+			$(SHADER_DIR)/base_shaders.c
+
+SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
+			$(SHAPES_DIR)/mesh.c \
+			$(SHAPES_DIR)/sphere.c \
+			$(SHAPES_DIR)/sphere_tri.c \
+			$(SHAPES_DIR)/shapes_tools.c \
+
+READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
+				$(READLINE_DIR)/get_next_line_utils.c
+
+PARSING_SRC = $(PARSING_DIR)/parser.c \
+			$(PARSING_DIR)/shapes.c \
+			$(PARSING_DIR)/ft_split.c \
+			$(PARSING_DIR)/ft_atof.c \
+			$(PARSING_DIR)/utils.c
 
 SRC= $(SRC_DIR)/minirt.c
-SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC)
+SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h

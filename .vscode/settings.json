@@ -7,6 +7,11 @@
 		"minirt.h": "c",
 		"rt_includes.h": "c",
 		"mlx.h": "c",
-		"stdbool.h": "c"
-	}
+		"stdbool.h": "c",
+		"mlx_int.h": "c",
+		"math.h": "c"
+	},
+	"[c]": {
+		"editor.defaultFormatter": "keyhr.42-c-format"
+	},
 }

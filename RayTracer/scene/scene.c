@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:26:29 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/20 21:59:10 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 14:52:01 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,25 @@
 
 void	scene_init(t_rt* rt)
 {
-	float						points[] = {
-		-0.5, 0,-0.5,
-		0.5, 0, -0.5,
-		0.5, 0, 0.5,
-		-0.5, 0, 0.5
-	};
-	unsigned int				indices[] = {
-		0, 1, 2,
-		2, 3, 0
-	};
-	t_gl_uint					elements;
-	t_gl_vertex_attrib			attr;
+	// t_mesh	plane;
+	t_mesh	sphere;
+	// t_plane_params	params;
+	t_sphere_params	s_params;
 
-	t_gl_uint square;
-	gl_gen_buffers(&rt->glx, 1, &square);
-	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, square);
-	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, sizeof(points), points);
-
-	gl_enable_vertex_attrib_array(&rt->glx, 0);
-	attr = (t_gl_vertex_attrib){ .size = 3, .type = GL_FLOAT, .normalized = GL_FALSE, .stride = 0 };
-	gl_vertex_attrib_pointer(&rt->glx, 0, attr, 0);
-	gl_gen_buffers(&rt->glx, 1, &elements);
-	gl_bind_buffer(&rt->glx, GL_ELEMENT_ARRAY_BUFFER, elements);
-	gl_buffer_data(&rt->glx, GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices);
-	gl_enable_vertex_attrib_array(&rt->glx, 0);
-	attr = (t_gl_vertex_attrib){ .size = 3, .type = GL_FLOAT,
-		.normalized = GL_FALSE, .stride = 0 };
-	gl_vertex_attrib_pointer(&rt->glx, 0, attr, 0);
+	rt->scene.meshes = NULL;
+	rt->scene.mesh_count = 0;
+	create_mesh(&sphere, MESH_PLANE);
+	printf("plane created...\n");
+	s_params = (t_sphere_params){ &sphere,1.0, 30, 15, (t_vec3) { 0, 2 , 0 } };
+	// params = (t_plane_params){ &plane, (t_vec3) { -2, -2, 0 }, (t_vec3) { 1, 0, 0 }, (t_vec3) { 0, 0, 1 }, 2, 6, false };
+	// make_plane(&plane, &params);
+	make_sphere(&sphere, &s_params);
+	// printf("plane made...\n");
+	printf("sphere made... with %d verts and %d tris\n", sphere.verts_count, sphere.tris_count);
+	for (t_uint i = 0; i < sphere.tris_count; i++)
+	{
+		printf("tri %d: %d %d %d\n", i, sphere.tris[i * 3], sphere.tris[i * 3 + 1], sphere.tris[i * 3 + 2]);
+	}
+	mesh_to_scene(rt, &sphere);
+	printf("plane to scene...\n");
 }
