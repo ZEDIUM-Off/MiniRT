@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/04 02:02:56 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 14:24:24 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,6 @@ struct				s_ctrl
 	t_vec2			mouse_pos;
 };
 
-struct				s_grid
-{
-	float			verts[8];
-	t_uint			verts_count;
-	t_uint			indices[6];
-	t_uint			id_count;
-	t_gl_uint		vao;
-	t_gl_uint		vbo;
-	t_gl_uint		ebo;
-};
-
 struct				s_vert_attr
 {
 	t_vec3			pos;
@@ -103,17 +92,52 @@ struct				s_sphere_params
 	t_vec3			center;
 };
 
+struct				s_cylinder_params
+{
+	t_mesh			*curr_mesh;
+	float			diameter;
+	float			height;
+	t_vec3			axis;
+	t_vec3			center;
+};
+struct				s_cylinder_vars
+{
+	int				segments;
+	float			radius;
+	t_vec3			axis_normalized;
+	t_vec3			perp_axis;
+	t_vec3			perp_axis2;
+	t_vec3			top_center;
+	int				top_center_index;
+	int				bottom_center_index;
+	float			theta;
+};
+
+struct				s_cone_params
+{
+	t_mesh			*curr_mesh;
+	float			angle;
+	float			height;
+	t_vec3			axis;
+	t_vec3			center;
+};
+
+struct				s_cone_vars
+{
+	int				segments;
+	float			radius;
+	float			theta;
+	t_vec3			top;
+};
+
 struct				s_shpere_vars
 {
-	size_t			tot_verts;
-	size_t			tot_tris;
+	float			stack_step;
+	float			slice_step;
 	float			phi;
 	float			theta;
-	t_uint			vert_start;
-	t_uint			tri_start;
-	int				pole_top;
-	int				pole_bot;
-	int				offset;
+	int				k1;
+	int				k2;
 };
 
 struct				s_scene

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/04 02:07:25 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/06 14:30:50 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/mesh.c \
 			$(SHAPES_DIR)/sphere.c \
-			$(SHAPES_DIR)/sphere_tri.c \
+			$(SHAPES_DIR)/cylinder.c \
+			$(SHAPES_DIR)/cone.c \
 			$(SHAPES_DIR)/shapes_tools.c \
 
 READLINE_SRC = $(READLINE_DIR)/get_next_line.c \

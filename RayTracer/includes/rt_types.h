@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/22 16:00:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/06 14:21:14 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_plane_params		t_plane_params;
 typedef struct s_sphere_params		t_sphere_params;
 typedef struct s_shpere_vars		t_shpere_vars;
 typedef struct s_cylinder_params	t_cylinder_params;
+typedef struct s_cylinder_vars		t_cylinder_vars;
 typedef struct s_cone_params		t_cone_params;
+typedef struct s_cone_vars			t_cone_vars;
 
 #endif

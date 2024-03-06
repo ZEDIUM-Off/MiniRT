@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:20:09 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 01:19:59 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 11:06:05 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_shape
 	t_vec3				position;
 	t_shape_props		properties;
 	t_color				color;
+	t_mesh				*shape_mesh;
 }						t_shape;
 
 typedef struct s_scene_input

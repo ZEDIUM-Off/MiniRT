@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/04 02:08:17 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 14:30:43 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	base_fs(float *fs_input, t_shader_builtins *builtins, void *uniforms);
 // Shapes
 void	make_plane(t_mesh *mesh, t_plane_params *params);
 void	make_sphere(t_mesh *mesh, t_sphere_params *params);
-void	sphere_push_tris(t_mesh *mesh, t_shpere_vars *vars,
-			t_sphere_params *params);
+void	make_cylinder(t_mesh *mesh, t_cylinder_params *params);
+void	make_cone(t_mesh *mesh, t_cone_params *params);
 
 // Mesh
 void	mesh_to_scene(t_rt *rt, t_mesh *mesh);
