@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/06 03:47:55 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/06 04:30:37 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,8 @@ SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_S
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
 
-FLAGS= -std=c99 -Wall -Wextra -Werror -fsanitize=address -g3 ${LIBS}
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror
+FLAGS= -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=address ${LIBS}
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all: $(NAME)
 
