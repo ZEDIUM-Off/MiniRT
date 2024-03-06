@@ -6,11 +6,37 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:35:15 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 14:55:12 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 07:04:45 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	init_sc_input(t_rt *rt)
+{
+	rt->sc_input.shapes.spheres = NULL;
+	rt->sc_input.shapes.planes = NULL;
+	rt->sc_input.shapes.cylinders = NULL;
+	rt->sc_input.shapes.cones = NULL;
+	rt->sc_input.shapes.sp_count = 0;
+	rt->sc_input.shapes.pl_count = 0;
+	rt->sc_input.shapes.cy_count = 0;
+	rt->sc_input.shapes.co_count = 0;
+}
+
+void	sc_input_free(t_rt *rt)
+{
+	if (rt->sc_input.shapes.spheres)
+		free(rt->sc_input.shapes.spheres);
+	if (rt->sc_input.shapes.planes)
+		free(rt->sc_input.shapes.planes);
+	if (rt->sc_input.shapes.planes)
+		free(rt->sc_input.shapes.planes);
+	if (rt->sc_input.shapes.cylinders)
+		free(rt->sc_input.shapes.cylinders);
+	if (rt->sc_input.shapes.cones)
+		free(rt->sc_input.shapes.cones);
+}
 
 char	**parse_tokens(const char *str, const char delim,
 		const size_t max_tokens)
