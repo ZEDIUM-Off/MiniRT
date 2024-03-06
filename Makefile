@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/05 01:27:04 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/06 03:47:55 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,6 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 			$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \
 			$(SHADER_DIR)/intersect.c \
-			$(SHADER_DIR)/materials.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
 			$(SHADER_DIR)/base_shaders.c

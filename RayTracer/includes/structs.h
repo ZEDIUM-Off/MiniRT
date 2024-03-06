@@ -6,14 +6,13 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/04 02:02:56 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/05 02:09:44 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include "rt_types.h"
 # include "scene_structs.h"
 
 struct				s_camera
@@ -36,13 +35,13 @@ struct				s_mlx_env
 
 struct				s_uniforms
 {
-	t_mat4	mvp_mat;
-	t_mat4	view;
-	t_mat4	proj;
-	t_vec3	near_point;
-	t_vec3	far_point;
-	float	grid_scale;
-	t_cam* cam;
+	t_mat4			mvp_mat;
+	t_mat4			view;
+	t_mat4			proj;
+	t_vec3			near_point;
+	t_vec3			far_point;
+	float			grid_scale;
+	t_cam			*cam;
 };
 
 struct				s_ctrl
