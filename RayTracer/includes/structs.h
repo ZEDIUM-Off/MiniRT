@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/05 02:09:44 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 05:20:04 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct				s_uniforms
 	t_vec3			near_point;
 	t_vec3			far_point;
 	float			grid_scale;
-	t_cam			*cam;
+	t_rt			*rt;
 };
 
 struct				s_ctrl
@@ -135,6 +135,12 @@ struct				s_rt
 	t_scene			scene;
 	t_uint			loop;
 	char			*err_msg;
+};
+
+struct				s_ray
+{
+	t_vec3			ori;
+	t_vec3			dir;
 };
 
 #endif

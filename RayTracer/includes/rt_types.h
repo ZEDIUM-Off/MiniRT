@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/22 16:00:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/06 05:20:46 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef unsigned int				t_uint;
 typedef struct s_rt					t_rt;
+typedef struct s_ray				t_ray;
 typedef struct s_camera				t_cam;
 typedef struct s_mlx_env			t_mlx_env;
 typedef struct s_uniforms			t_uniforms;
