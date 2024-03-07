@@ -6,7 +6,7 @@
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/06 14:30:50 by mchenava         ###   ########.fr        #
+#    Updated: 2024/03/07 15:56:17 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,14 @@ RENDER_SRC= $(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/projection.c
 
 CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
-				$(CONTROLS_DIR)/mouse_ctrl.c
+				$(CONTROLS_DIR)/mouse_ctrl.c \
+				$(CONTROLS_DIR)/modes.c
 
 SCENE_SRC=	$(SCENE_DIR)/scene.c
 
-SHADER_SRC= $(SHADER_DIR)/gridshader.c \
-			$(SHADER_DIR)/loadshader.c \
-			$(SHADER_DIR)/base_shaders.c
+SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
+			$(SHADER_DIR)/base_shaders.c \
+			$(SHADER_DIR)/phong_shaders.c
 
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/mesh.c \
@@ -65,6 +66,7 @@ SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/cylinder.c \
 			$(SHAPES_DIR)/cone.c \
 			$(SHAPES_DIR)/shapes_tools.c \
+			$(SHAPES_DIR)/new_shape.c
 
 READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
 				$(READLINE_DIR)/get_next_line_utils.c

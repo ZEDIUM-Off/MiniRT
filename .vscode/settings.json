@@ -11,7 +11,8 @@
 		"mlx_int.h": "c",
 		"math.h": "c",
 		"numbers": "c",
-		"random": "c"
+		"random": "c",
+		"parser_errors.h": "c"
 	},
 	"[c]": {
 		"editor.defaultFormatter": "keyhr.42-c-format"

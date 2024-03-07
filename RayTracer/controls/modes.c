@@ -1,15 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skybox.c                                           :+:      :+:    :+:   */
+/*   modes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 15:27:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/21 14:11:27 by  mchenava        ###   ########.fr       */
+/*   Created: 2024/03/07 10:27:52 by mchenava          #+#    #+#             */
+/*   Updated: 2024/03/07 10:38:51 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <minirt.h>
 
-
+void	switch_mode(t_rt *rt)
+{
+	if (rt->mode == MODE_RENDER)
+		rt->mode = MODE_VIZ;
+	else
+		rt->mode = MODE_RENDER;
+	gl_use_program(&rt->glx, rt->shaders[rt->mode]);
+}

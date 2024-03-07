@@ -6,25 +6,26 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:20:09 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/06 11:06:05 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:38:25 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_STRUCTS_H
 # define SCENE_STRUCTS_H
 
-typedef struct s_ambient_light
+
+struct s_ambient_light
 {
 	float				ratio;
 	t_color				color;
-}						t_ambient_light;
+};
 
-typedef struct s_spot_light
+ struct s_spot_light
 {
 	t_vec3				position;
 	float				brightness_ratio;
 	t_color				color;
-}						t_spot_light;
+};
 
 typedef enum e_shape_type
 {
@@ -66,21 +67,21 @@ typedef union u_shape_props
 	t_cone_props		cone;
 }						t_shape_props;
 
-typedef struct s_shape
+struct s_shape
 {
 	t_shape_type		type;
 	t_vec3				position;
-	t_shape_props		properties;
+	void				*properties;
 	t_color				color;
-	t_mesh				*shape_mesh;
-}						t_shape;
+	t_mesh				shape_mesh;
+};
 
-typedef struct s_scene_input
+struct s_scene_input
 {
 	t_ambient_light		a_light;
 	t_spot_light		s_light;
 	t_shape				*shapes;
 	size_t				shapes_count;
-}						t_sc_input;
+};
 
 #endif

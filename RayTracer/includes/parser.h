@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 03:00:40 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 15:42:42 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "parser_errors.h"
-# include "scene_structs.h"
+// # include "scene_structs.h"
+# include "rt_includes.h"
 
 /**
  * Parses the scene description from a file.

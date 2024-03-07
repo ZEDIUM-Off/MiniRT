@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:10:25 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/20 23:29:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/07 10:46:14 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
 
-enum e_rt_err
+enum	e_rt_err
 {
 	CONTINUE,
 	EXIT,
@@ -49,21 +49,20 @@ enum
 	SCROLL_DOWN = 5,
 };
 
-enum e_mesh_type
+enum	e_mesh_type
 {
 	MESH_PLANE,
 	MESH_SPHERE,
 	MESH_CYLINDER,
 	MESH_CONE,
-	MESH_CUBE,
-	MESH_TETRAHEDRON,
-	MESH_OCTAHEDRON,
-	MESH_DODECAHEDRON,
-	MESH_ICOSAHEDRON,
-	MESH_PYRAMID,
-	MESH_TORUS,
-	MESH_TEAPOT,
 	MESH_MAX,
 };
 
-#endif //ENUMS_H
+enum	e_mode
+{
+	MODE_RENDER,
+	MODE_VIZ,
+	MODE_MAX,
+};
+
+#endif // ENUMS_H

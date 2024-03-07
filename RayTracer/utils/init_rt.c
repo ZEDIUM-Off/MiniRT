@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/04 14:36:11 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 16:01:14 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@ t_uint	init_rt(t_rt *rt)
 	if (status != CONTINUE)
 		return (status);
 	init_cam(rt);
-	printf("cam inited...\n");
 	set_hooks(rt);
-	printf("hooks set...\n");
-	scene_init(rt);
 	rt->sc_input.shapes_count = 0;
 	rt->sc_input.shapes = NULL;
-	printf("scene inited...\n");
+	rt->mode = MODE_VIZ;
 	init_shader(rt);
-	printf("init done\n");
 	rt->ctrl.rotate = false;
 	rt->ctrl.translate = false;
 	rt->loop = 10000;

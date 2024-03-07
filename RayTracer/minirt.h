@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:04:07 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/04 13:18:08 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:16:55 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include "includes/rt_includes.h"
+
+# define M_PI 3.14159265358979323846
 
 #endif

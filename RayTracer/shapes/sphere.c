@@ -6,16 +6,14 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:48:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/06 11:00:32 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:15:33 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void	init_sphere_vars(t_mesh *mesh, t_shpere_vars *vars,
-		t_sphere_params *params)
+static void	init_sphere_vars(t_shpere_vars *vars, t_sphere_params *params)
 {
-	(void)mesh;
 	vars->stack_step = M_PI / params->stacks;
 	vars->slice_step = 2 * M_PI / params->slices;
 }
@@ -95,7 +93,7 @@ void	make_sphere(t_mesh *mesh, t_sphere_params *params)
 {
 	t_shpere_vars	vars;
 
-	init_sphere_vars(mesh, &vars, params);
+	init_sphere_vars(&vars, params);
 	push_verts(mesh, &vars, params);
 	sphere_push_tris(mesh, &vars, params);
 	expand_mesh(mesh);
