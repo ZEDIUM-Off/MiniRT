@@ -80,8 +80,6 @@ READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
 
 PARSING_SRC = $(PARSING_DIR)/parser.c \
 			$(PARSING_DIR)/shapes.c \
-			$(PARSING_DIR)/shapes_adders.c \
-			$(PARSING_DIR)/shapes_parsers.c \
 			$(PARSING_DIR)/ft_split.c \
 			$(PARSING_DIR)/ft_atof.c \
 			$(PARSING_DIR)/utils.c

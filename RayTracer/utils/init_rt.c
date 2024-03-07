@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/06 15:06:31 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 03:54:41 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_uint	init_rt(t_rt *rt)
 	set_hooks(rt);
 	printf("hooks set...\n");
 	// scene_init(rt);
-	init_sc_input(rt);
+	rt->sc_input.shapes_count = 0;
+	rt->sc_input.shapes = NULL;
 	printf("scene input inited...\n");
 	init_shader(rt);
 	printf("init done\n");

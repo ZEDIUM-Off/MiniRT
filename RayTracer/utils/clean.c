@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:15:27 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/06 07:03:13 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 14:29:53 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_uint	clean_rt(t_rt *rt)
 	free(rt->mxv.mlx);
 	if (rt->err_msg)
 		free(rt->err_msg);
-	sc_input_free(rt);
+	if (rt->sc_input.shapes)
+		free(rt->sc_input.shapes);
 	return (CONTINUE);
 }
 
