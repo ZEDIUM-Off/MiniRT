@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 04:19:03 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 05:13:55 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static t_color	calculate_reflection(t_color color, t_hit hit, t_ray *ray,
 		reflect_dir = reflect_vector(ray->dir, hit.normal);
 		reflected_ray = (t_ray){hit.point, reflect_dir};
 		reflect_color = trace_ray(&reflected_ray, depth - 1, u);
-		reflectance = schlick_approx(dot_vec3s(ray->dir, hit.normal), 1);
+		// reflectance = schlick_approx(dot_vec3s(ray->dir, hit.normal), 1);
+		reflectance = fresnel_effect(ray->dir, hit.normal, 1);
 		color = mix_color(color, reflect_color, reflectance);
 	}
 	return (color);

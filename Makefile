@@ -6,11 +6,11 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/07 03:20:02 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/07 04:57:59 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= minirt
+NAME= miniRT
 
 BUILD_DIR= build
 SRC_DIR= RayTracer
@@ -63,6 +63,8 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/intersect_planes.c \
 			$(SHADER_DIR)/intersect_spheres.c \
+			$(SHADER_DIR)/intersect_cylinders.c \
+			$(SHADER_DIR)/intersect_cones.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
 			$(SHADER_DIR)/base_shaders.c

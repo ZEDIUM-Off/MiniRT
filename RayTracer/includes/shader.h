@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 03:44:37 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 05:22:05 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "materials.h"
 # include <stdlib.h>
 
-# define MAX_DEPTH 100
+# define MAX_DEPTH 2
 
 # define COLOR_BLACK        \
 	(t_color)              \
@@ -71,6 +71,12 @@ bool			check_planes_intersection(const t_ray *ray, t_hit *closest_hit,
 					float *closest_so_far, t_rt *rt);
 
 bool			check_spheres_intersection(const t_ray *ray, t_hit *closest_hit,
+					float *closest_so_far, t_rt *rt);
+
+bool			check_cylinders_intersection(const t_ray *ray,
+					t_hit *closest_hit, float *closest_so_far, t_rt *rt);
+
+bool			check_cones_intersection(const t_ray *ray, t_hit *closest_hit,
 					float *closest_so_far, t_rt *rt);
 
 bool			intersect_scene(const t_ray *ray, t_hit *hit, t_uniforms *u);

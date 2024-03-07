@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:54:33 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 02:15:19 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 05:06:45 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,29 @@ bool	intersect_scene(const t_ray *ray, t_hit *hit, t_uniforms *u)
 	intersected = false;
 	hit->distance = FLT_MAX;
 	closest_so_far = FLT_MAX;
+	if (check_planes_intersection(ray, &temp_hit, &closest_so_far, u->rt))
+	{
+		intersected = true;
+		if (temp_hit.distance < hit->distance)
+			*hit = temp_hit;
+	}
 	if (check_spheres_intersection(ray, &temp_hit, &closest_so_far, u->rt))
 	{
 		intersected = true;
 		if (temp_hit.distance < hit->distance)
 			*hit = temp_hit;
 	}
-	// if (check_planes_intersection(ray, &temp_hit, &closest_so_far, u->rt))
-	// {
-	// 	intersected = true;
-	// 	if (temp_hit.distance < hit->distance)
-	// 		*hit = temp_hit;
-	// }
+	if (check_cylinders_intersection(ray, &temp_hit, &closest_so_far, u->rt))
+	{
+		intersected = true;
+		if (temp_hit.distance < hit->distance)
+			*hit = temp_hit;
+	}
+	if (check_cones_intersection(ray, &temp_hit, &closest_so_far, u->rt))
+	{
+		intersected = true;
+		if (temp_hit.distance < hit->distance)
+			*hit = temp_hit;
+	}
 	return (intersected);
 }
