@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 03:50:34 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 04:19:03 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ t_color	add_colors(t_color c1, t_color c2)
 
 	avg_a = (c1.a + c2.a) / 2.0f;
 	return ((t_color){c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, avg_a});
+}
+
+t_color	mult_colors(t_color c1, t_color c2)
+{
+	float	avg_a;
+
+	avg_a = (c1.a + c2.a) / 2.0f;
+	return ((t_color){(c1.r * c2.r) / 255, (c1.g * c2.g) / 255, (c1.b * c2.b)
+		/ 255, avg_a});
 }
 
 static t_color	calculate_reflection(t_color color, t_hit hit, t_ray *ray,
@@ -69,6 +78,7 @@ static t_color	calculate_lighting(t_hit hit, t_uniforms *u, t_ray *ray,
 				* attenuation);
 	}
 	color = add_colors(color, spot_light_color);
+	color = mult_colors(color, hit.color);
 	return (calculate_reflection(color, hit, ray, depth, u));
 }
 
