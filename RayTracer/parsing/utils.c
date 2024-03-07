@@ -6,11 +6,21 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:35:15 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 14:55:12 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 15:57:41 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	init_shapes(t_rt *rt)
+{
+	rt->sc_input.shapes_count = 0;
+	rt->sc_input.shapes = NULL;
+	rt->intersect_shape[SPHERE] = intersect_sphere;
+	rt->intersect_shape[PLANE] = intersect_plane;
+	rt->intersect_shape[CYLINDER] = intersect_cylinder;
+	rt->intersect_shape[CONE] = intersect_cone;
+}
 
 char	**parse_tokens(const char *str, const char delim,
 		const size_t max_tokens)

@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/minirt",
+			"program": "${workspaceFolder}/miniRT",
 			"args": [
 				"scene1.rt"
 			],

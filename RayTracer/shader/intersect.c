@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:54:33 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 05:06:45 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 16:49:36 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,28 @@
  * @param hit Closest intersection details.
  * @return True if there is an intersection with any object in the scene.
  */
-bool	intersect_scene(const t_ray *ray, t_hit *hit, t_uniforms *u)
+bool	intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u)
 {
-	t_hit	temp_hit;
 	float	closest_so_far;
 	bool	intersected;
+	size_t	i;
 
 	intersected = false;
 	hit->distance = FLT_MAX;
 	closest_so_far = FLT_MAX;
-	if (check_planes_intersection(ray, &temp_hit, &closest_so_far, u->rt))
+	i = 0;
+	while (i < u->rt->sc_input.shapes_count)
 	{
-		intersected = true;
-		if (temp_hit.distance < hit->distance)
-			*hit = temp_hit;
-	}
-	if (check_spheres_intersection(ray, &temp_hit, &closest_so_far, u->rt))
-	{
-		intersected = true;
-		if (temp_hit.distance < hit->distance)
-			*hit = temp_hit;
-	}
-	if (check_cylinders_intersection(ray, &temp_hit, &closest_so_far, u->rt))
-	{
-		intersected = true;
-		if (temp_hit.distance < hit->distance)
-			*hit = temp_hit;
-	}
-	if (check_cones_intersection(ray, &temp_hit, &closest_so_far, u->rt))
-	{
-		intersected = true;
-		if (temp_hit.distance < hit->distance)
-			*hit = temp_hit;
+		if (u->rt->intersect_shape[u->rt->sc_input.shapes[i].type](ray,
+				&u->rt->sc_input.shapes[i], hit))
+		{
+			if (hit->distance < closest_so_far)
+			{
+				intersected = true;
+				closest_so_far = hit->distance;
+			}
+		}
+		i++;
 	}
 	return (intersected);
 }
