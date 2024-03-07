@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:03:15 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/06 04:01:43 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 02:23:56 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int argc, char **argv)
 	cam_proj(&rt, &rt.uniforms);
 	gl_clear(&rt.glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	lgl_draw_frame(&rt.glx);
-	mlx_put_image_to_window(&rt.mxv.mlx, &rt.mxv.win, &rt.mxv.img, 0, 0);
-	// mlx_loop(rt.mxv.mlx);
+	mlx_put_image_to_window(rt.mxv.mlx, rt.mxv.win, rt.mxv.img, 0, 0);
+	mlx_loop(rt.mxv.mlx);
 	quit_rt(&rt);
 	printf("exiting...");
 }

@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/06 06:51:01 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 15:06:31 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_uint	init_rt(t_rt *rt)
 		return (status);
 	init_cam(rt);
 	printf("cam inited...\n");
-	// set_hooks(rt);
-	// printf("hooks set...\n");
+	set_hooks(rt);
+	printf("hooks set...\n");
 	// scene_init(rt);
 	init_sc_input(rt);
 	printf("scene input inited...\n");

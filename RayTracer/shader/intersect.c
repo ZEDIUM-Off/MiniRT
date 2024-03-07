@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:54:33 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/06 06:43:36 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 02:15:19 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,24 @@
  */
 bool	intersect_scene(const t_ray *ray, t_hit *hit, t_uniforms *u)
 {
-	t_hit	closest_hit;
+	t_hit	temp_hit;
 	float	closest_so_far;
+	bool	intersected;
 
-	closest_hit = (t_hit){0};
+	intersected = false;
+	hit->distance = FLT_MAX;
 	closest_so_far = FLT_MAX;
-	if (check_spheres_intersection(ray, &closest_hit, &closest_so_far, u->rt))
+	if (check_spheres_intersection(ray, &temp_hit, &closest_so_far, u->rt))
 	{
-		*hit = closest_hit;
-		return (true);
+		intersected = true;
+		if (temp_hit.distance < hit->distance)
+			*hit = temp_hit;
 	}
-	return (false);
+	// if (check_planes_intersection(ray, &temp_hit, &closest_so_far, u->rt))
+	// {
+	// 	intersected = true;
+	// 	if (temp_hit.distance < hit->distance)
+	// 		*hit = temp_hit;
+	// }
+	return (intersected);
 }

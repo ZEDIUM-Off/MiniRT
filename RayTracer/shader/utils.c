@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:45:23 by agaley            #+#    #+#             */
-/*   Updated: 2024/02/20 16:42:51 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 03:07:50 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ t_vec3	reflect_vector(t_vec3 incident, t_vec3 normal)
 	return (result);
 }
 
-t_vec3	mix_color(t_vec3 color1, t_vec3 color2, float ratio)
+t_color	mix_color(t_color color1, t_color color2, float ratio)
 {
-	t_vec3	color_mix;
+	t_color	color_mix;
 
-	color_mix.x = color1.x * (1 - ratio) + color2.x * ratio;
-	color_mix.y = color1.y * (1 - ratio) + color2.y * ratio;
-	color_mix.z = color1.z * (1 - ratio) + color2.z * ratio;
+	color_mix.r = color1.r * (1 - ratio) + color2.r * ratio;
+	color_mix.g = color1.g * (1 - ratio) + color2.g * ratio;
+	color_mix.b = color1.b * (1 - ratio) + color2.b * ratio;
+	color_mix.a = (color1.a + color2.a) / 2;
 	return (color_mix);
 }

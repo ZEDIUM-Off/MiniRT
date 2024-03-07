@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/06 06:46:55 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/07 03:20:02 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SHADER_SRC= $(SHADER_DIR)/gridshader.c \
 			$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \
 			$(SHADER_DIR)/intersect.c \
+			$(SHADER_DIR)/intersect_planes.c \
 			$(SHADER_DIR)/intersect_spheres.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
@@ -87,10 +88,10 @@ SRC= $(SRC_DIR)/minirt.c
 SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
+DEPS= $(OBJECTS:.o=.d)
 
 FLAGS= -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=address ${LIBS}
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address -MMD
 
 all: $(NAME)
 
@@ -99,7 +100,7 @@ $(NAME): dirs compile
 help :
 	@echo $(SRC)
 	@echo $(OBJECTS)
-	@echo $(HEADERS)
+	@echo $(DEPS)
 
 compile: $(OBJECTS) $(MLX) $(GL)
 	@echo "Compiling $(NAME)"
@@ -108,6 +109,10 @@ compile: $(OBJECTS) $(MLX) $(GL)
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
 	@echo "Compiling $@"
 	$(CC) $(OBJ_FLAGS) -c $< -o $@
+	@echo "Including dependencies for $@"
+	-@$(CC) $(OBJ_FLAGS) -MM $< -MT $@ -MF $(@:.o=.d)
+
+-include $(DEPS)
 
 dirs :
 	mkdir -p $(BUILD_DIR)
@@ -126,9 +131,8 @@ $(GL) : gl
 check :
 	norminette $(GL_DIR) $(SRC_DIR) > norm.log
 
-
 clean :
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) $(DEPS)
 	$(RM) -r $(BUILD_DIR)
 	$(MAKE) -C $(MLX_DIR) clean
 	$(MAKE) -C $(GL_DIR) clean
