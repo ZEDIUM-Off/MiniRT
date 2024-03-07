@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 14:32:34 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 17:52:44 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static int	parse_camera(char **tokens, t_rt *rt)
 	camera->fov = ft_atof(tokens[3]);
 	if (camera->fov < 0 || camera->fov > 180)
 		return (handle_error(ERR_PARSE_CAM_FOV, rt));
+	normalize_vec3(&camera->dir);
+	camera->right = norm_vec3(cross_product(camera->dir, (t_vec3){0, 1, 0}));
+	camera->up = cross_product(camera->right, camera->dir);
 	return (1);
 }
 
