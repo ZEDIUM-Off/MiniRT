@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 16:55:52 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:31:59 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ struct					s_cylinder_vars
 	t_vec3				top_center;
 	int					top_center_index;
 	int					bottom_center_index;
+	int					verts_start;
 	float				theta;
 };
 
@@ -129,6 +130,7 @@ struct					s_cone_vars
 	int					segments;
 	float				radius;
 	float				theta;
+	int					verts_start;
 	t_vec3				top;
 };
 
@@ -140,6 +142,7 @@ struct					s_shpere_vars
 	float				theta;
 	int					k1;
 	int					k2;
+	int					verts_start;
 };
 
 struct					s_scene

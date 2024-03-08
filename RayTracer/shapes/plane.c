@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:31:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 16:54:16 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:32:58 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,4 @@ void	make_plane(t_mesh *mesh, t_plane_params *params)
 	mesh = params->curr_mesh;
 	push_verts(mesh, params);
 	push_tris(mesh, params, vert_start, tri_start);
-	expand_mesh(mesh);
 }

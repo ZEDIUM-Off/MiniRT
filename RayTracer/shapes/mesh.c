@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:00:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 20:12:12 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:37:28 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,49 +62,13 @@ void	mesh_draw(t_rt *rt, t_mesh *mesh)
 void	all_mesh_to_scene(t_rt *rt)
 {
 	t_uint	i;
-	t_uint	j;
-	t_mesh	curr_mesh;
 
 	i = 0;
 	create_mesh(&rt->all_meshes, MESH_MAX);
 	while (i < rt->sc_input.shapes_count)
 	{
 		make_mesh(rt, &rt->sc_input.shapes[i]);
-		curr_mesh = rt->sc_input.shapes[i].shape_mesh;
-		rt->all_meshes.verts = realloc(rt->all_meshes.verts,
-				(rt->all_meshes.verts_count + curr_mesh.verts_count)
-				* sizeof(float) * 3/*, rt->all_meshes.verts_count
-					* sizeof(float)
-				* 3*/);
-		memcpy(&rt->all_meshes.verts[rt->all_meshes.verts_count],
-			curr_mesh.verts, curr_mesh.verts_count * sizeof(float) * 3);
-		j = 0;
-		rt->all_meshes.tris = realloc(rt->all_meshes.tris,
-				(rt->all_meshes.tris_count + curr_mesh.tris_count) * sizeof(int)
-				* 3 /*, rt->all_meshes.tris_count * sizeof(int) * 3*/);
-		while (j < curr_mesh.tris_count * 3)
-		{
-			rt->all_meshes.tris[rt->all_meshes.tris_count * 3
-				+ j] = curr_mesh.tris[j] + rt->all_meshes.verts_count * 3;
-			j++;
-		}
-		rt->all_meshes.verts_count += curr_mesh.verts_count;
-		printf("all_meshes verts_count: %d\n", rt->all_meshes.verts_count);
-		// mesh_get_normals(&curr_mesh);
 		i++;
-		printf("all mesh Tableau verts:\n");
-		for (t_uint k = 0; k < curr_mesh.tris_count * 3; k += 3)
-		{
-			printf("c_tri %d: (%d, %d, %d) ", k / 3, curr_mesh.tris[k],
-				curr_mesh.tris[k + 1], curr_mesh.tris[k + 2]);
-			printf("(%d, %d, %d) %d:a_tri \n", rt->all_meshes.tris[k
-				+ rt->all_meshes.tris_count], rt->all_meshes.tris[k + 1
-				+ rt->all_meshes.tris_count], rt->all_meshes.tris[k + 2
-				+ rt->all_meshes.tris_count], k + rt->all_meshes.tris_count
-				/ 3);
-		}
-		rt->all_meshes.tris_count += curr_mesh.tris_count;
-		printf("============================\n");
 	}
 	mesh_to_scene(rt, &rt->all_meshes);
 }

@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:48:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 17:15:33 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/08 03:32:40 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void	init_sphere_vars(t_shpere_vars *vars, t_sphere_params *params)
+static void	init_sphere_vars(t_mesh *mesh, t_shpere_vars *vars,
+		t_sphere_params *params)
 {
 	vars->stack_step = M_PI / params->stacks;
 	vars->slice_step = 2 * M_PI / params->slices;
+	vars->verts_start = mesh->verts_count;
 }
 
 static void	push_verts(t_mesh *mesh, t_shpere_vars *vars,
@@ -54,15 +56,17 @@ static void	add_tri(t_mesh *mesh, t_sphere_params *params, size_t i,
 	{
 		mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 1) * sizeof(int)
 				* 3, mesh->tris_count * sizeof(int) * 3);
-		ivec3_to_array(&(t_ivec3){vars->k1, vars->k2, vars->k1 + 1}, mesh->tris,
+		ivec3_to_array(&(t_ivec3){vars->k1 + vars->verts_start, vars->k2
+			+ vars->verts_start, vars->k1 + vars->verts_start + 1}, mesh->tris,
 			mesh->tris_count++);
 	}
 	if (i != (params->stacks - 1))
 	{
 		mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 1) * sizeof(int)
 				* 3, mesh->tris_count * sizeof(int) * 3);
-		ivec3_to_array(&(t_ivec3){vars->k1 + 1, vars->k2, vars->k2 + 1},
-			mesh->tris, mesh->tris_count++);
+		ivec3_to_array(&(t_ivec3){vars->k1 + vars->verts_start + 1, vars->k2
+			+ vars->verts_start, vars->k2 + 1 + vars->verts_start}, mesh->tris,
+			mesh->tris_count++);
 	}
 }
 
@@ -93,8 +97,7 @@ void	make_sphere(t_mesh *mesh, t_sphere_params *params)
 {
 	t_shpere_vars	vars;
 
-	init_sphere_vars(&vars, params);
+	init_sphere_vars(mesh, &vars, params);
 	push_verts(mesh, &vars, params);
 	sphere_push_tris(mesh, &vars, params);
-	expand_mesh(mesh);
 }
