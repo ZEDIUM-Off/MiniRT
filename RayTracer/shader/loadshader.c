@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loadshader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:34:32 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 15:55:23 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:46:15 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	load_rt_shader(t_rt *rt)
 	t_gl_program	prog_attr;
 	t_gl_uint		shader_id;
 
-	prog_attr = (t_gl_program){.fragment_shader = base_fs, .vs_output_size = 0,
+	prog_attr = (t_gl_program){.vertex_shader = base_vs,
+		.fragment_shader = rt_frag_shader, .vs_output_size = 0,
 		.fragdepth_or_discard = GL_FALSE};
 	shader_id = lgl_create_program(&rt->glx, prog_attr, (t_gl_enum[3]){SMOOTH,
 			SMOOTH, SMOOTH});

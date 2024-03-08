@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:07:33 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/07 13:15:23 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:47:22 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_uint	init_window(t_rt* rt)
+t_uint	init_window(t_rt *rt)
 {
 	printf("init window...\n");
 	rt->mxv.mlx = mlx_init();

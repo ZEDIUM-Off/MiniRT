@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 15:42:42 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:02:02 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
  * @return 1 if the file is parsed and scene_input populated, 0 otherwise.
  */
 int		parse_read_file(const char *file_path, t_rt *rt);
+
+void	init_shapes(t_rt *rt);
 
 /**
  * Parses shape parameters from an array.format

@@ -6,11 +6,11 @@
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/07 15:56:17 by mchenava         ###   ########.fr        #
+#    Updated: 2024/03/07 04:57:59 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= minirt
+NAME= miniRT
 
 BUILD_DIR= build
 SRC_DIR= RayTracer
@@ -24,7 +24,7 @@ CAM_DIR= $(SRC_DIR)/camera
 RENDER_DIR= $(SRC_DIR)/rendering
 CONTROLS_DIR= $(SRC_DIR)/controls
 SCENE_DIR= $(SRC_DIR)/scene
-SHADER_DIR= $(SRC_DIR)/shaders
+SHADER_DIR= $(SRC_DIR)/shader
 SHAPES_DIR= $(SRC_DIR)/shapes
 READLINE_DIR = $(SRC_DIR)/readline
 PARSING_DIR= $(SRC_DIR)/parsing
@@ -33,6 +33,8 @@ MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
 S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
+LIBS = -lX11 -lXext -lm
+
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
 
 WIN_SRC=	$(WIN_DIR)/init_window.c \
@@ -56,9 +58,17 @@ CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
 
 SCENE_SRC=	$(SCENE_DIR)/scene.c
 
-SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
-			$(SHADER_DIR)/base_shaders.c \
-			$(SHADER_DIR)/phong_shaders.c
+SHADER_SRC= $(SHADER_DIR)/gridshader.c \
+			$(SHADER_DIR)/loadshader.c \
+			$(SHADER_DIR)/raytracing.c \
+			$(SHADER_DIR)/intersect.c \
+			$(SHADER_DIR)/intersect_planes.c \
+			$(SHADER_DIR)/intersect_spheres.c \
+			$(SHADER_DIR)/intersect_cylinders.c \
+			$(SHADER_DIR)/intersect_cones.c \
+			$(SHADER_DIR)/scattering.c \
+			$(SHADER_DIR)/utils.c \
+			$(SHADER_DIR)/base_shaders.c
 
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/mesh.c \
@@ -81,10 +91,10 @@ SRC= $(SRC_DIR)/minirt.c
 SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-HEADERS= $(INC_DIR)/%.h $(SRC_DIR)/%.h
+DEPS= $(OBJECTS:.o=.d)
 
-FLAGS= -Wall -Wextra -Werror -lX11 -lXext -lm -g3 -fsanitize=address
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -fsanitize=address -g3
+FLAGS= -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=address ${LIBS}
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address -MMD
 
 all: $(NAME)
 
@@ -93,7 +103,7 @@ $(NAME): dirs compile
 help :
 	@echo $(SRC)
 	@echo $(OBJECTS)
-	@echo $(HEADERS)
+	@echo $(DEPS)
 
 compile: $(OBJECTS) $(MLX) $(GL)
 	@echo "Compiling $(NAME)"
@@ -102,6 +112,10 @@ compile: $(OBJECTS) $(MLX) $(GL)
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
 	@echo "Compiling $@"
 	$(CC) $(OBJ_FLAGS) -c $< -o $@
+	@echo "Including dependencies for $@"
+	-@$(CC) $(OBJ_FLAGS) -MM $< -MT $@ -MF $(@:.o=.d)
+
+-include $(DEPS)
 
 dirs :
 	mkdir -p $(BUILD_DIR)
@@ -120,9 +134,8 @@ $(GL) : gl
 check :
 	norminette $(GL_DIR) $(SRC_DIR) > norm.log
 
-
 clean :
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) $(DEPS)
 	$(RM) -r $(BUILD_DIR)
 	$(MAKE) -C $(MLX_DIR) clean
 	$(MAKE) -C $(GL_DIR) clean

@@ -18,9 +18,11 @@
 # include "structs.h"
 // # include "scene_structs.h"
 # include "const.h"
-# include "funct.h"
+# include "enums.h"
+# include "func.h"
 # include "get_next_line.h"
 # include "parser.h"
 # include "parser_errors.h"
+# include "shader.h"
 
 #endif // RT_INCLUDES_H

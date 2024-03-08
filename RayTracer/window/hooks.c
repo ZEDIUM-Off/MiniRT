@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:13:25 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/04 13:46:58 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:06:41 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	set_hooks(t_rt *rt)
 {
 	set_mouse_hooks(rt);
 	set_keyboard_hooks(rt);
-	mlx_loop_hook(rt->mxv.mlx, render, rt);
+	// mlx_loop_hook(rt->mxv.mlx, render, rt);
 }

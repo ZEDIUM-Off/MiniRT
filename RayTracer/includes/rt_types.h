@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 15:35:59 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:52:27 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef unsigned int				t_uint;
 typedef struct s_rt					t_rt;
+typedef struct s_ray				t_ray;
 typedef struct s_camera				t_cam;
 typedef struct s_mlx_env			t_mlx_env;
 typedef struct s_uniforms			t_uniforms;
@@ -36,4 +37,6 @@ typedef struct s_ambient_light		t_ambient_light;
 typedef struct s_spot_light			t_spot_light;
 typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
+typedef struct s_hit				t_hit;
+
 #endif

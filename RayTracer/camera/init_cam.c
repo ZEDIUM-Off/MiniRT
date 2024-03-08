@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:01:30 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/13 11:21:08 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/06 06:41:06 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	init_cam(t_rt	*rt)
+void	init_cam(t_rt *rt)
 {
 	t_cam	*cam;
 
@@ -24,4 +24,5 @@ void	init_cam(t_rt	*rt)
 	cam->up = cross_product(cam->dir, cam->right);
 	cam->fov = 45.0f;
 	cam->speed = 0.0005f;
+	rt->cam = *cam;
 }

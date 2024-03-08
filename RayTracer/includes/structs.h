@@ -6,7 +6,7 @@
 /*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 04:04:29 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/08 05:03:37 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ struct					s_uniforms
 	t_mat4				mvp_mat;
 	t_mat4				view;
 	t_mat4				proj;
+	t_vec3				near_point;
+	t_vec3				far_point;
+	float				grid_scale;
+	size_t				max_depth;
+	t_rt				*rt;
 };
 
 struct					s_viz_uniforms
@@ -236,13 +241,19 @@ struct					s_rt
 	t_cam				cam;
 	t_viz_uniforms		uniforms;
 	t_ctrl				ctrl;
-	t_sc_input			sc_input;
-	t_scene				scene;
 	t_uint				loop;
 	t_uint				mode;
 	t_gl_uint			shaders[MODE_MAX];
 	t_mesh				all_meshes;
+	t_sc_input			sc_input;
+	t_intersect_func	intersect_shape[4];
 	char				*err_msg;
+};
+
+struct					s_ray
+{
+	t_vec3				ori;
+	t_vec3				dir;
 };
 
 #endif
