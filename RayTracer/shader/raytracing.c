@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 05:27:17 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 05:54:36 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni)
 	normalize_vec3(&ray_dir);
 	ray.ori = cam->pos;
 	ray.dir = ray_dir;
-	color = trace_ray(&ray, MAX_DEPTH, uniforms);
+	color = trace_ray(&ray, uniforms->max_depth, uniforms);
 	// printf("pix_x %f - pix_y %f : r: %d, g: %d, b: %d\n", pixel_screen.x,
 	// 	pixel_screen.y, color.r, color.g, color.b);
 	builtins->gl_frag_color = color_to_vec4(color);
