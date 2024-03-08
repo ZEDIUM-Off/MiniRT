@@ -37,12 +37,14 @@ void	print_cam_properties(t_rt *rt);
 // rendering
 int		render(t_rt *rt);
 void	new_frame(t_rt *rt);
+void	render_raytraced(t_rt *rt);
+void	rt_draw_frame(t_rt *rt);
 
 void	set_hooks(t_rt *rt);
 void	init_cam(t_rt *rt);
 void	cam_rotate(t_rt *rt, float delta_x, float delta_y);
 void	cam_translate(t_rt *rt, int x_offset, int y_offset);
-void	cam_proj(t_rt *rt, t_viz_uniforms *u);
+void	cam_proj(t_rt *rt, t_uniforms *u);
 void	scene_init(t_rt *rt);
 
 // Shaders

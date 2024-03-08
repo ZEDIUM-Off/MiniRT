@@ -76,5 +76,5 @@ void	all_mesh_to_scene(t_rt *rt)
 		i++;
 	}
 	mesh_to_scene(rt, &rt->all_meshes);
-	mesh_get_normals(&rt->all_meshes);
+	// mesh_get_normals(&rt->all_meshes);
 }

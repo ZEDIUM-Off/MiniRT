@@ -144,7 +144,7 @@ struct					s_cone_vars
 	float				radius;
 	float				theta;
 	int					verts_start;
-	t_vec3				top;
+	t_vec3				base;
 };
 
 struct					s_shpere_vars
@@ -239,7 +239,7 @@ struct					s_rt
 	t_gl_context		glx;
 	t_mlx_env			mxv;
 	t_cam				cam;
-	t_viz_uniforms		uniforms;
+	t_uniforms			uniforms;
 	t_ctrl				ctrl;
 	t_uint				loop;
 	t_uint				mode;

@@ -118,12 +118,11 @@ void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni)
 	pixel_ndc.x = (builtins->gl_frag_coord.x + 0.5) / WIDTH;
 	pixel_ndc.y = (builtins->gl_frag_coord.y + 0.5) / HEIGHT;
 	pixel_screen.x = 2 * pixel_ndc.x - 1;
-	pixel_screen.y = 1 - 2 * pixel_ndc.y;
+	pixel_screen.y = 2 * pixel_ndc.y - 1;
 	pixel_camera.x = pixel_screen.x * aspect_ratio * scale;
 	pixel_camera.y = pixel_screen.y * scale;
-	ray_dir = add_vec3s(add_vec3s(mult_vec3_scalar(cam->dir, 1.0f),
-				mult_vec3_scalar(cam->right, pixel_camera.x)),
-			mult_vec3_scalar(cam->up, pixel_camera.y));
+	ray_dir = add_vec3s(add_vec3s(cam->dir, scale_vec3s(cam->right,
+					pixel_camera.x)), scale_vec3s(cam->up, pixel_camera.y));
 	normalize_vec3(&ray_dir);
 	ray.ori = cam->pos;
 	ray.dir = ray_dir;

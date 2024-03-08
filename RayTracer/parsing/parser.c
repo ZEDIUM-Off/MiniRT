@@ -51,9 +51,12 @@ static int	parse_camera(char **tokens, t_rt *rt)
 	camera->fov = ft_atof(tokens[3]);
 	if (camera->fov < 0 || camera->fov > 180)
 		return (handle_error(ERR_PARSE_CAM_FOV, rt));
-	normalize_vec3(&camera->dir);
+	camera->dir = norm_vec3(camera->dir);
+	camera->target = add_vec3s(camera->pos, camera->dir);
 	camera->right = norm_vec3(cross_product(camera->dir, (t_vec3){0, 1, 0}));
 	camera->up = cross_product(camera->right, camera->dir);
+	camera->speed = 0.001f;
+	rt->cam = *camera;
 	return (1);
 }
 

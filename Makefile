@@ -58,8 +58,7 @@ CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
 
 SCENE_SRC=	$(SCENE_DIR)/scene.c
 
-SHADER_SRC= $(SHADER_DIR)/gridshader.c \
-			$(SHADER_DIR)/loadshader.c \
+SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/intersect_planes.c \

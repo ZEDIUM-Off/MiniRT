@@ -39,4 +39,7 @@ typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
 typedef struct s_hit				t_hit;
 
+typedef bool						(*t_intersect_func)(t_ray *, t_shape *,
+							t_hit *);
+
 #endif

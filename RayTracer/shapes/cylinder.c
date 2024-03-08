@@ -48,12 +48,14 @@ static void	push_verts(t_mesh *mesh, t_cylinder_params *params,
 	int		i;
 	t_vec3	bottom_point;
 	t_vec3	top_point;
+	t_vec3	center_offset;
 
 	i = 0;
+	center_offset = scale_vec3s(vars->axis_normalized, -params->height / 2.0);
 	while (i < vars->segments)
 	{
-		vars->theta = ((float)i++ / (float)vars->segments) * 2.0 * M_PI;
-		bottom_point = add_vec3s(params->center,
+		vars->theta = ((float)i / (float)vars->segments) * 2.0 * M_PI;
+		bottom_point = add_vec3s(add_vec3s(params->center, center_offset),
 				add_vec3s(scale_vec3s(vars->perp_axis, cos(vars->theta)
 						* vars->radius), scale_vec3s(vars->perp_axis2,
 						sin(vars->theta) * vars->radius)));
@@ -63,9 +65,8 @@ static void	push_verts(t_mesh *mesh, t_cylinder_params *params,
 		top_point = add_vec3s(bottom_point, scale_vec3s(vars->axis_normalized,
 					params->height));
 		vec3_to_array(&top_point, mesh->verts, mesh->verts_count++);
+		i++;
 	}
-	printf("cylinder verts count = %d \n", mesh->verts_count
-		- vars->verts_start);
 }
 
 // ivec3_to_array(&(t_ivec3){vars->bottom_center_index
@@ -100,7 +101,6 @@ static void	push_tris(t_mesh *mesh, t_cylinder_vars *vars)
 			mesh->tris_count++);
 		i++;
 	}
-	printf("cylinder tris count = %d \n", mesh->tris_count - vars->tris_start);
 }
 
 void	make_cylinder(t_mesh *mesh, t_cylinder_params *params)
@@ -108,7 +108,6 @@ void	make_cylinder(t_mesh *mesh, t_cylinder_params *params)
 	t_cylinder_vars vars;
 
 	init_vars(mesh, params, &vars);
-	printf("cyl verts start = %d\n", vars.verts_start);
 	push_verts(mesh, params, &vars);
 	push_tris(mesh, &vars);
 }

@@ -40,13 +40,14 @@ void	load_viz_shader(t_rt *rt)
 
 void	init_uiniforms(t_rt *rt)
 {
-	lgl_set_uniform(&rt->glx, &rt->uniforms);
 	identity_mat4(rt->uniforms.proj);
 	identity_mat4(rt->uniforms.view);
 	identity_mat4(rt->uniforms.mvp_mat);
-	rt->uniforms.material = (t_vec4){0.2, 0.6, 1.0, 128.0};
+	rt->uniforms.rt = rt;
+	lgl_set_uniform(&rt->glx, &rt->uniforms);
+	// rt->uniforms.material = (t_vec4){0.2, 0.6, 1.0, 128.0};
 	// identity_mat3(rt->uniforms.normal_mat);
-	rt->uniforms.cam_pos = &rt->cam.pos;
+	// rt->uniforms.cam_pos = &rt->cam.pos;
 }
 
 void	init_shader(t_rt *rt)

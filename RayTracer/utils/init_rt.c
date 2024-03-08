@@ -22,12 +22,12 @@ t_uint	init_rt(t_rt *rt)
 	status = setup_gl_context(rt);
 	if (status != CONTINUE)
 		return (status);
-	init_cam(rt);
 	set_hooks(rt);
 	rt->sc_input.shapes_count = 0;
 	rt->sc_input.shapes = NULL;
 	rt->mode = MODE_VIZ;
 	init_shader(rt);
+	init_shapes(rt);
 	rt->ctrl.rotate = false;
 	rt->ctrl.translate = false;
 	rt->loop = 10000;

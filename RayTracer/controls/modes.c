@@ -19,4 +19,7 @@ void	switch_mode(t_rt *rt)
 	else
 		rt->mode = MODE_RENDER;
 	gl_use_program(&rt->glx, rt->shaders[rt->mode]);
+	lgl_set_uniform(&rt->glx, &rt->uniforms);
+	if (rt->mode == MODE_RENDER)
+		render_raytraced(rt);
 }

@@ -12,7 +12,7 @@
 
 #include <minirt.h>
 
-void	cam_proj(t_rt *rt, t_viz_uniforms *u)
+void	cam_proj(t_rt *rt, t_uniforms *u)
 {
 	t_cam	*cam;
 

@@ -30,14 +30,11 @@ int	main(int argc, char **argv)
 		clean_rt(&rt);
 		return (EXIT_FAILURE);
 	}
+	// init_cam(rt);
 	scene_init(&rt);
 	printf("Parsing done...");
 	printf("lauching loop...");
-	cam_proj(&rt, &rt.uniforms);
-	gl_clear(&rt.glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	lgl_draw_frame(&rt.glx);
-	mlx_put_image_to_window(rt.mxv.mlx, rt.mxv.win, rt.mxv.img, 0, 0);
 	mlx_loop(rt.mxv.mlx);
-	// quit_rt(&rt);
+	quit_rt(&rt);
 	printf("exiting...");
 }

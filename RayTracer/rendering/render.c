@@ -32,19 +32,14 @@ void	vizualize(t_rt *rt)
 
 void	render_raytraced(t_rt *rt)
 {
-	gl_clear(&rt->glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// gl_clear(&rt->glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	lgl_draw_frame(&rt->glx);
 	mlx_put_image_to_window(rt->mxv.mlx, rt->mxv.win, rt->mxv.img, 0, 0);
-	while (rt->mode == MODE_RENDER)
-		rt->loop++;
 }
 
 int	render(t_rt *rt)
 {
-	rt->loop++;
-	if (rt->mode == MODE_RENDER)
-		render_raytraced(rt);
-	else
+	if (rt->mode == MODE_VIZ)
 		vizualize(rt);
 	return (0);
 }

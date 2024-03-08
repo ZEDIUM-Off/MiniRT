@@ -31,5 +31,5 @@ void	set_hooks(t_rt *rt)
 {
 	set_mouse_hooks(rt);
 	set_keyboard_hooks(rt);
-	// mlx_loop_hook(rt->mxv.mlx, render, rt);
+	mlx_loop_hook(rt->mxv.mlx, render, rt);
 }

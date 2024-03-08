@@ -16,7 +16,7 @@ static void	init_vars(t_mesh *mesh, t_cone_vars *vars, t_cone_params *params)
 {
 	vars->segments = MESH_DETAIL;
 	vars->radius = tanf(params->angle) * params->height;
-	vars->top = add_vec3s(params->center, scale_vec3s(params->axis,
+	vars->base = add_vec3s(params->center, scale_vec3s(params->axis,
 				params->height));
 	vars->verts_start = mesh->verts_count;
 }
@@ -28,7 +28,7 @@ static void	push_verts(t_mesh *mesh, t_cone_params *params, t_cone_vars *vars)
 
 	mesh->verts = ft_realloc(mesh->verts, (mesh->verts_count + 2)
 			* sizeof(float) * 3, mesh->verts_count * sizeof(float) * 3);
-	vec3_to_array(&vars->top, mesh->verts, mesh->verts_count++);
+	vec3_to_array(&vars->base, mesh->verts, mesh->verts_count++);
 	vec3_to_array(&params->center, mesh->verts, mesh->verts_count++);
 	i = 0;
 	while (i < vars->segments)
@@ -39,7 +39,7 @@ static void	push_verts(t_mesh *mesh, t_cone_params *params, t_cone_vars *vars)
 		point = vec3_rotate(point, angle_between_vec3(make_vec3(0, 1, 0),
 					params->axis), cross_product(make_vec3(0, 1, 0),
 					params->axis));
-		point = add_vec3s(params->center, point);
+		point = add_vec3s(vars->base, point);
 		mesh->verts = ft_realloc(mesh->verts, (mesh->verts_count + 1)
 				* sizeof(float) * 3, mesh->verts_count * sizeof(float) * 3);
 		vec3_to_array(&point, mesh->verts, mesh->verts_count++);
