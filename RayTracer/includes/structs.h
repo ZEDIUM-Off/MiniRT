@@ -77,12 +77,16 @@ struct					s_mesh
 struct					s_plane_params
 {
 	t_mesh				*curr_mesh;
-	t_vec3				corner;
-	t_vec3				v1;
-	t_vec3				v2;
-	size_t				dim_v1;
-	size_t				dim_v2;
-	bool				tile;
+	t_vec3				center;
+	t_vec3				normal;
+};
+
+struct					s_plane_vars
+{
+	int					verts_start;
+	t_vec3				up;
+	t_vec3				right;
+	float				halph;
 };
 
 struct					s_sphere_params
@@ -114,6 +118,7 @@ struct					s_cylinder_vars
 	int					top_center_index;
 	int					bottom_center_index;
 	int					verts_start;
+	int					tris_start;
 	float				theta;
 	t_vec3				top;
 	t_vec3				bottom;

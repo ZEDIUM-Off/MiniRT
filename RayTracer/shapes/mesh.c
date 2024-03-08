@@ -29,6 +29,7 @@ void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
 {
 	t_gl_vertex_attrib	vert_attr;
 
+	// t_gl_vertex_attrib	norm_attr;
 	gl_gen_buffers(&rt->glx, 1, &mesh->buffer);
 	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->buffer);
 	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->verts_count * sizeof(float)
@@ -41,6 +42,14 @@ void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
 	vert_attr = (t_gl_vertex_attrib){.size = 3, .type = GL_FLOAT,
 		.normalized = GL_FALSE, .stride = 0};
 	gl_vertex_attrib_pointer(&rt->glx, 0, vert_attr, 0);
+	// gl_gen_buffers(&rt->glx, 1, &mesh->norm_buffer);
+	// gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->norm_buffer);
+	// gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->normals_count
+	// 	* sizeof(float) * 3, mesh->normals);
+	// gl_enable_vertex_attrib_array(&rt->glx, 1);
+	// norm_attr = (t_gl_vertex_attrib){.size = 3, .type = GL_FLOAT,
+	// 	.normalized = GL_FALSE, .stride = 0};
+	// gl_vertex_attrib_pointer(&rt->glx, 1, norm_attr, 0);
 	gl_bind_vertex_array(&rt->glx, 0);
 }
 
@@ -48,14 +57,10 @@ void	mesh_draw(t_rt *rt, t_mesh *mesh)
 {
 	t_draw_elements_settings	sett;
 
-	printf("mesh_draw\n");
-	printf("mesh vao: %d\n", mesh->buffer);
-	printf("mesh vio: %d\n", mesh->tri_buffer);
 	gl_bind_vertex_array(&rt->glx, mesh->buffer);
 	gl_bind_buffer(&rt->glx, GL_ELEMENT_ARRAY_BUFFER, mesh->tri_buffer);
 	sett = (t_draw_elements_settings){mesh->tris_count * 3, GL_UNSIGNED_INT, 0};
 	gl_draw_elements(&rt->glx, GL_TRIANGLES, &sett);
-	printf("draw_elements_done\n");
 	gl_bind_vertex_array(&rt->glx, 0);
 }
 
@@ -71,20 +76,5 @@ void	all_mesh_to_scene(t_rt *rt)
 		i++;
 	}
 	mesh_to_scene(rt, &rt->all_meshes);
-}
-
-void	draw_all_meshes(t_rt *rt)
-{
-	// t_uint	i;
-	// i = 0;
-	// printf("draw_all_meshes\n");
-	// printf("rt->sc_input.shapes_count: %ld\n", rt->sc_input.shapes_count);
-	// while (i < rt->sc_input.shapes_count)
-	// {
-	// 	printf("try to draw shape %d\n", rt->sc_input.shapes[i].type);
-	// 	mesh_draw(rt, &rt->sc_input.shapes[i].shape_mesh);
-	// 	sleep(1);
-	// 	i++;
-	// }
-	mesh_draw(rt, &rt->all_meshes);
+	mesh_get_normals(&rt->all_meshes);
 }

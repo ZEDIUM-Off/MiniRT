@@ -14,7 +14,7 @@
 
 static void	init_vars(t_mesh *mesh, t_cone_vars *vars, t_cone_params *params)
 {
-	vars->segments = 32;
+	vars->segments = MESH_DETAIL;
 	vars->radius = tanf(params->angle) * params->height;
 	vars->top = add_vec3s(params->center, scale_vec3s(params->axis,
 				params->height));

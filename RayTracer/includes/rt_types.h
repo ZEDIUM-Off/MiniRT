@@ -25,6 +25,7 @@ typedef struct s_mesh				t_mesh;
 typedef struct s_scene				t_scene;
 typedef struct s_vert_attr			t_vert_attr;
 typedef struct s_plane_params		t_plane_params;
+typedef struct s_plane_vars			t_plane_vars;
 typedef struct s_sphere_params		t_sphere_params;
 typedef struct s_shpere_vars		t_shpere_vars;
 typedef struct s_cylinder_params	t_cylinder_params;

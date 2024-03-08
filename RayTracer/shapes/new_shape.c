@@ -27,23 +27,10 @@ void	new_plane(t_rt *rt, t_shape *shape)
 {
 	t_plane_props	*props;
 	t_plane_params	params;
-	t_vec3			corner;
-	t_vec3			v1;
-	t_vec3			v2;
 
 	props = (t_plane_props *)(shape->properties);
-	v1 = (t_vec3){props->normal.y, -props->normal.x, 0};
-	if (props->normal.x == 0 && props->normal.y == 0)
-		v1.x = 1;
-	v2 = cross_product(props->normal, v1);
-	v1 = norm_vec3(v1);
-	v2 = norm_vec3(v2);
-	v1 = scale_vec3s(v1, PLANE_SIZE / 2.0);
-	v2 = scale_vec3s(v2, PLANE_SIZE / 2.0);
-	corner = sub_vec3s(sub_vec3s(shape->position, v1), v2);
-	params = (t_plane_params){.curr_mesh = &shape->shape_mesh, .corner = corner,
-		.v1 = v1, .v2 = v2, .dim_v1 = PLANE_SIZE, .dim_v2 = PLANE_SIZE,
-		.tile = false};
+	params = (t_plane_params){&shape->shape_mesh, shape->position,
+		props->normal};
 	make_plane(&rt->all_meshes, &params);
 }
 

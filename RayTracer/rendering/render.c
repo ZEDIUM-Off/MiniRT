@@ -15,11 +15,9 @@
 void	new_frame(t_rt *rt)
 {
 	cam_proj(rt, &rt->uniforms);
-	printf("=====new frame=========\n");
 	gl_clear(&rt->glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	draw_all_meshes(rt);
+	mesh_draw(rt, &rt->all_meshes);
 	mlx_put_image_to_window(rt->mxv.mlx, rt->mxv.win, rt->mxv.img, 0, 0);
-	printf("=====img_to win=========\n");
 	rt->loop = 0;
 }
 

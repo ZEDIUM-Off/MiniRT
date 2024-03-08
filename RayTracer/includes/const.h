@@ -24,6 +24,6 @@
 # define TITLE "42LiteGL - RayTracer"
 
 # define MESH_DETAIL 32
-# define PLANE_SIZE 10
+# define PLANE_SIZE 50
 
 #endif // CONST_H
