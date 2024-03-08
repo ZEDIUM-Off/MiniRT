@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:55:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 15:58:15 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 22:15:06 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ bool	intersect_plane(t_ray *ray, t_shape *plane, t_hit *hit)
 	props = plane->properties;
 	plane_norm = props->normal;
 	denom = dot_vec3s(plane_norm, ray->dir);
-	if (fabs(denom) > EPSILON) // Ensure the denominator is not too close to 0
+	if (fabs(denom) > EPSILON)
 	{
 		p0l0 = sub_vec3s(plane->position, ray->ori);
 		t = dot_vec3s(p0l0, plane_norm) / denom;
-		if (t >= 0) // Check if the plane is in front of the ray
+		if (t > 0)
 		{
 			hit->distance = t;
 			hit->point = add_vec3s(ray->ori, mult_vec3_scalar(ray->dir, t));
