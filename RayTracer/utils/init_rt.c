@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 14:29:32 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 05:03:12 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ t_uint	init_rt(t_rt *rt)
 	rt->ctrl.translate = false;
 	rt->loop = 10000;
 	rt->err_msg = NULL;
+	rt->uniforms.max_depth = 1;
 	return (CONTINUE);
 }

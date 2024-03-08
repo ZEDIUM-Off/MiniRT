@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 17:22:24 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 05:04:13 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "materials.h"
 # include <stdlib.h>
-
-# define MAX_DEPTH 2
 
 # define COLOR_BLACK        \
 	(t_color)              \

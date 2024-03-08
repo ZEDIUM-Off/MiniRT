@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 15:50:37 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 05:03:37 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct					s_uniforms
 	t_vec3				near_point;
 	t_vec3				far_point;
 	float				grid_scale;
+	size_t				max_depth;
 	t_rt				*rt;
 };
 
