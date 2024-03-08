@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 05:54:36 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 16:09:26 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,39 +45,15 @@ t_color	blend_colors(t_color c1, t_color c2)
 			+ c2.b, 255), (c1.a + c2.a) / 2.0f});
 }
 
-static t_color	calculate_reflection(t_color color, t_hit *hit, t_ray *ray,
-		int depth, t_uniforms *u)
+t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 {
-	t_ray	reflected_ray;
-	t_color	reflect_color;
-	float	reflectance;
-	t_vec3	reflect_dir;
-
-	if (depth > 1)
-	{
-		reflect_dir = reflect_vector(ray->dir, hit->normal);
-		reflected_ray = (t_ray){hit->point, reflect_dir};
-		reflect_color = trace_ray(&reflected_ray, depth - 1, u);
-		// reflectance = schlick_approx(dot_vec3s(ray->dir, hit->normal), 1);
-		reflectance = fresnel_effect(ray->dir, hit->normal, 1);
-		color = mix_color(color, reflect_color, reflectance);
-	}
-	return (color);
-}
-
-static t_color	calculate_lighting(t_hit *hit, t_uniforms *u, t_ray *ray,
-		int depth)
-{
-	t_color	color;
-	t_color	spot_light_color;
 	t_vec3	light_dir;
 	float	light_distance;
 	float	dot_nl;
 	float	attenuation;
+	t_color	spot_light_color;
 
 	spot_light_color = (t_color){0, 0, 0, 255};
-	color = mult_color_scalar(u->rt->sc_input.a_light.color,
-			u->rt->sc_input.a_light.ratio);
 	light_dir = sub_vec3s(u->rt->sc_input.s_light.position, hit->point);
 	normalize_vec3(&light_dir);
 	dot_nl = dot_vec3s(hit->normal, light_dir);
@@ -89,23 +65,36 @@ static t_color	calculate_lighting(t_hit *hit, t_uniforms *u, t_ray *ray,
 				u->rt->sc_input.s_light.brightness_ratio * dot_nl
 				* attenuation);
 	}
-	color = blend_colors(color, spot_light_color);
-	color = mult_colors(color, hit->color);
-	return (calculate_reflection(color, hit, ray, depth, u));
+	return (spot_light_color);
 }
 
-t_color	trace_ray(t_ray *ray, int depth, t_uniforms *u)
+t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 {
 	t_hit	hit;
+	t_ray	reflected_ray;
+	float	reflectance;
+	t_vec3	reflect_dir;
+	t_color	color;
+	t_color	reflect_color;
 
-	if (depth <= 0)
-		return (COLOR_BLACK);
+	if (depth == 0)
+		return (u->rt->sc_input.a_light.color);
 	hit = (t_hit){0};
-	if (intersect_scene(ray, &hit, u))
+	if (!intersect_scene(ray, &hit, u))
+		return (COLOR_BG);
+	color = mult_color_scalar(u->rt->sc_input.a_light.color,
+			u->rt->sc_input.a_light.ratio);
+	color = blend_colors(color, get_spot_color(&hit, u));
+	color = mult_colors(color, hit.color);
+	if (depth > 1)
 	{
-		return (calculate_lighting(&hit, u, ray, depth));
+		reflect_dir = reflect_vector(ray->dir, hit.normal);
+		reflected_ray = (t_ray){hit.point, reflect_dir};
+		reflect_color = trace_ray(&reflected_ray, depth - 1, u);
+		reflectance = fresnel_effect(ray->dir, hit.normal, 1);
+		color = mix_color(color, reflect_color, reflectance);
 	}
-	return (COLOR_BG);
+	return (color);
 }
 
 void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni)

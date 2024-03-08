@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 05:04:13 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 15:42:57 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ bool					intersect_cylinder(t_ray *ray, t_shape *cy, t_hit *hit);
 bool					intersect_cone(t_ray *ray, t_shape *cone, t_hit *hit);
 bool					intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u);
 
-t_color					trace_ray(t_ray *ray, int depth, t_uniforms *u);
+t_color					trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 
 void					rt_frag_shader(float *fs_input,
 							t_shader_builtins *builtins, void *uni);
