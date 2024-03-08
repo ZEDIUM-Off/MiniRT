@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 05:12:05 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 15:58:31 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 22:10:42 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit)
 	if (discr > 0)
 	{
 		hit->distance = (-coeff.y - sqrt(discr)) / (2.0 * coeff.x);
-		if (hit->distance > 0.001)
+		if (hit->distance > EPSILON)
 		{
 			hit->point = add_vec3s(ray->ori, mult_vec3_scalar(ray->dir,
 						hit->distance));
