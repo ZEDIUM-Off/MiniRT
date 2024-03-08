@@ -6,7 +6,7 @@
 /*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:31:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 03:32:58 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/08 04:09:29 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	make_plane(t_mesh *mesh, t_plane_params *params)
 
 	vert_start = mesh->verts_count;
 	tri_start = mesh->tris_count;
-	mesh = params->curr_mesh;
 	push_verts(mesh, params);
 	push_tris(mesh, params, vert_start, tri_start);
 }

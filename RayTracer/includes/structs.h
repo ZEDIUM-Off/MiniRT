@@ -6,7 +6,7 @@
 /*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 03:31:59 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/08 04:04:29 by zorin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ struct					s_cylinder_params
 	t_vec3				axis;
 	t_vec3				center;
 };
+
 struct					s_cylinder_vars
 {
 	int					segments;
@@ -114,6 +115,8 @@ struct					s_cylinder_vars
 	int					bottom_center_index;
 	int					verts_start;
 	float				theta;
+	t_vec3				top;
+	t_vec3				bottom;
 };
 
 struct					s_cone_params
