@@ -10,40 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
-
-t_color	mult_color_scalar(t_color c, float s)
-{
-	return ((t_color){c.r * s, c.g * s, c.b * s, c.a});
-}
-
-t_vec4	mult_color_vec4_scalar(t_vec4 c, float s)
-{
-	return ((t_vec4){c.x * s, c.y * s, c.z * s, c.w});
-}
-
-t_color	mult_colors(t_color c1, t_color c2)
-{
-	float	avg_a;
-
-	avg_a = (c1.a + c2.a) / 2.0f;
-	return ((t_color){(c1.r * c2.r) / 255, (c1.g * c2.g) / 255, (c1.b * c2.b)
-		/ 255, avg_a});
-}
-
-t_vec4	add_colors_vec4(t_vec4 c1, t_vec4 c2)
-{
-	float	avg_a;
-
-	avg_a = (c1.w + c2.w) / 2.0f;
-	return ((t_vec4){c1.x + c2.x, c1.y + c2.y, c1.z + c2.z, avg_a});
-}
-
-t_color	blend_colors(t_color c1, t_color c2)
-{
-	return ((t_color){fmin(c1.r + c2.r, 255), fmin(c1.g + c2.g, 255), fmin(c1.b
-			+ c2.b, 255), (c1.a + c2.a) / 2.0f});
-}
+#include "minirt.h"
 
 t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 {
@@ -70,12 +37,46 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	return (spot_light_color);
 }
 
+t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
+{
+	t_color	color;
+	t_vec3	light_dir;
+	t_ray	shadow_ray;
+	t_hit	shadow_hit;
+
+	color = mult_color_scalar(u->rt->sc_input.a_light.color,
+			u->rt->sc_input.a_light.ratio);
+	light_dir = sub_vec3s(u->rt->sc_input.s_light.position, hit->point);
+	normalize_vec3(&light_dir);
+	shadow_ray = (t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
+				SHADOW_BIAS)), light_dir};
+	shadow_hit = (t_hit){0};
+	if (!intersect_scene(&shadow_ray, &shadow_hit, u)
+		|| shadow_hit.distance > light_distance)
+	{
+		color = blend_colors(color, get_spot_color(hit, u));
+	}
+	return (color);
+}
+
+t_color	calculate_reflection(t_ray *ray, t_hit *hit, size_t depth,
+		t_uniforms *u)
+{
+	t_ray	reflected_ray;
+	t_vec3	reflect_dir;
+	t_color	reflect_color;
+
+	reflect_dir = reflect_vector(ray->dir, hit->normal);
+	reflected_ray = (t_ray){hit->point, reflect_dir};
+	reflect_color = trace_ray(&reflected_ray, depth - 1, u);
+	return (reflect_color);
+}
+
 t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 {
 	t_hit	hit;
-	t_ray	reflected_ray;
+	float	light_distance;
 	float	reflectance;
-	t_vec3	reflect_dir;
 	t_color	color;
 	t_color	reflect_color;
 
@@ -84,15 +85,13 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 	hit = (t_hit){0};
 	if (!intersect_scene(ray, &hit, u))
 		return (COLOR_BG);
-	color = mult_color_scalar(u->rt->sc_input.a_light.color,
-			u->rt->sc_input.a_light.ratio);
-	color = blend_colors(color, get_spot_color(&hit, u));
+	light_distance = vec3_lenght(sub_vec3s(u->rt->sc_input.s_light.position,
+				hit.point));
+	color = calculate_lighting(&hit, u, light_distance);
 	color = mult_colors(color, hit.color);
 	if (depth > 1)
 	{
-		reflect_dir = reflect_vector(ray->dir, hit.normal);
-		reflected_ray = (t_ray){hit.point, reflect_dir};
-		reflect_color = trace_ray(&reflected_ray, depth - 1, u);
+		reflect_color = calculate_reflection(ray, &hit, depth, u);
 		reflectance = fresnel_effect(ray->dir, hit.normal, 1);
 		color = mix_color(color, reflect_color, reflectance);
 	}

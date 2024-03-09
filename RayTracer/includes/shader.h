@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 15:42:57 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 01:40:50 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 	}
 
 # define COLOR_BG COLOR_DGRAY
+
+# define SHADOW_BIAS 1e-3
 
 typedef struct s_ray	t_ray;
 typedef struct s_shape	t_shape;
@@ -69,6 +71,10 @@ float					fresnel_effect(t_vec3 incident, t_vec3 normal,
 							float refraction_index);
 float					schlick_approx(float cosine, float ref_index);
 
+// Intersections
+
+typedef bool			(*t_intersect_func)(t_ray *, t_shape *, t_hit *);
+
 bool					check_shapes_intersection(t_ray *ray,
 							t_hit *closest_hit, float *closest_so_far,
 							t_rt *rt);
@@ -80,11 +86,16 @@ bool					intersect_cylinder(t_ray *ray, t_shape *cy, t_hit *hit);
 bool					intersect_cone(t_ray *ray, t_shape *cone, t_hit *hit);
 bool					intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u);
 
-t_color					trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
+// Color utils
+t_color					blend_colors(t_color c1, t_color c2);
+t_color					mult_color_scalar(t_color c, float s);
+t_color					mult_colors(t_color c1, t_color c2);
+t_vec4					mult_color_vec4_scalar(t_vec4 c, float s);
+t_vec4					add_colors_vec4(t_vec4 c1, t_vec4 c2);
 
+// Main ray tracing
+t_color					trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 void					rt_frag_shader(float *fs_input,
 							t_shader_builtins *builtins, void *uni);
-
-typedef bool			(*t_intersect_func)(t_ray *, t_shape *, t_hit *);
 
 #endif

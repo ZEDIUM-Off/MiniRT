@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_ctrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:27:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/02/12 16:58:10 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/08 23:42:25 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	mouse_pressed(int btn, int x, int y, t_rt *rt)
 		ctrl->mouse_pos = (t_vec2){x, y};
 	}
 	if (btn == SCROLL_UP)
-		cam->fov -= 0.5;
+		cam->pos = add_vec3s(cam->pos, scale_vec3s(cam->dir, 1));
 	if (btn == SCROLL_DOWN)
-		cam->fov += 0.5;
+		cam->pos = add_vec3s(cam->pos, scale_vec3s(cam->dir, -1));
 	return (0);
 }
 
