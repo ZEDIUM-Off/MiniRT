@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 16:07:08 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 16:51:00 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
  * @param rt A pointer to the rt structure.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-static int	parse_ambient_light(char **tokens, t_rt *rt)
+static int	parse_ambient_light(char **tokens, size_t nb, t_rt *rt)
 {
 	t_sc_input	*sc_input;
 
+	if (nb != 3)
+		return (handle_error(ERR_PARSE_AMBIENT_ARGS, rt));
 	if (rt->sc_input.has_a_light_been_parsed)
 		return (handle_error(ERR_PARSE_AMBIENT_COUNT, rt));
 	sc_input = &rt->sc_input;
 	sc_input->a_light.ratio = ft_atof(tokens[1]);
-	if (sc_input->a_light.ratio < 0 || sc_input->a_light.ratio > 1)
+	if (sc_input->a_light.ratio < 0.0 || sc_input->a_light.ratio > 1.0)
 		return (handle_error(ERR_PARSE_AMBIENT_RATIO, rt));
-	if (rt->is_mandatory)
-		sc_input->a_light.color = (t_color){255, 255, 255, 255};
-	else if (!parse_color(tokens[2], &sc_input->a_light.color))
+	if (!parse_color(tokens[2], &sc_input->a_light.color))
 		return (handle_error(ERR_PARSE_AMBIENT_COLOR, rt));
 	sc_input->has_a_light_been_parsed = true;
 	return (1);
@@ -44,10 +44,12 @@ static int	parse_ambient_light(char **tokens, t_rt *rt)
  * @param rt A pointer to the rt structure.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-static int	parse_camera(char **tokens, t_rt *rt)
+static int	parse_camera(char **tokens, size_t nb, t_rt *rt)
 {
 	t_cam	*camera;
 
+	if (nb != 4)
+		return (handle_error(ERR_PARSE_CAM_ARGS, rt));
 	if (rt->sc_input.has_cam_been_parsed)
 		return (handle_error(ERR_PARSE_CAM_COUNT, rt));
 	camera = &rt->cam;
@@ -56,7 +58,7 @@ static int	parse_camera(char **tokens, t_rt *rt)
 	if (!parse_vector3(tokens[2], &camera->dir))
 		return (handle_error(ERR_PARSE_CAM_DIR, rt));
 	camera->fov = ft_atof(tokens[3]);
-	if (camera->fov < 0 || camera->fov > 180)
+	if (camera->fov < 0.0 || camera->fov > 180.0)
 		return (handle_error(ERR_PARSE_CAM_FOV, rt));
 	camera->dir = norm_vec3(camera->dir);
 	camera->target = add_vec3s(camera->pos, camera->dir);
@@ -75,10 +77,13 @@ static int	parse_camera(char **tokens, t_rt *rt)
  * @param rt A pointer to the rt structure.
  * @return 1 if the parameters were successfully parsed, 0 otherwise.
  */
-static int	parse_spot_light(char **tokens, t_rt *rt)
+static int	parse_spot_light(char **tokens, size_t nb, t_rt *rt)
 {
 	t_s_light	*light;
 
+	if (nb != 4)
+		if (!rt->is_mandatory || (rt->is_mandatory && nb != 3))
+			return (handle_error(ERR_PARSE_SPOT_ARGS, rt));
 	if (rt->is_mandatory && rt->sc_input.s_lights_count > 0)
 		return (handle_error(ERR_PARSE_SPOT_COUNT, rt));
 	rt->sc_input.s_lights = realloc(rt->sc_input.s_lights,
@@ -90,9 +95,11 @@ static int	parse_spot_light(char **tokens, t_rt *rt)
 	if (!parse_vector3(tokens[1], &light->position))
 		return (handle_error(ERR_PARSE_SPOT_POS, rt));
 	light->brightness_ratio = ft_atof(tokens[2]);
-	if (light->brightness_ratio < 0 || light->brightness_ratio > 1)
+	if (light->brightness_ratio < 0.0 || light->brightness_ratio > 1.0)
 		return (handle_error(ERR_PARSE_SPOT_BRIGHT, rt));
-	if (!parse_color(tokens[3], &light->color))
+	if (rt->is_mandatory)
+		light->color = (t_color){255, 255, 255, 255};
+	else if (!parse_color(tokens[3], &light->color))
 		return (handle_error(ERR_PARSE_SPOT_COLOR, rt));
 	rt->sc_input.s_lights_count++;
 	return (1);
@@ -110,12 +117,12 @@ static int	parse_element(char *line, t_rt *rt)
 	nb = 0;
 	while (tokens[nb])
 		nb++;
-	if (ft_strcmp(tokens[0], "A") == 0 && nb == 3)
-		result = parse_ambient_light(tokens, rt);
-	else if (ft_strcmp(tokens[0], "C") == 0 && nb == 4)
-		result = parse_camera(tokens, rt);
-	else if (ft_strcmp(tokens[0], "L") == 0 && nb == 4)
-		result = parse_spot_light(tokens, rt);
+	if (ft_strcmp(tokens[0], "A") == 0)
+		result = parse_ambient_light(tokens, nb, rt);
+	else if (ft_strcmp(tokens[0], "C") == 0)
+		result = parse_camera(tokens, nb, rt);
+	else if (ft_strcmp(tokens[0], "L") == 0)
+		result = parse_spot_light(tokens, nb, rt);
 	else
 		result = parse_shape(tokens, nb, rt);
 	free_tokens(&tokens);

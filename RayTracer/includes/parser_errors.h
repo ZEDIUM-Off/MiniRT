@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:53:39 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 15:47:00 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 16:51:34 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 # define ERR_PARSE_AMBIENT_NONE "There should be one ambient light"
 # define ERR_PARSE_AMBIENT_COUNT "Ambient light should be unique"
-# define ERR_PARSE_AMBIENT_RATIO "Ambient light ratio is invalid. [0,1]"
+# define ERR_PARSE_AMBIENT_ARGS "Invalid number of args for ambient light"
+# define ERR_PARSE_AMBIENT_RATIO "Ambient light ratio is invalid. Range [0,1]"
 # define ERR_PARSE_AMBIENT_COLOR "Failed to parse ambient light color"
 
 # define ERR_PARSE_SPOT_ARGS "Invalid number of arguments for a spot light"
@@ -35,6 +36,7 @@
 
 # define ERR_PARSE_CAM_NONE "We cannot render anything without camera"
 # define ERR_PARSE_CAM_COUNT "Camera should be unique"
+# define ERR_PARSE_CAM_ARGS "Invalid number of arguments for a camera"
 # define ERR_PARSE_CAM_POS "Failed to parse camera position"
 # define ERR_PARSE_CAM_DIR "Failed to parse camera direction"
 # define ERR_PARSE_CAM_FOV "Camera field of view is invalid. Range: ]0,180["
