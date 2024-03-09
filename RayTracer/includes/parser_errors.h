@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:53:39 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 13:11:09 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 15:47:00 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@
 # define ERR_PARSE_SHAPE_REALLOC "Error reallocating memory for shapes"
 # define ERR_PARSE_SHAPE_UNKNOWN "Unknown shape type"
 
+# define ERR_PARSE_AMBIENT_NONE "There should be one ambient light"
+# define ERR_PARSE_AMBIENT_COUNT "Ambient light should be unique"
 # define ERR_PARSE_AMBIENT_RATIO "Ambient light ratio is invalid. [0,1]"
 # define ERR_PARSE_AMBIENT_COLOR "Failed to parse ambient light color"
 
 # define ERR_PARSE_SPOT_ARGS "Invalid number of arguments for a spot light"
+# define ERR_PARSE_SPOT_COUNT "Only one spot light allowed in mandatory part"
+# define ERR_PARSE_SPOT_REALLOC "Error reallocating memory for spot lights"
 # define ERR_PARSE_SPOT_POS "Failed to parse spot light position"
 # define ERR_PARSE_SPOT_BRIGHT "Spot light brightness is invalid : < 0"
 # define ERR_PARSE_SPOT_COLOR "Failed to parse spot light color"
 
+# define ERR_PARSE_CAM_NONE "We cannot render anything without camera"
+# define ERR_PARSE_CAM_COUNT "Camera should be unique"
 # define ERR_PARSE_CAM_POS "Failed to parse camera position"
 # define ERR_PARSE_CAM_DIR "Failed to parse camera direction"
 # define ERR_PARSE_CAM_FOV "Camera field of view is invalid. Range: ]0,180["

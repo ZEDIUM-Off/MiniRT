@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
+#    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/07 04:57:59 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/09 16:12:04 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INC_DIR= $(SRC_DIR)/includes
 MLX_DIR= ./minilibx-linux
 GL_DIR= ./42LiteGL
 
+FT_DIR= $(SRC_DIR)/ft
 WIN_DIR= $(SRC_DIR)/window
 UTILS_DIR= $(SRC_DIR)/utils
 CAM_DIR= $(SRC_DIR)/camera
@@ -32,10 +33,16 @@ PARSING_DIR= $(SRC_DIR)/parsing
 MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
-S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
+S_DIRS = $(FT_DIR) $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
 LIBS = -lX11 -lXext -lm
 
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
+
+FT_SRC=		$(FT_DIR)/ft_atof.c \
+			$(FT_DIR)/ft_atoi.c \
+			$(FT_DIR)/ft_split.c \
+			$(FT_DIR)/ft_strlen.c \
+			$(FT_DIR)/ft_strmanip.c
 
 WIN_SRC=	$(WIN_DIR)/init_window.c \
 			$(WIN_DIR)/hooks.c \
@@ -82,18 +89,16 @@ READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
 
 PARSING_SRC = $(PARSING_DIR)/parser.c \
 			$(PARSING_DIR)/shapes.c \
-			$(PARSING_DIR)/ft_split.c \
-			$(PARSING_DIR)/ft_atof.c \
 			$(PARSING_DIR)/utils.c
 
 SRC= $(SRC_DIR)/minirt.c
-SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
+SRC+= $(FT_SRC) $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS= $(OBJECTS:.o=.d)
 
-FLAGS= -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=address ${LIBS}
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address -MMD
+FLAGS= -std=c99 -Wall -Wextra -Werror -MMD -g3 ${LIBS} -fsanitize=address
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -MMD -g3 -fsanitize=address
 
 all: $(NAME)
 

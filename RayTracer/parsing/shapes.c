@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:53:38 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 16:10:03 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 14:23:08 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,21 @@ int	parse_shape(char **tokens, int num_tokens, t_rt *rt)
 		return (handle_error(ERR_PARSE_SHAPE_REALLOC, rt));
 	shape = &rt->sc_input.shapes[rt->sc_input.shapes_count];
 	rt->sc_input.shapes_count++;
-	if (strcmp(tokens[0], "sp") == 0 && num_tokens != 4)
+	if (ft_strcmp(tokens[0], "sp") == 0 && num_tokens != 4)
 		return (handle_error(ERR_PARSE_SPHERE_ARGS, rt));
-	else if (strcmp(tokens[0], "sp") == 0)
+	else if (ft_strcmp(tokens[0], "sp") == 0)
 		return (parse_sphere(tokens, shape, rt));
-	else if (strcmp(tokens[0], "pl") == 0 && num_tokens != 4)
+	else if (ft_strcmp(tokens[0], "pl") == 0 && num_tokens != 4)
 		return (handle_error(ERR_PARSE_PLANE_ARGS, rt));
-	else if (strcmp(tokens[0], "pl") == 0)
+	else if (ft_strcmp(tokens[0], "pl") == 0)
 		return (parse_plane(tokens, shape, rt));
-	else if (strcmp(tokens[0], "cy") == 0 && num_tokens != 6)
+	else if (ft_strcmp(tokens[0], "cy") == 0 && num_tokens != 6)
 		return (handle_error(ERR_PARSE_CYLINDER_ARGS, rt));
-	else if (strcmp(tokens[0], "cy") == 0)
+	else if (ft_strcmp(tokens[0], "cy") == 0)
 		return (parse_cylinder(tokens, shape, rt));
-	else if (strcmp(tokens[0], "co") == 0 && num_tokens != 6)
+	else if (ft_strcmp(tokens[0], "co") == 0 && num_tokens != 6)
 		return (handle_error(ERR_PARSE_CONE_ARGS, rt));
-	else if (strcmp(tokens[0], "co") == 0)
+	else if (ft_strcmp(tokens[0], "co") == 0)
 		return (parse_cone(tokens, shape, rt));
 	return (handle_error(ERR_PARSE_SHAPE_UNKNOWN, rt));
 }

@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 16:09:26 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 16:03:10 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,17 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	t_color	spot_light_color;
 
 	spot_light_color = (t_color){0, 0, 0, 255};
-	light_dir = sub_vec3s(u->rt->sc_input.s_light.position, hit->point);
+	if (u->rt->sc_input.s_lights_count == 0)
+		return (spot_light_color);
+	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	dot_nl = dot_vec3s(hit->normal, light_dir);
 	if (dot_nl > 0)
 	{
 		light_distance = vec3_lenght(light_dir);
 		attenuation = 1.0 / (light_distance * light_distance);
-		spot_light_color = mult_color_scalar(u->rt->sc_input.s_light.color,
-				u->rt->sc_input.s_light.brightness_ratio * dot_nl
+		spot_light_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
+				u->rt->sc_input.s_lights[0].brightness_ratio * dot_nl
 				* attenuation);
 	}
 	return (spot_light_color);

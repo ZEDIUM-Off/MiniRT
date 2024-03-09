@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 15:52:27 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 13:54:51 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ typedef struct s_cylinder_params	t_cylinder_params;
 typedef struct s_cylinder_vars		t_cylinder_vars;
 typedef struct s_cone_params		t_cone_params;
 typedef struct s_cone_vars			t_cone_vars;
-typedef struct s_ambient_light		t_ambient_light;
-typedef struct s_spot_light			t_spot_light;
+typedef struct s_ambient_light		t_a_light;
+typedef struct s_spot_light			t_s_light;
+typedef enum e_shape_type			t_shape_type;
+typedef struct s_sphere_props		t_sphere_props;
+typedef struct s_plane_props		t_plane_props;
+typedef struct s_cylinder			t_cylinder_props;
+typedef struct s_cone				t_cone_props;
 typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
 typedef struct s_hit				t_hit;
