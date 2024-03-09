@@ -22,5 +22,7 @@ int	key_pressed(int key, t_rt *rt)
 		print_cam_properties(rt);
 	// if (key == XK_m)
 	// 	use_material(rt);
+	if (key == XK_e)
+		editor_menu(rt);
 	return (0);
 }

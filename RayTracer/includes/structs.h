@@ -182,7 +182,8 @@ typedef enum e_shape_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	CONE
+	CONE,
+	LIGHT
 }						t_shape_type;
 
 typedef struct s_sphere_props
@@ -242,12 +243,20 @@ struct					s_rt
 	t_uniforms			uniforms;
 	t_ctrl				ctrl;
 	t_uint				loop;
+	bool				modifying;
 	t_uint				mode;
 	t_gl_uint			shaders[MODE_MAX];
+	char				*obj_types[5];
 	t_mesh				all_meshes;
 	t_sc_input			sc_input;
 	t_intersect_func	intersect_shape[4];
 	char				*err_msg;
+};
+
+struct					s_obj
+{
+	t_uint				type;
+	void				*data;
 };
 
 struct					s_ray
