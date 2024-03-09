@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_errors.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:53:39 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 16:04:01 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:11:09 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_ERRORS_H
 # define PARSER_ERRORS_H
 
+# define ERR_PARSE_FILE_EXT "Invalid file extension. Expected .rt"
 # define ERR_PARSE_FILE_OPEN "Failed to open file"
 
 # define ERR_PARSE_TOKENS "Failed to parse tokens"

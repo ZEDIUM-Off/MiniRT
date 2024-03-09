@@ -6,13 +6,13 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:05:47 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/04 02:31:33 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 13:22:21 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	handle_error(char* msg, t_rt* rt)
+int	handle_error(char *msg, t_rt *rt)
 {
 	rt->err_msg = strdup(msg);
 	return (0);

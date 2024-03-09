@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 17:52:44 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 13:24:41 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,11 @@ int	parse_read_file(const char *file_path, t_rt *rt)
 {
 	int		fd;
 	char	*line;
+	size_t	path_len;
 
+	path_len = strlen(file_path);
+	if (path_len < 3 || strcmp(file_path + path_len - 3, ".rt") != 0)
+		return (handle_error(ERR_PARSE_FILE_EXT, rt));
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		return (handle_error(ERR_PARSE_FILE_OPEN, rt));
