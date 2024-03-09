@@ -74,6 +74,7 @@ SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/intersect_cones.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
+			$(SHADER_DIR)/color_utils.c \
 			$(SHADER_DIR)/base_shaders.c
 
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
