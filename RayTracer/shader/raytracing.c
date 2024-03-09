@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 16:03:10 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 17:49:50 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	t_color	spot_light_color;
 
 	spot_light_color = (t_color){0, 0, 0, 255};
-	if (u->rt->sc_input.s_lights_count == 0)
-		return (spot_light_color);
 	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	dot_nl = dot_vec3s(hit->normal, light_dir);
@@ -46,7 +44,9 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 
 	color = mult_color_scalar(u->rt->sc_input.a_light.color,
 			u->rt->sc_input.a_light.ratio);
-	light_dir = sub_vec3s(u->rt->sc_input.s_light.position, hit->point);
+	if (u->rt->sc_input.s_lights_count == 0)
+		return (color);
+	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	shadow_ray = (t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
 				SHADOW_BIAS)), light_dir};
@@ -85,8 +85,9 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 	hit = (t_hit){0};
 	if (!intersect_scene(ray, &hit, u))
 		return (COLOR_BG);
-	light_distance = vec3_lenght(sub_vec3s(u->rt->sc_input.s_light.position,
-				hit.point));
+	if (u->rt->sc_input.s_lights_count != 0)
+		light_distance = vec3_lenght(sub_vec3s(u->rt->sc_input.s_lights[0].position,
+					hit.point));
 	color = calculate_lighting(&hit, u, light_distance);
 	color = mult_colors(color, hit.color);
 	if (depth > 1)
