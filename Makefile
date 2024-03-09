@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/09 16:12:04 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/09 17:05:02 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,8 @@ READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
 
 PARSING_SRC = $(PARSING_DIR)/parser.c \
 			$(PARSING_DIR)/shapes.c \
-			$(PARSING_DIR)/utils.c
+			$(PARSING_DIR)/utils.c \
+			$(PARSING_DIR)/utils_2.c
 
 SRC= $(SRC_DIR)/minirt.c
 SRC+= $(FT_SRC) $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)

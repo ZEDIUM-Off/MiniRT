@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:53:38 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 14:23:08 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 17:01:53 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	parse_plane(char **tokens, t_shape *plane, t_rt *rt)
 	if (!parse_vector3(tokens[2],
 			&((t_plane_props *)(plane->properties))->normal))
 		return (handle_error(ERR_PARSE_PLANE_NORMAL, rt));
+	if (!is_vec3_normalized(((t_plane_props *)(plane->properties))->normal))
+		return (handle_error(ERR_PARSE_PLANE_NORMAL_NORM, rt));
 	if (!parse_color(tokens[3], &plane->color))
 		return (handle_error(ERR_PARSE_PLANE_COLOR, rt));
 	return (1);
@@ -55,6 +57,8 @@ static int	parse_cylinder(char **tokens, t_shape *cy, t_rt *rt)
 	if (!parse_vector3(tokens[2],
 			&((t_cylinder_props *)(cy->properties))->axis))
 		return (handle_error(ERR_PARSE_CYLINDER_AXIS, rt));
+	if (!is_vec3_normalized(((t_cylinder_props *)(cy->properties))->axis))
+		return (handle_error(ERR_PARSE_CYLINDER_AXIS_NORM, rt));
 	((t_cylinder_props *)(cy->properties))->diameter = ft_atof(tokens[3]);
 	if (((t_cylinder_props *)(cy->properties))->diameter < 0)
 		return (handle_error(ERR_PARSE_CYLINDER_DIAM, rt));
@@ -76,6 +80,8 @@ static int	parse_cone(char **tokens, t_shape *cone, t_rt *rt)
 		return (handle_error(ERR_PARSE_CONE_POS, rt));
 	if (!parse_vector3(tokens[2], &((t_cone_props *)(cone->properties))->axis))
 		return (handle_error(ERR_PARSE_CONE_AXIS, rt));
+	if (!is_vec3_normalized(((t_cone_props *)(cone->properties))->axis))
+		return (handle_error(ERR_PARSE_CONE_AXIS_NORM, rt));
 	((t_cone_props *)(cone->properties))->angle = ft_atof(tokens[3]);
 	if (((t_cone_props *)(cone->properties))->angle < 0
 		|| ((t_cone_props *)(cone->properties))->angle > 180)

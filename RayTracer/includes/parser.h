@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 15:17:22 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 17:04:30 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		parse_color(const char *str, t_color *out_color);
  * @return 1 if parsing is successful, 0 otherwise.
  */
 int		parse_vector3(const char *str, t_vec3 *out_vec3);
+
+bool	is_vec3_normalized(t_vec3 vec);
 
 char	**parse_tokens(const char *str, const char *delim,
 			const size_t max_tokens);

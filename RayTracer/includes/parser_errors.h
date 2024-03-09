@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 02:53:39 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 16:51:34 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 17:02:35 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ERR_PARSE_CAM_ARGS "Invalid number of arguments for a camera"
 # define ERR_PARSE_CAM_POS "Failed to parse camera position"
 # define ERR_PARSE_CAM_DIR "Failed to parse camera direction"
+# define ERR_PARSE_CAM_DIR_NORM "Camera direction should be normalized"
 # define ERR_PARSE_CAM_FOV "Camera field of view is invalid. Range: ]0,180["
 
 # define ERR_PARSE_SPHERE_ARGS "Invalid number of arguments for a sphere"
@@ -49,11 +50,13 @@
 # define ERR_PARSE_PLANE_ARGS "Invalid number of arguments for a plane"
 # define ERR_PARSE_PLANE_POS "Failed to parse plane position"
 # define ERR_PARSE_PLANE_NORMAL "Failed to parse plane normal vector"
+# define ERR_PARSE_PLANE_NORMAL_NORM "Plane normal vector should be normalized"
 # define ERR_PARSE_PLANE_COLOR "Failed to parse plane color"
 
 # define ERR_PARSE_CYLINDER_ARGS "Invalid number of arguments for a cylinder"
 # define ERR_PARSE_CYLINDER_POS "Failed to parse cylinder position"
 # define ERR_PARSE_CYLINDER_AXIS "Failed to parse cylinder axis vector"
+# define ERR_PARSE_CYLINDER_AXIS_NORM "Cylinder axis should be normalized"
 # define ERR_PARSE_CYLINDER_DIAM "Cylinder diameter is invalid : < 0"
 # define ERR_PARSE_CYLINDER_HEIGHT "Cylinder height is invalid : < 0"
 # define ERR_PARSE_CYLINDER_COLOR "Failed to parse cylinder color"
@@ -61,6 +64,7 @@
 # define ERR_PARSE_CONE_ARGS "Invalid number of arguments for a cone"
 # define ERR_PARSE_CONE_POS "Failed to parse cone position"
 # define ERR_PARSE_CONE_AXIS "Failed to parse cone axis vector"
+# define ERR_PARSE_CONE_AXIS_NORM "Cone axis vector should be normalized"
 # define ERR_PARSE_CONE_ANGLE "Cone angle is invalid. Range: ]0,180["
 # define ERR_PARSE_CONE_HEIGHT "Cone height is invalid : < 0"
 # define ERR_PARSE_CONE_COLOR "Failed to parse cone color"
