@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/10 23:06:10 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 00:29:39 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,41 @@ struct					s_scene
 	// t_light* lights;
 };
 
+typedef struct s_fresnel
+{
+	float				cosi;
+	float				etai;
+	float				etat;
+	float				sint;
+	float				cost;
+	float				rs;
+	float				rp;
+}						t_fresnel;
+
+typedef struct s_triangle
+{
+	t_vec3				v0;
+	t_vec3				v1;
+	t_vec3				v2;
+	t_color				color;
+	// t_material			material;
+}						t_triangle;
+
+struct					s_hit
+{
+	// t_material	material;
+	t_color				color;
+	t_vec3				point;
+	t_vec3				normal;
+	float				distance;
+};
+
+enum					e_bump_map_mode
+{
+	NO_BUMP_MAP,
+	ORANGE_PEEL,
+};
+
 struct					s_rt
 {
 	bool				is_mandatory;
@@ -245,6 +280,7 @@ struct					s_rt
 	t_intersect_func	intersect_shape[4];
 	bool				checker_mode;
 	float				checker_scale;
+	t_bump_map_mode		bump_map_mode;
 	char				*err_msg;
 };
 

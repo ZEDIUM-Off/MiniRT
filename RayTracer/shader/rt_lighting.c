@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:48:21 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/10 23:05:54 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 00:35:26 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,33 @@ t_color	get_checkerboard_color(t_hit *hit, t_uniforms *u)
 		return (COLOR_BLACK);
 }
 
+void	map_orange_peel(t_hit *hit)
+{
+	t_vec2	wave;
+	t_vec2	frequency;
+	t_vec2	amplitude;
+
+	frequency.x = 30.0 + (rand() % 15);
+	amplitude.x = 0.15 + ((rand() % 10) / 50.0);
+	frequency.y = 5.0 + (rand() % 3);
+	amplitude.y = 0.20 + ((rand() % 15) / 100.0);
+	wave.x = sin(hit->point.x * frequency.x) * cos(hit->point.z * frequency.x)
+		* amplitude.x;
+	wave.y = cos(hit->point.x * frequency.y) * sin(hit->point.z * frequency.y)
+		* amplitude.y;
+	hit->normal.x += wave.x + wave.y;
+	hit->normal.z += wave.x + wave.y;
+	normalize_vec3(&hit->normal);
+}
+
 t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 {
 	t_color	color;
 	t_vec3	light_dir;
-	t_ray	shadow_ray;
 	t_hit	shadow_hit;
 
+	if (u->rt->bump_map_mode == ORANGE_PEEL)
+		map_orange_peel(hit);
 	color = mult_color_scalar(u->rt->sc_input.a_light.color,
 			u->rt->sc_input.a_light.ratio);
 	if (u->rt->sc_input.s_lights_count == 0)
@@ -84,10 +104,9 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 		hit->color = get_checkerboard_color(hit, u);
 	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
-	shadow_ray = (t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
-				SHADOW_BIAS)), light_dir};
 	shadow_hit = (t_hit){0};
-	if (!intersect_scene(&shadow_ray, &shadow_hit, u)
+	if (!intersect_scene(&(t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
+					SHADOW_BIAS)), light_dir}, &shadow_hit, u)
 		|| shadow_hit.distance > light_distance)
 	{
 		color = blend_colors(color, get_spot_color(hit, u));

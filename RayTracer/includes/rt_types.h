@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/09 13:54:51 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 00:29:15 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_TYPES_H
 
 typedef unsigned int				t_uint;
+typedef enum e_bump_map_mode		t_bump_map_mode;
 typedef struct s_rt					t_rt;
 typedef struct s_ray				t_ray;
 typedef struct s_camera				t_cam;
@@ -43,6 +44,7 @@ typedef struct s_cone				t_cone_props;
 typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
 typedef struct s_hit				t_hit;
+typedef struct s_ray				t_ray;
 
 typedef bool						(*t_intersect_func)(t_ray *, t_shape *,
 							t_hit *);
