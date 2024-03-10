@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 17:49:50 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/10 21:19:49 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	return (spot_light_color);
 }
 
+t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
+{
+	t_vec3	view_dir;
+	t_vec3	reflect_dir;
+	float	spec;
+	t_color	specular_color;
+
+	float specular_strength = 0.5; // Dans les materials quand implémentés
+	int shininess = 32;            // Pareil, sinon, à définir comme prop de rt
+	view_dir = sub_vec3s(u->rt->cam.pos, hit->point);
+	normalize_vec3(&view_dir);
+	reflect_dir = reflect_vector(sub_vec3s((t_vec3){0, 0, 0}, light_dir),
+			hit->normal);
+	normalize_vec3(&reflect_dir);
+	spec = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0), shininess);
+	specular_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
+			specular_strength * spec);
+	return (specular_color);
+}
+
 t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 {
 	t_color	color;
@@ -55,6 +75,8 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 		|| shadow_hit.distance > light_distance)
 	{
 		color = blend_colors(color, get_spot_color(hit, u));
+		if (!u->rt->is_mandatory)
+			color = blend_colors(color, calculate_specular(hit, u, light_dir));
 	}
 	return (color);
 }
@@ -75,7 +97,7 @@ t_color	calculate_reflection(t_ray *ray, t_hit *hit, size_t depth,
 t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 {
 	t_hit	hit;
-	float	light_distance;
+	float	light_dist;
 	float	reflectance;
 	t_color	color;
 	t_color	reflect_color;
@@ -86,9 +108,9 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 	if (!intersect_scene(ray, &hit, u))
 		return (COLOR_BG);
 	if (u->rt->sc_input.s_lights_count != 0)
-		light_distance = vec3_lenght(sub_vec3s(u->rt->sc_input.s_lights[0].position,
+		light_dist = vec3_lenght(sub_vec3s(u->rt->sc_input.s_lights[0].position,
 					hit.point));
-	color = calculate_lighting(&hit, u, light_distance);
+	color = calculate_lighting(&hit, u, light_dist);
 	color = mult_colors(color, hit.color);
 	if (depth > 1)
 	{
