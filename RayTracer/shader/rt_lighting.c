@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:48:21 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/10 21:48:38 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/10 23:05:54 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
 	return (specular_color);
 }
 
+t_color	get_checkerboard_color(t_hit *hit, t_uniforms *u)
+{
+	int		pattern;
+	float	scale;
+
+	scale = u->rt->checker_scale;
+	pattern = (int)(floor(hit->point.x / scale) + floor(hit->point.z / scale))
+		% 2;
+	if (pattern == 0)
+		return (hit->color);
+	else
+		return (COLOR_BLACK);
+}
+
 t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 {
 	t_color	color;
@@ -66,6 +80,8 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 			u->rt->sc_input.a_light.ratio);
 	if (u->rt->sc_input.s_lights_count == 0)
 		return (color);
+	if (u->rt->checker_mode && u->rt->checker_scale > 0)
+		hit->color = get_checkerboard_color(hit, u);
 	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	shadow_ray = (t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,

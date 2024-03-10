@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/09 15:52:20 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/10 23:06:10 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,8 @@ struct					s_rt
 	t_mesh				all_meshes;
 	t_sc_input			sc_input;
 	t_intersect_func	intersect_shape[4];
+	bool				checker_mode;
+	float				checker_scale;
 	char				*err_msg;
 };
 
