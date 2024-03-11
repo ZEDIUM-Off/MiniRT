@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   func.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 17:16:24 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:29:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,28 @@ void	all_mesh_to_scene(t_rt *rt);
 void	draw_all_meshes(t_rt *rt);
 void	make_mesh(t_rt *rt, t_shape *shape);
 void	mesh_get_normals(t_mesh *mesh);
+
+// Scene Editor
+void	editor_menu(t_rt *rt);
+bool	input_fisrt_menu(t_rt *rt, char *input);
+void	obj_menu(t_rt *rt, t_obj *obj);
+bool	rotate_obj(t_rt *rt, t_obj *obj);
+bool	translate_obj(t_rt *rt, t_obj *obj);
+bool	modify_obj_props(t_rt *rt, t_obj *obj);
+void	modify_cylinder_props(t_rt *rt, t_shape *shape);
+void	modify_cone_props(t_rt *rt, t_shape *shape);
+void	modify_plane_props(t_rt *rt, t_shape *shape);
+void	modify_sphere_props(t_rt *rt, t_shape *shape);
+void	modify_light_props(t_rt *rt, t_spot_light *light);\
+t_vec3	get_axis(t_rt *rt, char *axis_name);
+bool	modif_shape_color(t_rt *rt, t_shape *shape);
+bool	is_float(char *input);
+bool	is_in_range(char *input, float min, float max);
+bool	is_color(char *input);
+void	 display_sphere_props(size_t i, t_shape *shape);
+void	 display_plane_props(size_t i, t_shape *shape);
+void	 display_cylinder_props(size_t i, t_shape *shape);
+void	 display_cone_props(size_t i, t_shape *shape);
+void	 display_light_props(size_t i, t_spot_light *light);
 
 #endif // FUNC_H

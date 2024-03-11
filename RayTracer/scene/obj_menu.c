@@ -2,7 +2,7 @@
 
 void	list_obj(t_rt *rt)
 {
-	int				i;
+	size_t				i;
 	t_shape			*shape;
 	t_spot_light	*light;
 
@@ -33,7 +33,7 @@ bool	get_obj(t_rt *rt, char *input, t_obj *obj)
 {
 	int	id;
 
-	if (!is_number(input))
+	if (!is_digit(input))
 		return (printf("Invalid input\n"), false);
 	id = ft_atoi(input);
 	if (id < 0 || id >= rt->sc_input.shapes_count + rt->sc_input.lights_count)

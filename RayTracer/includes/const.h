@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:21:00 by mchenava          #+#    #+#             */
-/*   Updated: 2024/02/20 15:43:40 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 14:17:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,30 @@
 "* 3. MODIFY AN OBJECT PROPERTIE\n" \
 "* 4. STOP MODIFYING\n"
 
-# define CHOOSE_ELEM "\n\nOn which object would you apply a %s modification ?\n" 
+# define CHOOSE_ELEM "\n\nOn which object would you apply a %s modification ?\n"
 
+# define MODIF_LIGHT "\n\nWhich propertie would you like to modify?\n" \
+"* 1. BRIGTNESS\n" \
+"* 2. COLOR\n"
+
+# define MODIF_SPHERE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. DIAMETER\n" \
+"* 2. COLOR\n"
+
+# define MODIF_PLANE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. NORMAL\n" \
+"* 2. COLOR\n"
+
+# define MODIF_CYLINDER "\n\nWhich propertie would you like to modify?\n" \
+"* 1. DIAMETER\n" \
+"* 2. HEIGHT\n" \
+"* 3. AXIS\n" \
+"* 4. COLOR\n"
+
+# define MODIF_CONE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. ANGLE\n" \
+"* 2. HEIGHT\n" \
+"* 3. AXIS\n" \
+"* 4. COLOR\n"
 
 #endif // CONST_H
