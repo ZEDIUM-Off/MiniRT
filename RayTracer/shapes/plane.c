@@ -25,33 +25,51 @@ static void	init_vars(t_mesh *mesh, t_plane_params *params, t_plane_vars *vars)
 }
 static void	push_verts(t_mesh *mesh, t_plane_params *params, t_plane_vars *vars)
 {
-	t_vec3	vertices[4];
-	int		i;
+	float	step;
+	t_vec3	point;
+	int		divisions;
 
-	vertices[0] = sub_vec3s(sub_vec3s(params->center, scale_vec3s(vars->right,
-					vars->halph)), scale_vec3s(vars->up, vars->halph));
-	vertices[1] = add_vec3s(sub_vec3s(params->center, scale_vec3s(vars->right,
-					vars->halph)), scale_vec3s(vars->up, vars->halph));
-	vertices[2] = add_vec3s(add_vec3s(params->center, scale_vec3s(vars->right,
-					vars->halph)), scale_vec3s(vars->up, vars->halph));
-	vertices[3] = sub_vec3s(add_vec3s(params->center, scale_vec3s(vars->right,
-					vars->halph)), scale_vec3s(vars->up, vars->halph));
-	// Ajouter les sommets au maillage
-	mesh->verts = ft_realloc(mesh->verts, (mesh->verts_count + 4)
-			* sizeof(float) * 3, (mesh->verts_count) * sizeof(float) * 3);
-	i = 0;
-	while (i < 4)
-		vec3_to_array(&vertices[i++], mesh->verts, mesh->verts_count++);
+	divisions = PLANE_DIV;
+	step = PLANE_SIZE / (float)divisions;
+	for (int x = 0; x <= divisions; x++)
+	{
+		for (int y = 0; y <= divisions; y++)
+		{
+			point = add_vec3s(params->center, add_vec3s(scale_vec3s(vars->right,
+							(x - divisions / 2.0) * step), scale_vec3s(vars->up,
+							(y - divisions / 2.0) * step)));
+			mesh->verts = ft_realloc(mesh->verts, (mesh->verts_count + 1)
+					* sizeof(float) * 3, mesh->verts_count * sizeof(float) * 3);
+			vec3_to_array(&point, mesh->verts, mesh->verts_count++);
+		}
+	}
 }
 
 static void	push_tris(t_mesh *mesh, t_plane_vars *vars)
 {
-	mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 2) * sizeof(float)
-			* 3, (mesh->tris_count) * sizeof(float) * 3);
-	ivec3_to_array(&(t_ivec3){0 + vars->verts_start, 2 + vars->verts_start, 1
-		+ vars->verts_start}, mesh->tris, mesh->tris_count++);
-	ivec3_to_array(&(t_ivec3){0 + vars->verts_start, 3 + vars->verts_start, 2
-		+ vars->verts_start}, mesh->tris, mesh->tris_count++);
+	int	divisions;
+	int	bottomLeft;
+	int	bottomRight;
+	int	topLeft;
+	int	topRight;
+
+	divisions = PLANE_DIV;
+	for (int x = 0; x < divisions; x++)
+	{
+		for (int y = 0; y < divisions; y++)
+		{
+			bottomLeft = x * (divisions + 1) + y + vars->verts_start;
+			bottomRight = bottomLeft + 1;
+			topLeft = bottomLeft + (divisions + 1);
+			topRight = topLeft + 1;
+			mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 2)
+					* sizeof(int) * 3, mesh->tris_count * sizeof(int) * 3);
+			ivec3_to_array(&(t_ivec3){bottomLeft, topLeft, bottomRight},
+				mesh->tris, mesh->tris_count++);
+			ivec3_to_array(&(t_ivec3){bottomRight, topLeft, topRight},
+				mesh->tris, mesh->tris_count++);
+		}
+	}
 }
 
 void	make_plane(t_mesh *mesh, t_plane_params *params)

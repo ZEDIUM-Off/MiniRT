@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:21:00 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/09 01:47:49 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 18:29:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,61 @@
 
 # define MESH_DETAIL 32
 # define PLANE_SIZE 50
+# define PLANE_DIV PLANE_SIZE / 5
+
+# define RT_HEADER "\n\n" \
+"                                                          ,----,\n" \
+"        ,--,                                                    ,/   .`|\n" \
+"      ,--.'|      ,----,  ,-.----.                            ,`   .'  :\n" \
+"   ,--,  | :    .'   .' \\ \\    /  \\                         ;    ;     /\n" \
+" ,---.'|  : '  ,----,'    |;   :    \\                      .'___,/    ,' __  ,-.                                __  ,-.\n" \
+" ;   : |  | ;  |    :  .  ;|   | .\\ :                      |    :     |,' ,'/ /|                              ,' ,'/ /|\n" \
+" |   | : _' |  ;    |.'  / .   : |: |   ,--.--.        .--,;    |.';  ;'  | |' | ,--.--.     ,---.     ,---.  '  | |' |\n" \
+" :   : |.'  |  `----'/  ;  |   |  \\ :  /       \\     /_ ./|`----'  |  ||  |   ,'/       \\   /     \\   /     \\ |  |   ,'\n" \
+" |   ' '  ; :    /  ;  /   |   : .  / .--.  .-. | , ' , ' :    '   :  ;'  :  / .--.  .-. | /    / '  /    /  |'  :  /\n" \
+" \\   \\  .'. |   ;  /  /-,  ;   | |  \\  \\__\\/: . ./___/ \\: |    |   |  '|  | '   \\__\\/: . ..    ' /  .    ' / ||  | '\n" \
+"  `---`:  | '  /  /  /.`|  |   | ;\\  \\ ,\" .--.; | .  \\  ' |    '   :  |;  : |   ,\" .--.; |'   ; :__ '   ;   /|;  : |\n" \
+"       '  ; |./__;      :  :   ' | \\.'/  /  ,.  |  \\  ;   :    ;   |.' |  , ;  /  /  ,.  |'   | '.'|'   |  / ||  , ;\n" \
+"       |  : ;|   :    .'   :   : :-' ;  :   .'   \\  \\  \\  ;    '---'    ---'  ;  :   .'   \\   :    :|   :    | ---'\n" \
+"       '  ,/ ;   | .'      |   |.'   |  ,     .-./   :  \\  \\                  |  ,     .-./\\   \\  /  \\   \\  /\n" \
+"       '--'  `---'         `---'      `--`---'        \\  ' ;                   `--`---'     `----'    `----'\n" \
+"                                                       `--`\n\n"
+
+# define RT_MENU "Welcome to the 42RayTracer!\n\n" \
+"This is a simple raytracer that uses the 42LiteGL library to render the scene.\n" \
+"The scene is defined in .rt file, which is parsed by the parser.\n" \
+"you can edit objects of the scene throug this menue, as there scale, position, rotation, etc.\n"
+
+# define FIRST_MENU "\n\nWhat would you like to do?\n" \
+"* 1. TRANSLATE AN OBJECT/LIGHT\n" \
+"* 2. ROTATE AN OBJECT\n" \
+"* 3. MODIFY AN OBJECT PROPERTIE\n" \
+"* 4. STOP MODIFYING\n"
+
+# define CHOOSE_ELEM "\n\nOn which object would you apply a %s modification ?\n"
+
+# define MODIF_LIGHT "\n\nWhich propertie would you like to modify?\n" \
+"* 1. BRIGTNESS\n" \
+"* 2. COLOR\n"
+
+# define MODIF_SPHERE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. DIAMETER\n" \
+"* 2. COLOR\n"
+
+# define MODIF_PLANE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. NORMAL\n" \
+"* 2. COLOR\n"
+
+# define MODIF_CYLINDER "\n\nWhich propertie would you like to modify?\n" \
+"* 1. DIAMETER\n" \
+"* 2. HEIGHT\n" \
+"* 3. AXIS\n" \
+"* 4. COLOR\n"
+
+# define MODIF_CONE "\n\nWhich propertie would you like to modify?\n" \
+"* 1. ANGLE\n" \
+"* 2. HEIGHT\n" \
+"* 3. AXIS\n" \
+"* 4. COLOR\n"
 
 #endif // CONST_H

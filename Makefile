@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/07 04:57:59 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/11 18:33:13 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ WIN_SRC=	$(WIN_DIR)/init_window.c \
 UTILS_SRC=	$(UTILS_DIR)/clean.c \
 			$(UTILS_DIR)/init_rt.c \
 			$(UTILS_DIR)/vec_to_array.c \
-			$(UTILS_DIR)/error.c
+			$(UTILS_DIR)/error.c \
+			$(UTILS_DIR)/is_number.c
 
 CAM_SRC=	$(CAM_DIR)/init_cam.c \
 			$(CAM_DIR)/move_cam.c
@@ -56,7 +57,17 @@ CONTROLS_SRC= 	$(CONTROLS_DIR)/keyboard_ctrl.c \
 				$(CONTROLS_DIR)/mouse_ctrl.c \
 				$(CONTROLS_DIR)/modes.c
 
-SCENE_SRC=	$(SCENE_DIR)/scene.c
+SCENE_SRC=	$(SCENE_DIR)/scene.c \
+			$(SCENE_DIR)/scene_editor.c \
+			$(SCENE_DIR)/obj_menu.c \
+			$(SCENE_DIR)/editor_utils.c \
+			$(SCENE_DIR)/edition_choice.c \
+			$(SCENE_DIR)/modify_cylinder.c \
+			$(SCENE_DIR)/modify_cone.c \
+			$(SCENE_DIR)/modify_sphere.c \
+			$(SCENE_DIR)/modify_plane.c \
+			$(SCENE_DIR)/modify_light.c \
+			$(SCENE_DIR)/disp_shapes.c
 
 SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \

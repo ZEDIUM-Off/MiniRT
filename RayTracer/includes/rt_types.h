@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 15:52:27 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 18:33:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_spot_light			t_spot_light;
 typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
 typedef struct s_hit				t_hit;
+typedef struct s_obj				t_obj;
 
 typedef bool						(*t_intersect_func)(t_ray *, t_shape *,
 							t_hit *);

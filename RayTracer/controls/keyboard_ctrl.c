@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_ctrl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:48:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 15:45:46 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:29:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ int	key_pressed(int key, t_rt *rt)
 		print_cam_properties(rt);
 	// if (key == XK_m)
 	// 	use_material(rt);
+	if (key == XK_e)
+		editor_menu(rt);
 	return (0);
 }

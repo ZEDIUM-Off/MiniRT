@@ -21,8 +21,8 @@ void	cam_rotate(t_rt *rt, float delta_x, float delta_y)
 	t_vec3	pos2origin;
 
 	cam = (t_cam *)&rt->cam;
-	yaw = cam->speed * delta_x;
-	pitch = cam->speed * delta_y;
+	yaw = cam->speed * delta_x / 2;
+	pitch = cam->speed * delta_y / 2;
 	cam2target = sub_vec3s(cam->target, cam->pos);
 	cam->dir = norm_vec3(cam2target);
 	cam->dir = vec3_rotate(cam->dir, pitch, cam->right);
@@ -42,8 +42,8 @@ void	cam_translate(t_rt *rt, int x_offset, int y_offset)
 
 	cam = &rt->cam;
 	translation = add_vec3s(scale_vec3s(norm_vec3(cam->right), -x_offset
-				* cam->speed / 10), scale_vec3s(norm_vec3(cam->up), y_offset
-				* cam->speed / 10));
+				* cam->speed), scale_vec3s(norm_vec3(cam->up), y_offset
+				* cam->speed));
 	cam->pos = add_vec3s(cam->pos, translation);
 	cam->target = add_vec3s(cam->target, translation);
 }

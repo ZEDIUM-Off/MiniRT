@@ -20,6 +20,11 @@ void	init_shapes(t_rt *rt)
 	rt->intersect_shape[PLANE] = intersect_plane;
 	rt->intersect_shape[CYLINDER] = intersect_cylinder;
 	rt->intersect_shape[CONE] = intersect_cone;
+	rt->obj_types[SPHERE] = "sphere";
+	rt->obj_types[PLANE] = "plane";
+	rt->obj_types[CYLINDER] = "cylinder";
+	rt->obj_types[CONE] = "cone";
+	rt->obj_types[LIGHT] = "light";
 }
 
 char	**parse_tokens(const char *str, const char delim,
