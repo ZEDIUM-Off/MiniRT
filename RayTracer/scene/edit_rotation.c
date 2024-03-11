@@ -23,13 +23,12 @@ void	rotate_shape(t_shape *shape, t_vec3 axis, float rotation)
 	}
 }
 
-bool	rotate_obj(t_rt *rt, t_obj *obj)
+bool	rotate_obj(t_obj *obj)
 {
 	char *input;
 	t_vec3 axis;
 	float rotation;
 	t_shape *shape;
-	t_spot_light *light;
 
 	if (obj->type == LIGHT)
 		printf("You can't rotate a light\n");
@@ -38,7 +37,7 @@ bool	rotate_obj(t_rt *rt, t_obj *obj)
 	else
 	{
 		shape = (t_shape *)obj->data;
-		axis = get_axis(rt, rotation);
+		axis = get_axis("rotation");
 		do
 		{
 			printf("Enter the rotation degre: ");

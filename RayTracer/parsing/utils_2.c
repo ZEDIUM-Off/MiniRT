@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 02:05:47 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 13:22:21 by agaley           ###   ########lyon.fr   */
+/*   Created: 2024/03/09 16:55:13 by agaley            #+#    #+#             */
+/*   Updated: 2024/03/09 17:10:28 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <minirt.h>
 
-int	handle_error(char *msg, t_rt *rt)
+bool	is_vec3_normalized(t_vec3 vec)
 {
-	rt->err_msg = strdup(msg);
-	return (0);
+	float	magnitude;
+
+	magnitude = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	return (fabs(magnitude - 1.0) < 0.001);
 }

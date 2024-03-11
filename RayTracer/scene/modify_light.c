@@ -1,6 +1,6 @@
 #include <minirt.h>
 
-bool	modif_light_brightness(t_rt *rt, t_spot_light *light)
+bool	modif_light_brightness(t_s_light *light)
 {
 	char	*input;
 
@@ -9,12 +9,11 @@ bool	modif_light_brightness(t_rt *rt, t_spot_light *light)
 		printf("Enter the new brightness: ");
 		input = get_next_line(STDIN_FILENO);
 	}while (!is_float(input) && !is_in_range(input, 0, 1));
-	light->brightness = ft_atof(input);
-	if
+	light->brightness_ratio = ft_atof(input);
 	return (true);
 }
 
-bool	modif_light_color(t_rt *rt, t_spot_light *light)
+bool	modif_light_color(t_s_light *light)
 {
 	char	*input;
 
@@ -27,12 +26,12 @@ bool	modif_light_color(t_rt *rt, t_spot_light *light)
 	return (true);
 }
 
-bool	input_light_menu(t_rt *rt, char	*input, t_spot_light *light)
+bool	input_light_menu(char	*input, t_s_light *light)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
-		return (modif_light_brightness(rt, light));
+		return (modif_light_brightness(light));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_light_color(rt));
+		return (modif_light_color(light));
 	else
 	{
 		printf("Invalid input\n");
@@ -40,7 +39,7 @@ bool	input_light_menu(t_rt *rt, char	*input, t_spot_light *light)
 	}
 }
 
-void	modify_light_props(t_rt *rt, t_spot_light *light)
+void	modify_light_props(t_s_light *light)
 {
 	char	*input;
 
@@ -49,5 +48,5 @@ void	modify_light_props(t_rt *rt, t_spot_light *light)
 		printf(MODIF_LIGHT);
 		printf ("Choose the property to modify: ");
 		input = get_next_line(STDIN_FILENO);
-	}while (!input_light_menu(rt, input, light));
+	}while (!input_light_menu(input, light));
 }

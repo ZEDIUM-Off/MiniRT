@@ -2,44 +2,38 @@
 
 bool	translate_menu(t_rt *rt)
 {
-	char	*input;
-	bool	ret;
 	t_obj	obj;
 
 	do
 	{
 		printf(CHOOSE_ELEM, "translation");
 		obj_menu(rt, &obj);
-		ret = tramslate_obj(rt, &obj);
-	} while (!ret);
+	} while (!translate_obj(&obj));
+	return (true);
 }
 
 bool	rotate_menu(t_rt *rt)
 {
-	char	*input;
-	bool	ret;
 	t_obj	obj;
 
 	do
 	{
 		printf(CHOOSE_ELEM, "rotation");
 		obj_menu(rt, &obj);
-		ret = rotate_obj(rt, &obj);
-	} while (!ret);
+	} while (!rotate_obj(&obj));
+	return (true);
 }
 
 bool	modify_props(t_rt *rt)
 {
-	char	*input;
-	bool	ret;
 	t_obj	obj;
 
 	do
 	{
 		printf(CHOOSE_ELEM, "properties");
 		obj_menu(rt, &obj);
-		ret = modify_obj_props(rt, &obj);
-	} while (!ret);
+	} while (!modify_obj_props(&obj));
+	return (true);
 }
 
 bool	input_fisrt_menu(t_rt *rt, char *input)

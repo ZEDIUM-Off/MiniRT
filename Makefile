@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/11 18:33:13 by  mchenava        ###   ########.fr        #
+#    Updated: 2024/03/11 19:17:02 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INC_DIR= $(SRC_DIR)/includes
 MLX_DIR= ./minilibx-linux
 GL_DIR= ./42LiteGL
 
+FT_DIR= $(SRC_DIR)/ft
 WIN_DIR= $(SRC_DIR)/window
 UTILS_DIR= $(SRC_DIR)/utils
 CAM_DIR= $(SRC_DIR)/camera
@@ -32,10 +33,19 @@ PARSING_DIR= $(SRC_DIR)/parsing
 MLX= $(MLX_DIR)/libmlx.a
 GL= $(GL_DIR)/lite_gl.a
 
-S_DIRS = $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
+S_DIRS = $(FT_DIR) $(WIN_DIR) $(UTILS_DIR) $(CAM_DIR) $(RENDER_DIR) $(CONTROLS_DIR) $(SCENE_DIR) $(SHADER_DIR) $(SHAPES_DIR) $(READLINE_DIR) $(PARSING_DIR)
 LIBS = -lX11 -lXext -lm
 
 B_DIRS = $(S_DIRS:$(SRC_DIR)/%=$(BUILD_DIR)/%)
+
+FT_SRC=		$(FT_DIR)/ft_atof.c \
+			$(FT_DIR)/ft_atoi.c \
+			$(FT_DIR)/ft_split.c \
+			$(FT_DIR)/ft_strlen.c \
+			$(FT_DIR)/ft_strmanip.c \
+			$(FT_DIR)/ft_strncmp.c \
+			$(FT_DIR)/ft_isdigit.c \
+
 
 WIN_SRC=	$(WIN_DIR)/init_window.c \
 			$(WIN_DIR)/hooks.c \
@@ -62,6 +72,9 @@ SCENE_SRC=	$(SCENE_DIR)/scene.c \
 			$(SCENE_DIR)/obj_menu.c \
 			$(SCENE_DIR)/editor_utils.c \
 			$(SCENE_DIR)/edition_choice.c \
+			$(SCENE_DIR)/edit_rotation.c \
+			$(SCENE_DIR)/edit_translation.c \
+			$(SCENE_DIR)/edit_props.c \
 			$(SCENE_DIR)/modify_cylinder.c \
 			$(SCENE_DIR)/modify_cone.c \
 			$(SCENE_DIR)/modify_sphere.c \
@@ -71,6 +84,7 @@ SCENE_SRC=	$(SCENE_DIR)/scene.c \
 
 SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \
+			$(SHADER_DIR)/rt_lighting.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/intersect_planes.c \
 			$(SHADER_DIR)/intersect_spheres.c \
@@ -78,6 +92,7 @@ SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/intersect_cones.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
+			$(SHADER_DIR)/color_utils.c \
 			$(SHADER_DIR)/base_shaders.c
 
 SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
@@ -93,18 +108,17 @@ READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
 
 PARSING_SRC = $(PARSING_DIR)/parser.c \
 			$(PARSING_DIR)/shapes.c \
-			$(PARSING_DIR)/ft_split.c \
-			$(PARSING_DIR)/ft_atof.c \
-			$(PARSING_DIR)/utils.c
+			$(PARSING_DIR)/utils.c \
+			$(PARSING_DIR)/utils_2.c
 
 SRC= $(SRC_DIR)/minirt.c
-SRC+= $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
+SRC+= $(FT_SRC) $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC) $(SCENE_SRC) $(SHADER_SRC) $(SHAPES_SRC) $(READLINE_SRC) $(PARSING_SRC)
 
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS= $(OBJECTS:.o=.d)
 
-FLAGS= -std=c99 -Wall -Wextra -Werror -g3 -fsanitize=address ${LIBS}
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -g3 -fsanitize=address -MMD
+FLAGS= -std=c99 -Wall -Wextra -Werror -MMD -g3 ${LIBS} -fsanitize=address
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -MMD -g3 -fsanitize=address
 
 all: $(NAME)
 

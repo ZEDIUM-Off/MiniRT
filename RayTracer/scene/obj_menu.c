@@ -4,7 +4,7 @@ void	list_obj(t_rt *rt)
 {
 	size_t				i;
 	t_shape			*shape;
-	t_spot_light	*light;
+	t_s_light	*light;
 
 	i = 0;
 	printf("\n\nOBJECT LIST\n");
@@ -21,7 +21,7 @@ void	list_obj(t_rt *rt)
 			display_cone_props(i, shape);
 		i++;
 	}
-	while (i < rt->sc_input.shapes_count + rt->sc_input.lights_count)
+	while (i < rt->sc_input.shapes_count + rt->sc_input.s_lights_count)
 	{
 		light = &rt->sc_input.s_lights[i];
 		display_light_props(i, light);
@@ -35,13 +35,13 @@ bool	get_obj(t_rt *rt, char *input, t_obj *obj)
 
 	if (!is_number(input))
 		return (printf("Invalid input\n"), false);
-	id = ft_atoi(input);
-	if (id < 0 || id >= rt->sc_input.shapes_count + rt->sc_input.lights_count)
+	id = ft_atoii(input);
+	if (id < 0 || (size_t)id >= rt->sc_input.shapes_count + rt->sc_input.s_lights_count)
 		return (printf("Invalid object number\n"), false);
-	if (id < rt->sc_input.shapes_count)
+	if ((size_t)id < rt->sc_input.shapes_count)
 	{
 		obj->type = rt->sc_input.shapes[id].type;
-		obj->type = &rt->sc_input.shapes[id];
+		obj->data = &rt->sc_input.shapes[id];
 	}
 	else
 	{

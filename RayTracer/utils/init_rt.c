@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/08 05:59:23 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 00:30:43 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_uint	init_rt(t_rt *rt)
 {
 	t_uint	status;
 
+	rt->is_mandatory = true;
 	status = init_window(rt);
 	if (status != CONTINUE)
 		return (status);
@@ -33,5 +34,8 @@ t_uint	init_rt(t_rt *rt)
 	rt->loop = 10000;
 	rt->err_msg = NULL;
 	rt->uniforms.max_depth = 3;
+	rt->checker_mode = false;
+	rt->checker_scale = 2;
+	rt->bump_map_mode = NO_BUMP_MAP;
 	return (CONTINUE);
 }

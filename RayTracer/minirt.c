@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:03:15 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 15:59:35 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 19:28:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	main(int argc, char **argv)
 		clean_rt(&rt);
 		return (EXIT_FAILURE);
 	}
-	// init_cam(rt);
-	scene_init(&rt);
 	printf("Parsing done...");
+	scene_init(&rt);
+	printf("Scene inited...");
 	printf("lauching loop...");
 	mlx_loop(rt.mxv.mlx);
 	quit_rt(&rt);

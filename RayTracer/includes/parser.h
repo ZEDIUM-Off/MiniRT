@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:31 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 15:02:02 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/09 17:04:30 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-// # include "scene_structs.h"
 # include "rt_includes.h"
 
 /**
@@ -56,11 +55,9 @@ int		parse_color(const char *str, t_color *out_color);
  */
 int		parse_vector3(const char *str, t_vec3 *out_vec3);
 
-char	**ft_split(char const *str, char c);
+bool	is_vec3_normalized(t_vec3 vec);
 
-double	ft_atof(const char *str);
-
-char	**parse_tokens(const char *str, const char delim,
+char	**parse_tokens(const char *str, const char *delim,
 			const size_t max_tokens);
 
 int		free_tokens(char ***tokens);

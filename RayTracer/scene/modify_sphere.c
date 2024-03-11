@@ -1,6 +1,6 @@
 #include <minirt.h>
 
-bool	modify_sphere_diameter(t_rt *rt, t_shape *sphere)
+bool	modify_sphere_diameter(t_shape *sphere)
 {
 	char	*input;
 
@@ -13,12 +13,12 @@ bool	modify_sphere_diameter(t_rt *rt, t_shape *sphere)
 	return (true);
 }
 
-bool	input_sphere_menu(t_rt *rt, char *input, t_shape *sphere)
+bool	input_sphere_menu(char *input, t_shape *sphere)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
-		return (modify_sphere_diameter(rt, sphere));
+		return (modify_sphere_diameter(sphere));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_shape_color(rt, sphere));
+		return (modif_shape_color(sphere));
 	else
 	{
 		printf("Invalid input\n");
@@ -26,7 +26,7 @@ bool	input_sphere_menu(t_rt *rt, char *input, t_shape *sphere)
 	}
 }
 
-void	modify_sphere_props(t_rt *rt, t_shape *sphere)
+void	modify_sphere_props(t_shape *sphere)
 {
 	char	*input;
 
@@ -35,5 +35,5 @@ void	modify_sphere_props(t_rt *rt, t_shape *sphere)
 		printf(MODIF_SPHERE);
 		printf("Enter your command: ");
 		input = get_next_line(STDIN_FILENO);
-	} while (!input_sphere_menu(rt, input, sphere));
+	} while (!input_sphere_menu(input, sphere));
 }

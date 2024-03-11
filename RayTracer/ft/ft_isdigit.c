@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 02:05:47 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 13:22:21 by agaley           ###   ########lyon.fr   */
+/*   Created: 2022/11/09 11:35:49 by mchenava          #+#    #+#             */
+/*   Updated: 2022/11/09 11:45:49 by mchenava         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
-int	handle_error(char *msg, t_rt *rt)
+int	ft_isdigit(int c)
 {
-	rt->err_msg = strdup(msg);
-	return (0);
+	return (c <= 57 && c >= 48);
 }

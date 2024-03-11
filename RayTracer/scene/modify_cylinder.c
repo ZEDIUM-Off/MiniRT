@@ -1,6 +1,6 @@
 #include <minirt.h>
 
-bool	modif_cylinder_diameter(t_rt *rt, t_shape *shape)
+bool	modif_cylinder_diameter(t_shape *shape)
 {
 	char	*input;
 
@@ -13,7 +13,7 @@ bool	modif_cylinder_diameter(t_rt *rt, t_shape *shape)
 	return (true);
 }
 
-bool	modif_cylinder_height(t_rt *rt, t_shape *shape)
+bool	modif_cylinder_height(t_shape *shape)
 {
 	char	*input;
 
@@ -26,22 +26,22 @@ bool	modif_cylinder_height(t_rt *rt, t_shape *shape)
 	return (true);
 }
 
-bool	modif_cylinder_axis(t_rt *rt, t_shape *shape)
+bool	modif_cylinder_axis(t_shape *shape)
 {
-	((t_cylinder_props *)shape->properties)->axis = get_axis(rt, "direction");
+	((t_cylinder_props *)shape->properties)->axis = get_axis("direction");
 	return (true);
 }
 
-bool	input_cylinder_menu(t_rt *rt, char *input, t_shape *shape)
+bool	input_cylinder_menu(char *input, t_shape *shape)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
-		return (modif_cylinder_diameter(rt, shape));
+		return (modif_cylinder_diameter(shape));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_cylinder_height(rt, shape));
+		return (modif_cylinder_height(shape));
 	else if (ft_strncmp(input, "3", 2) == 0)
-		return (modif_cylinder_axis(rt, shape));
+		return (modif_cylinder_axis(shape));
 	else if (ft_strncmp(input, "4", 2) == 0)
-		return (modif_shape_color(rt, shape));
+		return (modif_shape_color(shape));
 	else
 	{
 		printf("Invalid input\n");
@@ -49,7 +49,7 @@ bool	input_cylinder_menu(t_rt *rt, char *input, t_shape *shape)
 	}
 }
 
-void	modify_cylinder_props(t_rt *rt, t_shape *shape)
+void	modify_cylinder_props(t_shape *shape)
 {
 	char	*input;
 
@@ -58,5 +58,5 @@ void	modify_cylinder_props(t_rt *rt, t_shape *shape)
 		printf(MODIF_CYLINDER);
 		printf("Enter your command: ");
 		input = get_next_line(STDIN_FILENO);
-	} while (!input_cylinder_menu(rt, input, shape));
+	} while (!input_cylinder_menu(input, shape));
 }

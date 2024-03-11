@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:10:25 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/07 10:46:14 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:47:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ enum	e_mode
 	MODE_RENDER,
 	MODE_VIZ,
 	MODE_MAX,
+};
+
+enum					e_shape_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE,
+	LIGHT
 };
 
 #endif // ENUMS_H

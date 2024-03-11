@@ -1,17 +1,17 @@
 #include <minirt.h>
 
-bool	modif_plane_normal(t_rt *rt, t_shape *shape)
+bool	modif_plane_normal(t_shape *shape)
 {
-	((t_plane_props *)shape->properties)->normal = get_axis(rt, "normal");
+	((t_plane_props *)shape->properties)->normal = get_axis("normal");
 	return (true);
 }
 
-bool	input_plane_menu(t_rt *rt, char *input, t_shape *shape)
+bool	input_plane_menu(char *input, t_shape *shape)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
-		return (modif_plane_normal(rt, shape));
+		return (modif_plane_normal(shape));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_shape_color(rt, shape));
+		return (modif_shape_color(shape));
 	else
 	{
 		printf("Invalid input\n");
@@ -20,7 +20,7 @@ bool	input_plane_menu(t_rt *rt, char *input, t_shape *shape)
 	}
 }
 
-void	modify_plane_props(t_rt *rt, t_shape *shape)
+void	modify_plane_props(t_shape *shape)
 {
 	char	*input;
 
@@ -29,5 +29,5 @@ void	modify_plane_props(t_rt *rt, t_shape *shape)
 		printf(MODIF_PLANE);
 		printf("Enter your command: ");
 		input = get_next_line(STDIN_FILENO);
-	} while (!input_plane_menu(rt, input, shape));
+	} while (!input_plane_menu(input, shape));
 }

@@ -1,6 +1,6 @@
 #include <minirt.h>
 
-bool	modif_cone_angle(t_rt *rt, t_shape *shape)
+bool	modif_cone_angle(t_shape *shape)
 {
 	char	*input;
 
@@ -13,7 +13,7 @@ bool	modif_cone_angle(t_rt *rt, t_shape *shape)
 	return (true);
 }
 
-bool	modif_cone_height(t_rt *rt, t_shape *shape)
+bool	modif_cone_height(t_shape *shape)
 {
 	char	*input;
 
@@ -26,22 +26,22 @@ bool	modif_cone_height(t_rt *rt, t_shape *shape)
 	return (true);
 }
 
-bool	modif_cone_axis(t_rt *rt, t_shape *shape)
+bool	modif_cone_axis(t_shape *shape)
 {
-	((t_cone_props *)shape->properties)->axis = get_axis(rt, "direction");
+	((t_cone_props *)shape->properties)->axis = get_axis("direction");
 	return (true);
 }
 
-bool	input_cone_menu(t_rt *rt, char *input, t_shape *shape)
+bool	input_cone_menu(char *input, t_shape *shape)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
-		return (modif_cone_angle(rt, shape));
+		return (modif_cone_angle(shape));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_cone_height(rt, shape));
+		return (modif_cone_height(shape));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_cone_axis(rt, shape));
+		return (modif_cone_axis(shape));
 	else if (ft_strncmp(input, "2", 2) == 0)
-		return (modif_shape_color(rt, shape));
+		return (modif_shape_color(shape));
 	else
 	{
 		printf("Invalid input\n");
@@ -49,7 +49,7 @@ bool	input_cone_menu(t_rt *rt, char *input, t_shape *shape)
 	}
 }
 
-void	modify_cone_props(t_rt *rt, t_shape *shape)
+void	modify_cone_props(t_shape *shape)
 {
 	char	*input;
 
@@ -58,5 +58,5 @@ void	modify_cone_props(t_rt *rt, t_shape *shape)
 		printf(MODIF_CONE);
 		printf("Enter your command: ");
 		input = get_next_line(STDIN_FILENO);
-	} while (!input_cone_menu(rt, input, shape));
+	} while (!input_cone_menu(input, shape));
 }

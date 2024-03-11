@@ -1,12 +1,12 @@
 #include <minirt.h>
 
-t_vec3	get_translation(t_rt *rt)
+t_vec3	get_translation()
 {
 	t_vec3	axis;
 	float	value;
 	char	*input;
 
-	axis = get_axis(rt, "translation");
+	axis = get_axis("translation");
 	printf("Enter the translation value: \n");
 	do
 	{
@@ -17,17 +17,16 @@ t_vec3	get_translation(t_rt *rt)
 	return (scale_vec3s(axis, value));
 }
 
-bool	translate_obj(t_rt *rt, t_obj *obj)
+bool	translate_obj(t_obj *obj)
 {
-	char *input;
 	t_vec3 translation;
 	t_shape *shape;
-	t_spot_light *light;
+	t_s_light *light;
 
-	translation = get_translation(rt);
+	translation = get_translation();
 	if (obj->type == LIGHT)
 	{
-		light = (t_spot_light *)obj->data;
+		light = (t_s_light *)obj->data;
 		light->position = add_vec3s(light->position, translation);
 	}
 	else
@@ -35,4 +34,5 @@ bool	translate_obj(t_rt *rt, t_obj *obj)
 		shape = (t_shape *)obj->data;
 		shape->position = add_vec3s(shape->position, translation);
 	}
+	return (true);
 }

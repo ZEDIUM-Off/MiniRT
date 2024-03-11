@@ -1,6 +1,6 @@
 #include <minirt.h>
 
-t_vec3	get_axis(t_rt *rt, char *axis_name)
+t_vec3	get_axis(char *axis_name)
 {
 	t_vec3	axis;
 	char	*input;
@@ -27,7 +27,7 @@ t_vec3	get_axis(t_rt *rt, char *axis_name)
 	return (norm_vec3(axis));
 }
 
-bool	modif_shape_color(t_rt *rt, t_shape *shape)
+bool	modif_shape_color(t_shape *shape)
 {
 	char	*input;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:00:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 03:37:28 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/11 19:32:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
 {
 	t_gl_vertex_attrib	vert_attr;
 
-	// t_gl_vertex_attrib	norm_attr;
 	gl_gen_buffers(&rt->glx, 1, &mesh->buffer);
 	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->buffer);
 	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->verts_count * sizeof(float)
@@ -42,14 +41,6 @@ void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
 	vert_attr = (t_gl_vertex_attrib){.size = 3, .type = GL_FLOAT,
 		.normalized = GL_FALSE, .stride = 0};
 	gl_vertex_attrib_pointer(&rt->glx, 0, vert_attr, 0);
-	// gl_gen_buffers(&rt->glx, 1, &mesh->norm_buffer);
-	// gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->norm_buffer);
-	// gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->normals_count
-	// 	* sizeof(float) * 3, mesh->normals);
-	// gl_enable_vertex_attrib_array(&rt->glx, 1);
-	// norm_attr = (t_gl_vertex_attrib){.size = 3, .type = GL_FLOAT,
-	// 	.normalized = GL_FALSE, .stride = 0};
-	// gl_vertex_attrib_pointer(&rt->glx, 1, norm_attr, 0);
 	gl_bind_vertex_array(&rt->glx, 0);
 }
 
