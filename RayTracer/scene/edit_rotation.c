@@ -40,7 +40,7 @@ bool	rotate_obj(t_obj *obj)
 		axis = get_axis("rotation");
 		do
 		{
-			printf("Enter the rotation degre: ");
+			write(1, "Enter the rotation degre: ", 26);
 			input = get_next_line(STDIN_FILENO);
 		} while (!is_float(input));
 		rotation = ft_atof(input);

@@ -38,17 +38,17 @@ bool	modify_props(t_rt *rt)
 
 bool	input_fisrt_menu(t_rt *rt, char *input)
 {
-	if (ft_strncmp(input, "1", 2) == 0)
+	if (ft_strncmp(input, "1\n", 3) == 0)
 		return (translate_menu(rt));
-	else if (ft_strncmp(input, "2", 2) == 0)
+	else if (ft_strncmp(input, "2\n", 3) == 0)
 		return (rotate_menu(rt));
-	else if (ft_strncmp(input, "3", 2) == 0)
+	else if (ft_strncmp(input, "3\n", 3) == 0)
 		return (modify_props(rt));
-	else if (ft_strncmp(input, "4", 2) == 0)
+	else if (ft_strncmp(input, "4\n", 3) == 0)
 		return (true);
 	else
 	{
-		printf("Invalid input\n");
+		printf("\nInvalid input\n");
 		return (false);
 	}
 }

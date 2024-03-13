@@ -8,19 +8,19 @@ t_vec3	get_axis(char *axis_name)
 	printf("Enter the %s axis (x, y, z): \n", axis_name);
 	do
 	{
-		printf("x = ");
+		write(1, "x = ", 4);
 		input = get_next_line(STDIN_FILENO);
 	} while (!is_float(input));
 	axis.x = ft_atof(input);
 	do
 	{
-		printf("\ny = ");
+		write(1, "\ny = ", 5);
 		input = get_next_line(STDIN_FILENO);
 	} while (!is_float(input));
 	axis.y = ft_atof(input);
 	do
 	{
-		printf("\nz = ");
+		write(1, "\nz = ", 5);
 		input = get_next_line(STDIN_FILENO);
 	} while (!is_float(input));
 	axis.z = ft_atof(input);
@@ -33,7 +33,7 @@ bool	modif_shape_color(t_shape *shape)
 
 	do
 	{
-		printf("Enter the new color: ");
+		write(1, "Enter the new color: ", 22);
 		input = get_next_line(STDIN_FILENO);
 	} while (!is_color(input));
 	parse_color(input, &shape->color);
@@ -47,7 +47,7 @@ bool	is_float(char *input)
 	i = 0;
 	if (input[i] == '-')
 		i++;
-	while (input[i])
+	while (input[i] && input[i] != '\n')
 	{
 		if (!ft_isdigit(input[i]) && input[i] != '.')
 			return (printf("\n%s not a float. (format : 0.0)\n", input), false);
@@ -71,7 +71,7 @@ bool	is_color(char *input)
 	int	i;
 
 	i = 0;
-	while (input[i])
+	while (input[i] && input[i] != '\n')
 	{
 		if (!ft_isdigit(input[i]) && input[i] != ',')
 			return (printf("\n%s not a color. (format : 0,0,0)\n", input), false);

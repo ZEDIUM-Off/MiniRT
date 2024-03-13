@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:04:07 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 19:19:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/12 14:08:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include <stdio.h>
+// # include <stdlib.h> 
 # include <stdbool.h>
 # include <float.h>
 # include <math.h>

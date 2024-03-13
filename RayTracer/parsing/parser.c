@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/11 19:27:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/12 13:47:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static int	parse_spot_light(char **tokens, size_t nb, t_rt *rt)
 {
 	t_s_light	*light;
 
+	printf ("parsing a spot light, lights_count = %ld\n", rt->sc_input.s_lights_count);
 	if (nb != 4)
 		if (!rt->is_mandatory || (rt->is_mandatory && nb != 3))
 			return (handle_error(ERR_PARSE_SPOT_ARGS, rt));
@@ -93,7 +94,6 @@ static int	parse_spot_light(char **tokens, size_t nb, t_rt *rt)
 	if (!rt->sc_input.s_lights)
 		return (handle_error(ERR_PARSE_SPOT_REALLOC, rt));
 	light = &rt->sc_input.s_lights[rt->sc_input.s_lights_count];
-	rt->sc_input.s_lights_count++;
 	if (!parse_vector3(tokens[1], &light->position))
 		return (handle_error(ERR_PARSE_SPOT_POS, rt));
 	light->brightness_ratio = ft_atof(tokens[2]);
@@ -128,7 +128,6 @@ static int	parse_element(char *line, t_rt *rt)
 	else
 		result = parse_shape(tokens, nb, rt);
 	free_tokens(&tokens);
-	printf("element parsed\n");
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:57:52 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 19:31:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/12 13:16:15 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	new_frame(t_rt *rt)
 	mesh_draw(rt, &rt->all_meshes);
 	mlx_put_image_to_window(rt->mxv.mlx, rt->mxv.win, rt->mxv.img, 0, 0);
 	rt->loop = 0;
-	printf("frame drawn...\n");
 }
 
 void	vizualize(t_rt *rt)

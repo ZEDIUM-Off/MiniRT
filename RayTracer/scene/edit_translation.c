@@ -10,7 +10,7 @@ t_vec3	get_translation()
 	printf("Enter the translation value: \n");
 	do
 	{
-		printf("value = ");
+		write(1, "value = ", 8);
 		input = get_next_line(STDIN_FILENO);
 	} while (!is_float(input));
 	value = ft_atof(input);

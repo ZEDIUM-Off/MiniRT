@@ -7,7 +7,7 @@ bool	is_number(char *input)
 	i = 0;
 	if (input[i] == '-')
 		i++;
-	while (input[i])
+	while (input[i] && input[i] != '\n')
 	{
 		if (!ft_isdigit(input[i]))
 			return (printf("\n%s not a number.\n", input), false);
