@@ -8,15 +8,14 @@ bool	modif_plane_normal(t_shape *shape)
 
 bool	input_plane_menu(char *input, t_shape *shape)
 {
-	if (ft_strncmp(input, "1\n", 3) == 0)
+	if (ft_strncmp(input, "1", 2) == 0)
 		return (modif_plane_normal(shape));
-	else if (ft_strncmp(input, "2\n", 3) == 0)
+	else if (ft_strncmp(input, "2", 2) == 0)
 		return (modif_shape_color(shape));
 	else
 	{
 		printf("Invalid input\n");
 		return (false);
-
 	}
 }
 
@@ -28,6 +27,7 @@ void	modify_plane_props(t_shape *shape)
 	{
 		printf(MODIF_PLANE);
 		write(1, "Enter your command: ", 21);
-		input = get_next_line(STDIN_FILENO);
+		input = get_stdin();
 	} while (!input_plane_menu(input, shape));
+	free(input);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 19:13:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/13 23:43:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void	 display_plane_props(size_t i, t_shape *shape);
 void	 display_cylinder_props(size_t i, t_shape *shape);
 void	 display_cone_props(size_t i, t_shape *shape);
 void	 display_light_props(size_t i, t_s_light *light);
+void	update_scene(t_rt *rt);
 
 #endif // FUNC_H

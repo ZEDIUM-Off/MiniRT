@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/11 19:17:02 by  mchenava        ###   ########.fr        #
+#    Updated: 2024/03/14 00:04:22 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,8 @@ SHAPES_SRC = 	$(SHAPES_DIR)/plane.c \
 			$(SHAPES_DIR)/new_shape.c
 
 READLINE_SRC = $(READLINE_DIR)/get_next_line.c \
-				$(READLINE_DIR)/get_next_line_utils.c
+				$(READLINE_DIR)/get_next_line_utils.c \
+				$(READLINE_DIR)/get_stdin.c
 
 PARSING_SRC = $(PARSING_DIR)/parser.c \
 			$(PARSING_DIR)/shapes.c \

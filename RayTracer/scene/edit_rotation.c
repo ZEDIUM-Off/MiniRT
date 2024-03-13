@@ -41,10 +41,11 @@ bool	rotate_obj(t_obj *obj)
 		do
 		{
 			write(1, "Enter the rotation degre: ", 26);
-			input = get_next_line(STDIN_FILENO);
+			input = get_stdin();
 		} while (!is_float(input));
 		rotation = ft_atof(input);
 		rotate_shape(shape, axis, rotation);
 	}
+	free(input);
 	return (true);
 }

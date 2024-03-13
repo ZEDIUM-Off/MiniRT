@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:00:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/11 19:32:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/14 00:16:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	create_mesh(t_mesh *mesh, t_uint type)
 	mesh->verts_count = 0;
 	mesh->tris = malloc(sizeof(int) * 3);
 	mesh->tris_count = 0;
-	mesh->draw_verts = malloc(sizeof(float) * 3);
-	mesh->draw_count = 0;
 	mesh->normals = malloc(sizeof(t_vec3));
 	mesh->normals_count = 0;
 }

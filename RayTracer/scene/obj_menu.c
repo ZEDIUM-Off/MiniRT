@@ -7,7 +7,6 @@ void	list_obj(t_rt *rt)
 	t_s_light	*light;
 
 	i = 0;
-	printf("\n\nOBJECT LIST\n");
 	while (i < rt->sc_input.shapes_count)
 	{
 		shape = &rt->sc_input.shapes[i];
@@ -23,7 +22,6 @@ void	list_obj(t_rt *rt)
 	}
 	while (i < rt->sc_input.shapes_count + rt->sc_input.s_lights_count)
 	{
-		printf ("lights count %ld\n", rt->sc_input.s_lights_count);
 		light = &rt->sc_input.s_lights[i - rt->sc_input.shapes_count];
 		display_light_props(i, light);
 		i++;
@@ -60,6 +58,7 @@ void	obj_menu(t_rt *rt, t_obj *obj)
 	{
 		list_obj(rt);
 		write(1, "Enter the object number: ", 25);
-		input = get_next_line(STDIN_FILENO);
+		input = get_stdin();
 	} while (!get_obj(rt, input, obj));
+	free(input);
 }

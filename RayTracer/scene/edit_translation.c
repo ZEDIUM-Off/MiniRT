@@ -11,9 +11,10 @@ t_vec3	get_translation()
 	do
 	{
 		write(1, "value = ", 8);
-		input = get_next_line(STDIN_FILENO);
+		input = get_stdin();
 	} while (!is_float(input));
 	value = ft_atof(input);
+	free(input);
 	return (scale_vec3s(axis, value));
 }
 

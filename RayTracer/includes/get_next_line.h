@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 02:35:03 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/03 19:50:30 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/14 00:04:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ ssize_t		ft_buffeol_nextpos(char *buf, ssize_t start, ssize_t size);
 char		*ft_realloc_str(char *p, size_t size);
 
 char		*get_next_line(int fd);
+char		*get_stdin(void);
 
 #endif
