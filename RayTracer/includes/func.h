@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/13 23:43:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/14 14:11:51 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	new_cone(t_rt *rt, t_shape *shape);
 void	mesh_to_scene(t_rt *rt, t_mesh *mesh);
 void	create_mesh(t_mesh *mesh, t_uint type);
 void	mesh_draw(t_rt *rt, t_mesh *mesh);
-void	expand_mesh(t_mesh *mesh);
 void	all_mesh_to_scene(t_rt *rt);
-void	draw_all_meshes(t_rt *rt);
 void	make_mesh(t_rt *rt, t_shape *shape);
 void	mesh_get_normals(t_mesh *mesh);
 

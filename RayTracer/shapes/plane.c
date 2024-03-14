@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:31:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 04:09:29 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/14 15:52:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,20 @@ static void	push_tris(t_mesh *mesh, t_plane_vars *vars)
 	}
 }
 
+static void	push_color(t_mesh *mesh, t_plane_params *params)
+{
+	t_uint	i;
+
+	i = 0;
+	while (i < mesh->verts_count)
+	{
+		mesh->colors = ft_realloc(mesh->colors, (mesh->colors_count + 1)
+				* sizeof(float) * 3, mesh->colors_count * sizeof(float) * 3);
+		vec3_to_array(&params->color, mesh->colors, mesh->colors_count++);
+		i++;
+	}
+}
+
 void	make_plane(t_mesh *mesh, t_plane_params *params)
 {
 	t_plane_vars	vars;
@@ -79,4 +93,5 @@ void	make_plane(t_mesh *mesh, t_plane_params *params)
 	init_vars(mesh, params, &vars);
 	push_verts(mesh, params, &vars);
 	push_tris(mesh, &vars);
+	push_color(mesh, params);
 }

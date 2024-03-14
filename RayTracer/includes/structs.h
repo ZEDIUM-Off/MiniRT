@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/11 18:47:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/14 15:42:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,12 @@ struct					s_mesh
 	t_uint				draw_count;
 	float				*normals;
 	t_uint				normals_count;
+	float				*colors;
+	t_uint				colors_count;
 	t_gl_uint			tri_buffer;
 	t_gl_uint			buffer;
 	t_gl_uint			norm_buffer;
+	t_gl_uint			color_buffer;
 };
 
 struct					s_shape
@@ -141,6 +144,7 @@ struct					s_plane_params
 	t_mesh				*curr_mesh;
 	t_vec3				center;
 	t_vec3				normal;
+	t_vec3				color;
 };
 
 struct					s_plane_vars
@@ -158,6 +162,7 @@ struct					s_sphere_params
 	size_t				slices;
 	size_t				stacks;
 	t_vec3				center;
+	t_vec3				color;
 };
 
 struct					s_cylinder_params
@@ -167,6 +172,7 @@ struct					s_cylinder_params
 	float				height;
 	t_vec3				axis;
 	t_vec3				center;
+	t_vec3				color;
 };
 
 struct					s_cylinder_vars
@@ -193,6 +199,7 @@ struct					s_cone_params
 	float				height;
 	t_vec3				axis;
 	t_vec3				center;
+	t_vec3				color;
 };
 
 struct					s_cone_vars

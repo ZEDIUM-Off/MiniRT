@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zorin <zorin@student.42.fr>                +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:15:36 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/08 03:37:17 by zorin            ###   ########.fr       */
+/*   Updated: 2024/03/14 15:48:19 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ static void	push_tris(t_mesh *mesh, t_cone_vars *vars)
 		i++;
 	}
 }
+static void	push_color(t_mesh *mesh, t_cone_params *params)
+{
+	t_uint	i;
+
+	i = 0;
+	while (i < mesh->verts_count)
+	{
+		mesh->colors = ft_realloc(mesh->colors, (mesh->colors_count + 1)
+				* sizeof(float) * 3, mesh->colors_count * sizeof(float) * 3);
+		vec3_to_array(&params->color, mesh->colors, mesh->colors_count++);
+		i++;
+	}
+}
 
 void	make_cone(t_mesh *mesh, t_cone_params *params)
 {
@@ -75,4 +88,5 @@ void	make_cone(t_mesh *mesh, t_cone_params *params)
 	init_vars(mesh, &vars, params);
 	push_verts(mesh, params, &vars);
 	push_tris(mesh, &vars);
+	push_color(mesh, params);
 }
