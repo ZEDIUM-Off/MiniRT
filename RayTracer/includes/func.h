@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   func.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 18:46:14 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 00:30:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	switch_bumpmap_mode(t_rt *rt);
 // rendering
 int		render(t_rt *rt);
 void	new_frame(t_rt *rt);
-void	render_raytraced(t_rt *rt);
+void	render_raytraced(t_rt *rt, bool up);
 // void	rt_draw_frame(t_rt *rt);
 void	set_hooks(t_rt *rt);
 void	init_cam(t_rt *rt);

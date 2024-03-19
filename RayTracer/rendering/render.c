@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:57:52 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 14:28:10 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 00:29:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ void	vizualize(t_rt *rt)
 		new_frame(rt);
 }
 
-void	render_raytraced(t_rt *rt)
+void	render_raytraced(t_rt *rt, bool up)
 {
 	printf("rendering raytraced frame...\n");
+	if (up)
+		gl_clear(&rt->glx, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	lgl_draw_frame(&rt->glx);
 	mlx_put_image_to_window(rt->mxv.mlx, rt->mxv.win, rt->mxv.img, 0, 0);
 	printf("raytraced frame rendered\n");
