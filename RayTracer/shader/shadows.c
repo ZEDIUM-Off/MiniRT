@@ -6,147 +6,71 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:41:48 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 11:56:22 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 18:07:24 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// Stratified Sampling
-
-// t_vec3	calculate_sample_position(t_vec3 light_pos, int sample_index,
-// 		int sqrt_samples, float angle_step, float radius_step)
-// {
-// 	int a, r;
-// 	float azimuth, inclination, radius;
-// 	float x, y, z;
-// 	a = sample_index / sqrt_samples;
-// 	// For azimuth
-// 	r = sample_index % sqrt_samples;
-// 	// For radius and inclination
-// 	azimuth = a * angle_step + (rand() / (float)RAND_MAX) * angle_step;
-// 	// Azimuthal angle
-// 	inclination = M_PI * (r + (rand() / (float)RAND_MAX)) / sqrt_samples;
-// 	// Polar angle, spread from 0 to PI for full sphere
-// 	radius = radius_step;
-// 	// Assuming constant radius for simplicity, can be adjusted if needed
-// 	x = light_pos.x + radius * sin(inclination) * cos(azimuth);
-// 	y = light_pos.y + radius * sin(inclination) * sin(azimuth);
-// 	z = light_pos.z + radius * cos(inclination);
-// 	// cos(inclination) for vertical spread
-// 	return ((t_vec3){x, y, z});
-// }
-
-t_vec3	calculate_sample_position(t_vec3 light_pos, int sample_index,
-		int sqrt_samples, float angle_step, float radius_step)
+static t_vec3	calculate_sample_position(t_s_light *light, int sample_index,
+		int sqrt_samples, t_vec2 steps)
 {
-	int a, r;
-	float azimuth, inclination, radius;
-	float x, y, z;
+	int		a;
+	int		r;
+	t_vec2	pol;
+	t_vec3	pos;
+
 	a = sample_index / sqrt_samples;
-	// For azimuth
 	r = sample_index % sqrt_samples;
-	// For radius and inclination
-	azimuth = a * angle_step + (rand() / (float)RAND_MAX) * angle_step;
-	// Azimuthal angle
-	inclination = M_PI * (r + (rand() / (float)RAND_MAX)) / sqrt_samples;
-	// Polar angle, spread from 0 to PI for full sphere
-	radius = radius_step;
-	// Assuming constant radius for simplicity, can be adjusted if needed
-	x = light_pos.x + radius * sin(inclination) * cos(azimuth);
-	y = light_pos.y + radius * sin(inclination) * sin(azimuth);
-	z = light_pos.z + radius * cos(inclination);
-	// cos(inclination) for vertical spread
-	return ((t_vec3){x, y, z});
+	pol.x = a * steps.x + (rand() / (float)RAND_MAX) * steps.x;
+	pol.y = M_PI * (r + (rand() / (float)RAND_MAX)) / sqrt_samples;
+	pos.x = light->position.x + steps.y * sin(pol.y) * cos(pol.x);
+	pos.y = light->position.y + steps.y * sin(pol.y) * sin(pol.x);
+	pos.z = light->position.z + steps.y * cos(pol.y);
+	return (pos);
 }
 
-float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
-		int num_samples, float light_radius)
+static float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_s_light *light)
 {
 	float	shadow;
 	t_hit	shadow_hit;
 	t_vec3	sample_pos;
-	t_vec3	light_dir;
 	float	angle_step;
-	float	radius_step;
-	int		sqrt_samples;
+	size_t	i;
 
+	i = u->rt->nb_samples;
 	shadow = 0.0;
-	sqrt_samples = (int)sqrt(num_samples);
-	// Assuming num_samples is a perfect square for simplicity
-	angle_step = 2.0 * M_PI / sqrt_samples;
-	radius_step = light_radius / sqrt_samples;
-	for (int i = 0; i < num_samples; ++i)
+	angle_step = 2.0 * M_PI / u->rt->sqrt_samples;
+	while (i--)
 	{
-		sample_pos = calculate_sample_position(light_pos, i, sqrt_samples,
-				angle_step, radius_step);
-		light_dir = sub_vec3s(sample_pos, hit->point);
-		normalize_vec3(&light_dir);
+		sample_pos = calculate_sample_position(light, i, u->rt->sqrt_samples,
+				(t_vec2){angle_step, u->rt->light_radius
+				/ u->rt->sqrt_samples});
+		light->dir = sub_vec3s(sample_pos, hit->point);
+		normalize_vec3(&light->dir);
 		shadow_hit = (t_hit){0};
 		if (!intersect_scene(&(t_ray){add_vec3s(hit->point,
-					scale_vec3s(hit->normal, SHADOW_BIAS)), light_dir},
-				&shadow_hit, u)
+					scale_vec3s(hit->normal, SHADOW_BIAS)), light->dir},
+			&shadow_hit, u)
 			|| shadow_hit.distance > vec3_lenght(sub_vec3s(sample_pos,
 					hit->point)))
-		{
 			shadow += 1.0;
-		}
 	}
-	return (shadow / num_samples);
+	return (shadow / u->rt->nb_samples);
 }
 
-// static float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
-// 		int num_samples, float light_radius)
-// {
-// 	float	shadow;
-// 	t_hit	shadow_hit;
-// 	t_vec3	sample_pos;
-// 	t_vec3	light_dir;
-// 	int		i;
-
-// 	shadow = 0.0;
-// 	float angle, distance;
-// 	for (i = 0; i < num_samples; ++i)
-// 	{
-// 		// Generate random angle and distance within the light radius
-// 		angle = 2.0 * M_PI * (rand() / (float)RAND_MAX);
-// 		distance = light_radius * sqrt(rand() / (float)RAND_MAX);
-// 		// Calculate sample position on the light disc
-// 		sample_pos.x = light_pos.x + distance * cos(angle);
-// 		sample_pos.y = light_pos.y + distance * sin(angle);
-// 		sample_pos.z = light_pos.z; // Assuming light source is flat
-// 		light_dir = sub_vec3s(sample_pos, hit->point);
-// 		normalize_vec3(&light_dir);
-// 		shadow_hit = (t_hit){0};
-// 		if (!intersect_scene(&(t_ray){add_vec3s(hit->point,
-// 					scale_vec3s(hit->normal, SHADOW_BIAS)), light_dir},
-// 				&shadow_hit, u)
-// 			|| shadow_hit.distance > vec3_lenght(sub_vec3s(sample_pos,
-// 					hit->point)))
-// 			shadow += 1.0;
-// 	}
-// 	return (shadow / num_samples);
-// }
-
-float	get_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
+float	get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light,
 		float light_distance)
 {
 	t_hit	shadow_hit;
-	t_vec3	light_dir;
-	float	light_radius;
-	int		num_samples;
 
 	if (u->rt->soft_shadow)
-	{
-		num_samples = 50;
-		light_radius = 7;
-		return (get_soft_shadow(hit, u, light_pos, num_samples, light_radius));
-	}
+		return (get_soft_shadow(hit, u, light));
 	shadow_hit = (t_hit){0};
-	light_dir = sub_vec3s(light_pos, hit->point);
-	normalize_vec3(&light_dir);
+	light->dir = sub_vec3s(light->position, hit->point);
+	normalize_vec3(&light->dir);
 	if (!intersect_scene(&(t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
-					SHADOW_BIAS)), light_dir}, &shadow_hit, u)
+					SHADOW_BIAS)), light->dir}, &shadow_hit, u)
 		|| shadow_hit.distance > light_distance)
 		return (1.0);
 	return (0.0);

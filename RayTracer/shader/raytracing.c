@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/10 21:56:16 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:19:32 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ t_vec3	calculate_ray_direction(t_cam *cam, float aspect_ratio, float scale,
 
 void	rt_frag_shader(float *fs_input, t_shader_builtins *builtins, void *uni)
 {
-	t_uniforms *u;
-	t_cam *cam;
-	t_ray ray;
-	float scale;
-	float aspect_ratio;
+	t_uniforms	*u;
+	t_cam		*cam;
+	t_ray		ray;
+	float		scale;
+	float		aspect_ratio;
 
 	(void)fs_input;
 	u = (t_uniforms *)uni;

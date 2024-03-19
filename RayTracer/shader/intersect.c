@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 05:54:33 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 23:14:38 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:18:02 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u)
 	{
 		temp_hit.distance = FLT_MAX;
 		if (u->rt->intersect_shape[u->rt->sc_input.shapes[i].type](ray,
-				&u->rt->sc_input.shapes[i], &temp_hit))
+			&u->rt->sc_input.shapes[i], &temp_hit))
 		{
 			if (temp_hit.distance < closest_so_far)
 			{

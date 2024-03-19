@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 12:03:58 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 18:07:51 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 	{                      \
 		0.1, 0.1, 0.1, 1.0 \
 	}
-
 # define COLOR_BG COLOR_DGRAY
 
 # define SHADOW_BIAS 1e-3
+# define SPECULAR_STRENGTH 0.5
+# define SHININESS 32
 
 t_vec3			reflect_vector(t_vec3 incident, t_vec3 normal);
 t_color			mix_color(t_color color1, t_color color2, float ratio);
@@ -62,7 +63,7 @@ t_color			get_spot_color(t_hit *hit, t_uniforms *u);
 t_color			calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir);
 t_color			calculate_lighting(t_hit *hit, t_uniforms *u,
 					float light_distance);
-float			get_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
+float			get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light,
 					float light_distance);
 t_color			trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 void			rt_frag_shader(float *fs_input, t_shader_builtins *builtins,

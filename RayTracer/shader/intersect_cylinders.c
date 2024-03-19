@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 04:52:23 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/10 22:31:44 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 18:51:32 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,10 @@ static bool	find_intersections(t_ray *ray, t_shape *cy, t_hit *hit, t_vec2 t)
 
 bool	intersect_cylinder(t_ray *ray, t_shape *cy, t_hit *hit)
 {
-	t_vec3				oc;
-	t_vec3				coeff;
-	float				discriminant;
-	t_vec2				t;
-	t_cylinder_props	*props;
+	t_vec3	coeff;
+	float	discriminant;
+	t_vec2	t;
 
-	props = cy->properties;
-	oc = sub_vec3s(ray->ori, cy->position);
-	coeff.x = dot_vec3s(ray->dir, ray->dir) - pow(dot_vec3s(ray->dir,
-				props->axis), 2);
-	coeff.y = 2 * (dot_vec3s(ray->dir, oc) - (dot_vec3s(ray->dir, props->axis)
-				* dot_vec3s(oc, props->axis)));
-	coeff.z = dot_vec3s(oc, oc) - pow(dot_vec3s(oc, props->axis), 2)
-		- pow(props->diameter / 2, 2);
 	discriminant = coeff.y * coeff.y - 4 * coeff.x * coeff.z;
 	if (discriminant < 0)
 		return (false);

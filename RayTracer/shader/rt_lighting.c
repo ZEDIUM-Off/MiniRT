@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:48:21 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 12:11:50 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 18:08:27 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	if (dot_nl > 0)
 	{
 		light_distance = vec3_lenght(light_dir);
-		attenuation = get_shadow(hit, u, u->rt->sc_input.s_lights[0].position,
+		attenuation = get_shadow(hit, u, &u->rt->sc_input.s_lights[0],
 				light_distance) / (light_distance * light_distance);
 		spot_light_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
 				u->rt->sc_input.s_lights[0].brightness_ratio * dot_nl
@@ -43,16 +43,14 @@ t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
 	float	spec;
 	t_color	specular_color;
 
-	float specular_strength = 0.5; // Dans les materials quand implémentés
-	int shininess = 32;            // Pareil, sinon, à définir comme prop de rt
 	view_dir = sub_vec3s(u->rt->cam.pos, hit->point);
 	normalize_vec3(&view_dir);
 	reflect_dir = reflect_vector(sub_vec3s((t_vec3){0, 0, 0}, light_dir),
 			hit->normal);
 	normalize_vec3(&reflect_dir);
-	spec = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0), shininess);
+	spec = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0), SHININESS);
 	specular_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
-			specular_strength * spec);
+			SPECULAR_STRENGTH * spec);
 	return (specular_color);
 }
 
@@ -109,7 +107,7 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 	if (u->rt->soft_shadow || (!u->rt->soft_shadow
 			&& (!intersect_scene(&(t_ray){add_vec3s(hit->point,
 						scale_vec3s(hit->normal, SHADOW_BIAS)), light_dir},
-					&shadow_hit, u) || shadow_hit.distance > light_distance)))
+				&shadow_hit, u) || shadow_hit.distance > light_distance)))
 	{
 		color = blend_colors(color, get_spot_color(hit, u));
 		if (!u->rt->is_mandatory)

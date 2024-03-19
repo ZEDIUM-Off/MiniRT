@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 10:49:12 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 18:39:48 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ struct					s_ambient_light
 struct					s_spot_light
 {
 	t_vec3				position;
+	t_vec3				dir;
 	float				brightness_ratio;
 	t_color				color;
 };
@@ -282,6 +283,9 @@ struct					s_rt
 	float				checker_scale;
 	t_bump_map_mode		bump_map_mode;
 	bool				soft_shadow;
+	size_t				nb_samples;
+	t_uint				sqrt_samples;
+	t_uint				light_radius;
 	char				*err_msg;
 };
 
