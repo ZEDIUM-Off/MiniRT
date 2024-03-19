@@ -6,20 +6,20 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:51:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 03:30:23 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 15:50:05 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-float	fresnel_effect(t_vec3 incident, t_vec3 normal, float refraction_index)
+float	fresnel_effect(t_vec3 incident, t_hit *hit)
 {
 	t_fresnel	f;
 	t_vec2		swp;
 
-	f.cosi = clamp(-1.0, 1.0, dot_vec3s(incident, normal));
+	f.cosi = clamp(-1.0, 1.0, dot_vec3s(incident, hit->normal));
 	f.etai = 1.0;
-	f.etat = refraction_index;
+	f.etat = 1.0;
 	if (f.cosi > 0)
 	{
 		swp.x = f.etai;
@@ -42,11 +42,14 @@ float	fresnel_effect(t_vec3 incident, t_vec3 normal, float refraction_index)
 }
 
 // Schlick's approximation of the Fresnel effect
-float	schlick_approx(float cosine, float ref_index)
+float	schlick_approx(t_vec3 incident, t_hit *hit)
 {
 	float	r0;
+	float	cosine;
 
-	r0 = (1.0 - ref_index) / (1.0 + ref_index);
+	cosine = dot_vec3s(incident, hit->normal);
+	r0 = (1.0 - hit->material.refraction_index) / (1.0
+			+ hit->material.refraction_index);
 	r0 = r0 * r0;
 	return (r0 + (1.0 - r0) * powf((1.0 - fabs(cosine)), 5.0));
 }

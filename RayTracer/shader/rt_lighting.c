@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:48:21 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 12:11:50 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 15:49:21 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,26 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	return (spot_light_color);
 }
 
+// t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
+// {
+// 	t_vec3	view_dir;
+// 	t_vec3	reflect_dir;
+// 	float	shine;
+
+// 	view_dir = sub_vec3s(u->rt->cam.pos, hit->point);
+// 	normalize_vec3(&view_dir);
+// 	reflect_dir = reflect_vector(sub_vec3s((t_vec3){0, 0, 0}, light_dir),
+// 			hit->normal);
+// 	normalize_vec3(&reflect_dir);
+// 	shine = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0),
+// 			hit->material.shininess);
+// 	return (mult_color_scalar((t_color){u->rt->sc_input.s_lights[0].color.r
+// 			* hit->material.specular.x, u->rt->sc_input.s_lights[0].color.g
+// 			* hit->material.specular.y, u->rt->sc_input.s_lights[0].color.b
+// 			* hit->material.specular.z, u->rt->sc_input.s_lights[0].color.a},
+// 			shine));
+// }
+
 t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
 {
 	t_vec3	view_dir;
@@ -43,16 +63,14 @@ t_color	calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir)
 	float	spec;
 	t_color	specular_color;
 
-	float specular_strength = 0.5; // Dans les materials quand implémentés
-	int shininess = 32;            // Pareil, sinon, à définir comme prop de rt
 	view_dir = sub_vec3s(u->rt->cam.pos, hit->point);
 	normalize_vec3(&view_dir);
 	reflect_dir = reflect_vector(sub_vec3s((t_vec3){0, 0, 0}, light_dir),
 			hit->normal);
 	normalize_vec3(&reflect_dir);
-	spec = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0), shininess);
-	specular_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
-			specular_strength * spec);
+	spec = pow(fmax(dot_vec3s(view_dir, reflect_dir), 0.0),
+			hit->material.shininess);
+	specular_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color, spec);
 	return (specular_color);
 }
 
@@ -101,12 +119,12 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 			u->rt->sc_input.a_light.ratio);
 	if (u->rt->sc_input.s_lights_count == 0)
 		return (color);
-	if (u->rt->checker_mode && u->rt->checker_scale > 0)
+	if (u->rt->has_checker && u->rt->checker_scale > 0)
 		hit->color = get_checkerboard_color(hit, u);
 	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	shadow_hit = (t_hit){0};
-	if (u->rt->soft_shadow || (!u->rt->soft_shadow
+	if (u->rt->has_soft_shadow || (!u->rt->has_soft_shadow
 			&& (!intersect_scene(&(t_ray){add_vec3s(hit->point,
 						scale_vec3s(hit->normal, SHADOW_BIAS)), light_dir},
 					&shadow_hit, u) || shadow_hit.distance > light_distance)))

@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/10 21:56:16 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 15:45:03 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 {
 	t_hit	hit;
 	float	light_dist;
-	float	reflectance;
 	t_color	color;
 	t_color	reflect_color;
+	float	reflectance;
 
 	if (depth == 0)
 		return (u->rt->sc_input.a_light.color);
@@ -46,7 +46,7 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 	if (depth > 1)
 	{
 		reflect_color = calculate_reflection(ray, &hit, depth, u);
-		reflectance = fresnel_effect(ray->dir, hit.normal, 1);
+		reflectance = fresnel_effect(ray->dir, &hit);
 		color = mix_color(color, reflect_color, reflectance);
 	}
 	return (color);

@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 10:49:12 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 14:32:29 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,30 @@ struct					s_mesh
 	t_gl_uint			norm_buffer;
 };
 
+enum					e_material_type
+{
+	MATERIAL_TYPE_LAMBERTIAN,
+	MATERIAL_TYPE_GLASS,
+	MATERIAL_TYPE_GOLD,
+	MATERIAL_TYPE_SILVER
+};
+
+struct					s_material
+{
+	t_material_type		type;
+	t_vec3				ambient;
+	t_vec3				diffuse;
+	t_vec3				specular;
+	float				shininess;
+	float				refraction_index;
+};
+
 struct					s_shape
 {
 	t_shape_type		type;
 	t_vec3				position;
 	t_color				color;
+	t_material			material;
 	void				*properties;
 	t_mesh				shape_mesh;
 };
@@ -251,7 +270,7 @@ typedef struct s_triangle
 
 struct					s_hit
 {
-	// t_material	material;
+	t_material			material;
 	t_color				color;
 	t_vec3				point;
 	t_vec3				normal;
@@ -278,10 +297,11 @@ struct					s_rt
 	t_mesh				all_meshes;
 	t_sc_input			sc_input;
 	t_intersect_func	intersect_shape[4];
-	bool				checker_mode;
+	bool				has_soft_shadow;
+	bool				has_materials;
+	bool				has_checker;
 	float				checker_scale;
 	t_bump_map_mode		bump_map_mode;
-	bool				soft_shadow;
 	char				*err_msg;
 };
 

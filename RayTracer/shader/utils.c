@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:45:23 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/07 03:07:50 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 15:58:14 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,22 @@ t_color	mix_color(t_color color1, t_color color2, float ratio)
 	color_mix.b = color1.b * (1 - ratio) + color2.b * ratio;
 	color_mix.a = (color1.a + color2.a) / 2;
 	return (color_mix);
+}
+
+void	associate_materials(t_rt *rt)
+{
+	size_t		i;
+	t_material	materials[4];
+	size_t		j;
+
+	materials[0] = MATERIAL_LAMBERTIAN;
+	materials[1] = MATERIAL_GLASS;
+	materials[2] = MATERIAL_SILVER;
+	materials[3] = MATERIAL_GOLD;
+	i = 0;
+	while (i < rt->sc_input.shapes_count)
+	{
+		j = rand() / (RAND_MAX / 4);
+		rt->sc_input.shapes[i++].material = materials[j];
+	}
 }

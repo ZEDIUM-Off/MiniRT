@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:07:18 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 00:29:15 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 14:33:13 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_sphere_props		t_sphere_props;
 typedef struct s_plane_props		t_plane_props;
 typedef struct s_cylinder			t_cylinder_props;
 typedef struct s_cone				t_cone_props;
+typedef enum e_material_type		t_material_type;
+typedef struct s_material			t_material;
 typedef struct s_shape				t_shape;
 typedef struct s_scene_input		t_sc_input;
 typedef struct s_hit				t_hit;

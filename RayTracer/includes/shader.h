@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 12:03:58 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 15:38:52 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,8 @@
 # include "materials.h"
 # include <stdlib.h>
 
-# define COLOR_BLACK        \
-	(t_color)              \
-	{                      \
-		0.0, 0.0, 0.0, 1.0 \
-	}
-# define COLOR_DGRAY        \
-	(t_color)              \
-	{                      \
-		0.1, 0.1, 0.1, 1.0 \
-	}
-
+# define COLOR_BLACK (t_color){0.0, 0.0, 0.0, 1.0}
+# define COLOR_DGRAY (t_color){0.1, 0.1, 0.1, 1.0}
 # define COLOR_BG COLOR_DGRAY
 
 # define SHADOW_BIAS 1e-3
@@ -34,15 +25,11 @@
 t_vec3			reflect_vector(t_vec3 incident, t_vec3 normal);
 t_color			mix_color(t_color color1, t_color color2, float ratio);
 
-float			fresnel_effect(t_vec3 incident, t_vec3 normal,
-					float refraction_index);
-float			schlick_approx(float cosine, float ref_index);
+float			fresnel_effect(t_vec3 incident, t_hit *hit);
+float			schlick_approx(t_vec3 incident, t_hit *hit);
 
 // Intersections
 typedef bool	(*t_intersect_func)(t_ray *, t_shape *, t_hit *);
-
-bool			check_shapes_intersection(t_ray *ray, t_hit *closest_hit,
-					float *closest_so_far, t_rt *rt);
 
 bool			intersect_plane(t_ray *ray, t_shape *plane, t_hit *hit);
 bool			intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit);
@@ -64,6 +51,7 @@ t_color			calculate_lighting(t_hit *hit, t_uniforms *u,
 					float light_distance);
 float			get_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 					float light_distance);
+void			associate_materials(t_rt *rt);
 t_color			trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 void			rt_frag_shader(float *fs_input, t_shader_builtins *builtins,
 					void *uni);

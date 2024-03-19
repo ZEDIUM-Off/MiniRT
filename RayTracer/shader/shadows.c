@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:41:48 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 11:56:22 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 14:09:16 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_vec3	calculate_sample_position(t_vec3 light_pos, int sample_index,
 	return ((t_vec3){x, y, z});
 }
 
-float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
+float	get_has_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 		int num_samples, float light_radius)
 {
 	float	shadow;
@@ -95,7 +95,7 @@ float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 	return (shadow / num_samples);
 }
 
-// static float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
+// static float	get_has_soft_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 // 		int num_samples, float light_radius)
 // {
 // 	float	shadow;
@@ -136,11 +136,11 @@ float	get_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 	float	light_radius;
 	int		num_samples;
 
-	if (u->rt->soft_shadow)
+	if (u->rt->has_soft_shadow)
 	{
 		num_samples = 50;
 		light_radius = 7;
-		return (get_soft_shadow(hit, u, light_pos, num_samples, light_radius));
+		return (get_has_soft_shadow(hit, u, light_pos, num_samples, light_radius));
 	}
 	shadow_hit = (t_hit){0};
 	light_dir = sub_vec3s(light_pos, hit->point);
