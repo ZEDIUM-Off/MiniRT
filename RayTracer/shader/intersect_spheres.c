@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 05:12:05 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/08 22:10:42 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:17:19 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ bool	intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit)
 						hit->distance));
 			hit->normal = norm_vec3(sub_vec3s(hit->point, sphere->position));
 			hit->color = sphere->color;
-			// hit->material = sphere->material;
 			return (true);
 		}
 	}

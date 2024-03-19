@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shader.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 12:02:39 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:46:27 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 	{                      \
 		0.1, 0.1, 0.1, 1.0 \
 	}
-
 # define COLOR_BG COLOR_DGRAY
 
 # define SHADOW_BIAS 1e-3
+# define SPECULAR_STRENGTH 0.5
+# define SHININESS 32
 
 t_vec3			reflect_vector(t_vec3 incident, t_vec3 normal);
 t_color			mix_color(t_color color1, t_color color2, float ratio);
@@ -46,8 +47,7 @@ bool			check_shapes_intersection(t_ray *ray, t_hit *closest_hit,
 
 bool			intersect_plane(t_ray *ray, t_shape *plane, t_hit *hit);
 bool			intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit);
-bool			intersect_cylinder(t_ray *ray, t_shape *cy, t_hit *hit);
-bool			intersect_cone(t_ray *ray, t_shape *cone, t_hit *hit);
+bool			intersect_revolution(t_ray *ray, t_shape *cy, t_hit *hit);
 bool			intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u);
 
 // Color utils
@@ -61,6 +61,8 @@ t_vec4			add_colors_vec4(t_vec4 c1, t_vec4 c2);
 t_color			get_spot_color(t_hit *hit, t_uniforms *u);
 t_color			calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir);
 t_color			calculate_lighting(t_hit *hit, t_uniforms *u,
+					float light_distance);
+float			get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light,
 					float light_distance);
 t_color			trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 void			rt_frag_shader(float *fs_input, t_shader_builtins *builtins,

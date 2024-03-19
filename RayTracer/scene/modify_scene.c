@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:01:16 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 23:23:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 23:50:39 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool	modify_sample(t_rt *rt)
 		write(1, "Enter the new sample: ", 22);
 		input = get_stdin();
 	} while (!is_float(input) || !is_in_range(input, 1, 1000));
-	rt->samples = (size_t)ft_atof(input);
+	rt->nb_samples = (size_t)ft_atof(input);
+	rt->sqrt_samples = sqrt(rt->nb_samples);
 	free(input);
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/19 18:31:46 by mchenava         ###   ########.fr        #
+#    Updated: 2024/03/19 23:13:26 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,11 +86,11 @@ SCENE_SRC=	$(SCENE_DIR)/scene.c \
 SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \
 			$(SHADER_DIR)/rt_lighting.c \
+			$(SHADER_DIR)/shadows.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/intersect_planes.c \
 			$(SHADER_DIR)/intersect_spheres.c \
-			$(SHADER_DIR)/intersect_cylinders.c \
-			$(SHADER_DIR)/intersect_cones.c \
+			$(SHADER_DIR)/intersect_revolution.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
 			$(SHADER_DIR)/color_utils.c \

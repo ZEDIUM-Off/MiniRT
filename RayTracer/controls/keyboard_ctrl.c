@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_ctrl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:48:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 22:52:20 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 23:59:32 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	key_pressed(int key, t_rt *rt)
 	if (key == XK_e)
 		editor_menu(rt);
 	if (key == XK_s)
-		rt->soft_shadows = !rt->soft_shadows;
+		rt->soft_shadow = !rt->soft_shadow;
 	if (key == XK_b)
 		switch_bumpmap_mode(rt);
 	return (0);
