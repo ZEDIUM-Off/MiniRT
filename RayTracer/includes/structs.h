@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 22:51:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 00:14:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,8 @@ struct					s_cone_vars
 	float				radius;
 	float				theta;
 	int					verts_start;
+	t_vec3				perp_axis;
+	t_vec3				perp_axis2;
 	t_vec3				base;
 };
 

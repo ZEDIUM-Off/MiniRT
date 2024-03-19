@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_editor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:47:26 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:47:29 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:27:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void	editor_menu(t_rt *rt)
 	printf(RT_MENU);
 	get_user_input(rt);
 	printf("Exiting editor.\n");
-	update_scene(rt);
+	if (rt->mode == MODE_VIZ)
+		update_scene(rt);
+	else if (rt->mode == MODE_RENDER)
+		render_raytraced(rt);
 }
