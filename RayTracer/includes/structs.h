@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 11:04:35 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:33:34 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ struct					s_spot_light
 	t_vec3				position;
 	float				brightness_ratio;
 	t_color				color;
+	float				radius;
 };
 
 struct					s_sphere_props
@@ -139,6 +140,7 @@ struct					s_plane_params
 	t_vec3				center;
 	t_vec3				normal;
 	t_vec3				color;
+	float				detail;
 };
 
 struct					s_plane_vars
@@ -167,6 +169,7 @@ struct					s_cylinder_params
 	t_vec3				axis;
 	t_vec3				center;
 	t_vec3				color;
+	float				detail;
 };
 
 struct					s_cylinder_vars
@@ -194,6 +197,7 @@ struct					s_cone_params
 	t_vec3				axis;
 	t_vec3				center;
 	t_vec3				color;
+	float				detail;
 };
 
 struct					s_cone_vars
@@ -277,6 +281,9 @@ struct					s_rt
 	bool				checker_mode;
 	float				checker_scale;
 	t_bump_map_mode		bump_map_mode;
+	t_color				bg_color;
+	size_t				samples;
+	float				mesh_detail;
 	char				*err_msg;
 };
 

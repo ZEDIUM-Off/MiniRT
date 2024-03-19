@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:15:36 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 11:37:07 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:29:57 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_vars(t_mesh *mesh, t_cone_vars *vars, t_cone_params *params)
 {
-	vars->segments = MESH_DETAIL;
+	vars->segments = params->detail;
 	vars->radius = tanf(params->angle) * params->height;
 	vars->base = add_vec3s(params->center, scale_vec3s(params->axis,
 				params->height));

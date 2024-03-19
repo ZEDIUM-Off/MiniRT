@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 14:25:24 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:46:14 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		mouse_released(int btn, int x, int y, t_rt *rt);
 int		mouse_pressed(int btn, int x, int y, t_rt *rt);
 void	switch_mode(t_rt *rt);
 void	print_cam_properties(t_rt *rt);
+void	switch_bumpmap_mode(t_rt *rt);
 
 // rendering
 int		render(t_rt *rt);
@@ -101,5 +102,7 @@ void	display_cylinder_props(size_t i, t_shape *shape);
 void	display_cone_props(size_t i, t_shape *shape);
 void	display_light_props(size_t i, t_s_light *light);
 void	update_scene(t_rt *rt);
+bool	modify_mesh_details(t_rt *rt);
+bool	input_scene_menu(t_rt *rt, char *input);
 
 #endif // FUNC_H

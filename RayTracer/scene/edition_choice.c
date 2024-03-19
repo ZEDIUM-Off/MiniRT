@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:49:34 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:40 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:32:34 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ bool	modify_props(t_rt *rt)
 	return (true);
 }
 
+bool	modify_scene(t_rt *rt)
+{
+	char	*input;
+
+	do
+	{
+		printf(MODIFY_SCENE);
+		write(1, "Enter your command: ", 21);
+		input = get_stdin();
+	} while (!input_scene_menu(rt, input));
+	free(input);
+	return (true);
+}
+
 bool	input_fisrt_menu(t_rt *rt, char *input)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
@@ -57,6 +71,8 @@ bool	input_fisrt_menu(t_rt *rt, char *input)
 	else if (ft_strncmp(input, "3", 2) == 0)
 		return (modify_props(rt));
 	else if (ft_strncmp(input, "4", 2) == 0)
+		return (modify_scene(rt));
+	else if (ft_strncmp(input, "5", 2) == 0)
 		return (true);
 	else
 	{

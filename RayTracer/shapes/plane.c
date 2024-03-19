@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:31:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 13:54:29 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:36:48 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,20 @@ static void	push_verts(t_mesh *mesh, t_plane_params *params, t_plane_vars *vars)
 {
 	float	step;
 	t_vec3	point;
-	int		divisions;
 	int		x;
 	int		y;
 
-	divisions = PLANE_DIV;
-	step = PLANE_SIZE / (float)divisions;
+	step = PLANE_SIZE / (float)params->detail;
 	x = 0;
-	while (x <= divisions)
+	while (x <= params->detail)
 	{
 		y = 0;
-		while (y <= divisions)
+		while (y <= params->detail)
 		{
 			point = add_vec3s(params->center, add_vec3s(scale_vec3s(vars->right,
-							(x - divisions / 2.0) * step), scale_vec3s(vars->up,
-							(y - divisions / 2.0) * step)));
+							(x - params->detail / 2.0) * step),
+						scale_vec3s(vars->up, (y - params->detail / 2.0)
+							* step)));
 			mesh->verts = ft_realloc(mesh->verts, (mesh->verts_count + 1)
 					* sizeof(float) * 3, mesh->verts_count * sizeof(float) * 3);
 			vec3_to_array(&point, mesh->verts, mesh->verts_count++);
@@ -52,30 +51,32 @@ static void	push_verts(t_mesh *mesh, t_plane_params *params, t_plane_vars *vars)
 	}
 }
 
-static void	push_tris(t_mesh *mesh, t_plane_vars *vars)
+static void	push_tris(t_mesh *mesh, t_plane_params *params, t_plane_vars *vars)
 {
-	int	divisions;
-	int	bott_l;
-	int	bott_r;
-	int	top_l;
-	int	top_r;
+	int	bott[2];
+	int	top[2];
+	int	x;
+	int	y;
 
-	divisions = PLANE_DIV;
-	for (int x = 0; x < divisions; x++)
+	x = 0;
+	while (x < params->detail)
 	{
-		for (int y = 0; y < divisions; y++)
+		y = 0;
+		while (y < params->detail)
 		{
-			bott_l = x * (divisions + 1) + y + vars->verts_start;
-			bott_r = bott_l + 1;
-			top_l = bott_l + (divisions + 1);
-			top_r = top_l + 1;
+			bott[0] = x * (params->detail + 1) + y + vars->verts_start;
+			bott[1] = bott[0] + 1;
+			top[0] = bott[0] + (params->detail + 1);
+			top[1] = top[0] + 1;
 			mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 2)
 					* sizeof(int) * 3, mesh->tris_count * sizeof(int) * 3);
-			ivec3_to_array(&(t_ivec3){bott_l, top_l, bott_r}, mesh->tris,
+			ivec3_to_array(&(t_ivec3){bott[0], top[0], bott[1]}, mesh->tris,
 				mesh->tris_count++);
-			ivec3_to_array(&(t_ivec3){bott_r, top_l, top_r}, mesh->tris,
+			ivec3_to_array(&(t_ivec3){bott[1], top[0], top[1]}, mesh->tris,
 				mesh->tris_count++);
+			y++;
 		}
+		x++;
 	}
 }
 
@@ -99,6 +100,6 @@ void	make_plane(t_mesh *mesh, t_plane_params *params)
 
 	init_vars(mesh, params, &vars);
 	push_verts(mesh, params, &vars);
-	push_tris(mesh, &vars);
+	push_tris(mesh, params, &vars);
 	push_color(mesh, &vars, params);
 }

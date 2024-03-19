@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:00 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:20 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:53:39 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,28 @@ bool	modif_light_color(t_s_light *light)
 	return (true);
 }
 
+bool	modif_light_radius(t_s_light *light)
+{
+	char	*input;
+
+	do
+	{
+		write(1, "Enter the new radius: ", 23);
+		input = get_stdin();
+	} while (!is_float(input));
+	light->radius = ft_atof(input);
+	free(input);
+	return (true);
+}
+
 bool	input_light_menu(char *input, t_s_light *light)
 {
 	if (ft_strncmp(input, "1", 2) == 0)
 		return (modif_light_brightness(light));
 	else if (ft_strncmp(input, "2", 2) == 0)
 		return (modif_light_color(light));
+	else if (ft_strncmp(input, "3", 2) == 0)
+		return (modif_light_radius(light));
 	else
 	{
 		printf("Invalid input\n");

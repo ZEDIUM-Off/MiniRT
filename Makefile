@@ -6,7 +6,7 @@
 #    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/19 14:42:28 by mchenava         ###   ########.fr        #
+#    Updated: 2024/03/19 18:31:46 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SCENE_SRC=	$(SCENE_DIR)/scene.c \
 			$(SCENE_DIR)/modify_sphere.c \
 			$(SCENE_DIR)/modify_plane.c \
 			$(SCENE_DIR)/modify_light.c \
+			$(SCENE_DIR)/modify_scene.c \
 			$(SCENE_DIR)/disp_shapes.c
 
 SHADER_SRC=	$(SHADER_DIR)/loadshader.c \

@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:07:08 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 11:38:32 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:36:42 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_vars(t_mesh *mesh, t_cylinder_params *params,
 	vars->perp_axis2 = cross_product(vars->axis_normalized, vars->perp_axis);
 	vars->perp_axis2 = norm_vec3(vars->perp_axis2);
 	vars->radius = params->diameter / 2.0;
-	vars->segments = MESH_DETAIL;
+	vars->segments = params->detail;
 	vars->verts_start = mesh->verts_count;
 	vars->tris_start = mesh->tris_count;
 }
