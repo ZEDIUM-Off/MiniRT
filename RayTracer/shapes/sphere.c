@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:48:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/14 15:38:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 13:51:55 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,26 +93,20 @@ static void	push_tris(t_mesh *mesh, t_shpere_vars *vars,
 	}
 }
 
-static void	push_color(t_mesh *mesh, t_sphere_params *params)
+void	make_sphere(t_mesh *mesh, t_sphere_params *params)
 {
-	t_uint	i;
+	t_shpere_vars	vars;
+	t_uint			i;
 
+	init_vars(mesh, &vars, params);
+	push_verts(mesh, &vars, params);
+	push_tris(mesh, &vars, params);
 	i = 0;
-	while (i < mesh->verts_count)
+	while (i < mesh->verts_count - vars.verts_start)
 	{
 		mesh->colors = ft_realloc(mesh->colors, (mesh->colors_count + 1)
 				* sizeof(float) * 3, mesh->colors_count * sizeof(float) * 3);
 		vec3_to_array(&params->color, mesh->colors, mesh->colors_count++);
 		i++;
 	}
-}
-
-void	make_sphere(t_mesh *mesh, t_sphere_params *params)
-{
-	t_shpere_vars	vars;
-
-	init_vars(mesh, &vars, params);
-	push_verts(mesh, &vars, params);
-	push_tris(mesh, &vars, params);
-	push_color(mesh, params);
 }

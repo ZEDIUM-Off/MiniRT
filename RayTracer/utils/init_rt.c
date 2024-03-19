@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 00:30:43 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 13:40:26 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_uint	init_rt(t_rt *rt)
 {
 	t_uint	status;
 
-	rt->is_mandatory = true;
+	rt->is_mandatory = MANDATORY;
 	status = init_window(rt);
 	if (status != CONTINUE)
 		return (status);

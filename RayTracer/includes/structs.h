@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/14 15:42:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 11:04:35 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ struct					s_spot_light
 	t_color				color;
 };
 
-
 struct					s_sphere_props
 {
 	float				diameter;
@@ -107,15 +106,10 @@ struct					s_mesh
 	t_uint				verts_count;
 	int					*tris;
 	t_uint				tris_count;
-	float				*draw_verts;
-	t_uint				draw_count;
-	float				*normals;
-	t_uint				normals_count;
 	float				*colors;
 	t_uint				colors_count;
 	t_gl_uint			tri_buffer;
 	t_gl_uint			buffer;
-	t_gl_uint			norm_buffer;
 	t_gl_uint			color_buffer;
 };
 

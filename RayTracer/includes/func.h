@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   func.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/14 14:11:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 14:25:24 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	is_number(char *input);
 t_uint	setup_gl_context(t_rt *rt);
 t_uint	init_window(t_rt *rt);
 int		quit_rt(void *rt);
-
 
 // input
 int		key_pressed(int key, t_rt *rt);
@@ -45,6 +44,7 @@ void	cam_rotate(t_rt *rt, float delta_x, float delta_y);
 void	cam_translate(t_rt *rt, int x_offset, int y_offset);
 void	cam_proj(t_rt *rt, t_uniforms *u);
 void	scene_init(t_rt *rt);
+void	cam_zoom(t_rt *rt, int zoom);
 
 // Shaders
 void	grid_vs(float *vs_output, void *vertex_attribs,
@@ -90,16 +90,16 @@ void	modify_cone_props(t_shape *shape);
 void	modify_plane_props(t_shape *shape);
 void	modify_sphere_props(t_shape *shape);
 void	modify_light_props(t_s_light *light);
-t_vec3	get_axis( char *axis_name);
+t_vec3	get_axis(char *axis_name);
 bool	modif_shape_color(t_shape *shape);
 bool	is_float(char *input);
 bool	is_in_range(char *input, float min, float max);
 bool	is_color(char *input);
-void	 display_sphere_props(size_t i, t_shape *shape);
-void	 display_plane_props(size_t i, t_shape *shape);
-void	 display_cylinder_props(size_t i, t_shape *shape);
-void	 display_cone_props(size_t i, t_shape *shape);
-void	 display_light_props(size_t i, t_s_light *light);
+void	display_sphere_props(size_t i, t_shape *shape);
+void	display_plane_props(size_t i, t_shape *shape);
+void	display_cylinder_props(size_t i, t_shape *shape);
+void	display_cone_props(size_t i, t_shape *shape);
+void	display_light_props(size_t i, t_s_light *light);
 void	update_scene(t_rt *rt);
 
 #endif // FUNC_H

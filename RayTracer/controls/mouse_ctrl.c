@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_ctrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:27:31 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/08 23:42:25 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 14:26:28 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 int	mouse_pressed(int btn, int x, int y, t_rt *rt)
 {
 	t_ctrl	*ctrl;
-	t_cam	*cam;
 
 	ctrl = (t_ctrl *)&rt->ctrl;
-	cam = (t_cam *)&rt->cam;
-	if (btn == LEFT_CLICK)
+	if (btn == LEFT_CLICK && rt->mode == MODE_VIZ)
 	{
 		ctrl->rotate = true;
 		ctrl->mouse_pos = (t_vec2){x, y};
 	}
-	if (btn == RIGHT_CLICK)
+	if (btn == RIGHT_CLICK && rt->mode == MODE_VIZ)
 	{
 		ctrl->translate = true;
 		ctrl->mouse_pos = (t_vec2){x, y};
 	}
-	if (btn == SCROLL_UP)
-		cam->pos = add_vec3s(cam->pos, scale_vec3s(cam->dir, 1));
-	if (btn == SCROLL_DOWN)
-		cam->pos = add_vec3s(cam->pos, scale_vec3s(cam->dir, -1));
+	if (btn == SCROLL_UP && rt->mode == MODE_VIZ)
+		cam_zoom(rt, 1);
+	if (btn == SCROLL_DOWN && rt->mode == MODE_VIZ)
+		cam_zoom(rt, -1);
 	return (0);
 }
 

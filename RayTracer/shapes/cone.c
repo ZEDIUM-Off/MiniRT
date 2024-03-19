@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:15:36 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/14 15:48:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 11:37:07 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,21 @@ static void	push_tris(t_mesh *mesh, t_cone_vars *vars)
 			next = vars->segments + 1;
 		mesh->tris = ft_realloc(mesh->tris, (mesh->tris_count + 2) * sizeof(int)
 				* 3, mesh->tris_count * sizeof(int) * 3);
-		ivec3_to_array(&(t_ivec3){1 + vars->verts_start, i + vars->verts_start,
-			next + vars->verts_start}, mesh->tris, mesh->tris_count++);
-		ivec3_to_array(&(t_ivec3){0 + vars->verts_start, next
+		ivec3_to_array(&(t_ivec3){1 + vars->verts_start, next
 			+ vars->verts_start, i + vars->verts_start}, mesh->tris,
 			mesh->tris_count++);
+		ivec3_to_array(&(t_ivec3){0 + vars->verts_start, i + vars->verts_start,
+			next + vars->verts_start}, mesh->tris, mesh->tris_count++);
 		i++;
 	}
 }
-static void	push_color(t_mesh *mesh, t_cone_params *params)
+
+static void	push_color(t_mesh *mesh, t_cone_vars *vars, t_cone_params *params)
 {
 	t_uint	i;
 
 	i = 0;
-	while (i < mesh->verts_count)
+	while (i < mesh->verts_count - vars->verts_start)
 	{
 		mesh->colors = ft_realloc(mesh->colors, (mesh->colors_count + 1)
 				* sizeof(float) * 3, mesh->colors_count * sizeof(float) * 3);
@@ -88,5 +89,5 @@ void	make_cone(t_mesh *mesh, t_cone_params *params)
 	init_vars(mesh, &vars, params);
 	push_verts(mesh, params, &vars);
 	push_tris(mesh, &vars);
-	push_color(mesh, params);
+	push_color(mesh, &vars, params);
 }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   obj_menu.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 13:42:50 by mchenava          #+#    #+#             */
+/*   Updated: 2024/03/19 13:46:19 by mchenava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minirt.h>
 
 void	list_obj(t_rt *rt)
 {
-	size_t				i;
-	t_shape			*shape;
+	size_t		i;
+	t_shape		*shape;
 	t_s_light	*light;
 
 	i = 0;
@@ -35,7 +47,8 @@ bool	get_obj(t_rt *rt, char *input, t_obj *obj)
 	if (!is_number(input))
 		return (printf("Invalid input\n"), false);
 	id = ft_atoii(input);
-	if (id < 0 || (size_t)id >= rt->sc_input.shapes_count + rt->sc_input.s_lights_count)
+	if (id < 0 || (size_t)id >= rt->sc_input.shapes_count
+		+ rt->sc_input.s_lights_count)
 		return (printf("Invalid object number\n"), false);
 	if ((size_t)id < rt->sc_input.shapes_count)
 	{
@@ -52,7 +65,7 @@ bool	get_obj(t_rt *rt, char *input, t_obj *obj)
 
 void	obj_menu(t_rt *rt, t_obj *obj)
 {
-	char *input;
+	char	*input;
 
 	do
 	{

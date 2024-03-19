@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:00:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/14 15:43:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 11:11:08 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	create_mesh(t_mesh *mesh, t_uint type)
 	mesh->verts_count = 0;
 	mesh->tris = malloc(sizeof(int) * 3);
 	mesh->tris_count = 0;
-	mesh->normals = malloc(sizeof(t_vec3));
-	mesh->normals_count = 0;
+	mesh->colors = malloc(sizeof(float) * 3);
+	mesh->colors_count = 0;
 }
 
 void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
@@ -31,26 +31,20 @@ void	mesh_to_scene(t_rt *rt, t_mesh *mesh)
 		.normalized = GL_FALSE, .stride = 0};
 	gl_gen_buffers(&rt->glx, 1, &mesh->buffer);
 	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->buffer);
-	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->verts_count * sizeof(float) * 3,
-		mesh->verts);
+	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->verts_count * sizeof(float)
+		* 3, mesh->verts);
 	gl_enable_vertex_attrib_array(&rt->glx, 0);
 	gl_vertex_attrib_pointer(&rt->glx, 0, vert_attr, 0);
 	gl_gen_buffers(&rt->glx, 1, &mesh->tri_buffer);
 	gl_bind_buffer(&rt->glx, GL_ELEMENT_ARRAY_BUFFER, mesh->tri_buffer);
 	gl_buffer_data(&rt->glx, GL_ELEMENT_ARRAY_BUFFER, mesh->tris_count
 		* sizeof(int) * 3, mesh->tris);
-	gl_gen_buffers(&rt->glx, 1, &mesh->norm_buffer);
-	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->norm_buffer);
-	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->normals_count
-		* sizeof(float) * 3, mesh->normals);
-	gl_enable_vertex_attrib_array(&rt->glx, 1);
-	gl_vertex_attrib_pointer(&rt->glx, 1, vert_attr, 0);
 	gl_gen_buffers(&rt->glx, 1, &mesh->color_buffer);
 	gl_bind_buffer(&rt->glx, GL_ARRAY_BUFFER, mesh->color_buffer);
-	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->colors_count
-		* sizeof(float) * 3, mesh->colors);
-	gl_enable_vertex_attrib_array(&rt->glx, 2);
-	gl_vertex_attrib_pointer(&rt->glx, 2, vert_attr, 0);
+	gl_buffer_data(&rt->glx, GL_ARRAY_BUFFER, mesh->colors_count * sizeof(float)
+		* 3, mesh->colors);
+	gl_enable_vertex_attrib_array(&rt->glx, 1);
+	gl_vertex_attrib_pointer(&rt->glx, 1, vert_attr, 0);
 	gl_bind_vertex_array(&rt->glx, 0);
 }
 
@@ -76,7 +70,5 @@ void	all_mesh_to_scene(t_rt *rt)
 		make_mesh(rt, &rt->sc_input.shapes[i]);
 		i++;
 	}
-	mesh_get_normals(&rt->all_meshes);
-	// mesh_get_colors(&rt->all_meshes);
 	mesh_to_scene(rt, &rt->all_meshes);
 }

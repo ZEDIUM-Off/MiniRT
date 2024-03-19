@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edit_translation.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 13:47:13 by mchenava          #+#    #+#             */
+/*   Updated: 2024/03/19 13:47:21 by mchenava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minirt.h>
 
-t_vec3	get_translation()
+t_vec3	get_translation(void)
 {
 	t_vec3	axis;
 	float	value;
@@ -20,9 +32,9 @@ t_vec3	get_translation()
 
 bool	translate_obj(t_obj *obj)
 {
-	t_vec3 translation;
-	t_shape *shape;
-	t_s_light *light;
+	t_vec3		translation;
+	t_shape		*shape;
+	t_s_light	*light;
 
 	translation = get_translation();
 	if (obj->type == LIGHT)

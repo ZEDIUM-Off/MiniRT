@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   editor_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 13:47:38 by mchenava          #+#    #+#             */
+/*   Updated: 2024/03/19 13:49:09 by mchenava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minirt.h>
 
 t_vec3	get_axis(char *axis_name)
@@ -64,7 +76,8 @@ bool	is_in_range(char *input, float min, float max)
 
 	value = ft_atof(input);
 	if (value < min || value > max)
-		return (printf("\n%s not in range. (min: %f, max: %f)\n", input, min, max), false);
+		return (printf("\n%s not in range. (min: %f, max: %f)\n", input, min,
+				max), false);
 	return (true);
 }
 
@@ -76,7 +89,8 @@ bool	is_color(char *input)
 	while (input[i])
 	{
 		if (!ft_isdigit(input[i]) && input[i] != ',')
-			return (printf("\n%s not a color. (format : 0-255,0-255,0-255)\n", input), false);
+			return (printf("\n%s not a color. (format : 0-255,0-255,0-255)\n",
+					input), false);
 		i++;
 	}
 	return (true);

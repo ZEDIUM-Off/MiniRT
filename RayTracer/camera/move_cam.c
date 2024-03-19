@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:42:38 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/07 15:43:04 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:26:16 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ void	cam_translate(t_rt *rt, int x_offset, int y_offset)
 	cam->target = add_vec3s(cam->target, translation);
 }
 
-void	print_vec3(t_vec3 vec)
+void	cam_zoom(t_rt *rt, int zoom)
 {
-	printf("%f,%f,%f", vec.x, vec.y, vec.z);
+	t_cam	*cam;
+	t_vec3	translation;
+
+	cam = &rt->cam;
+	translation = scale_vec3s(cam->dir, zoom);
+	cam->pos = add_vec3s(cam->pos, translation);
+	cam->target = add_vec3s(cam->target, translation);
 }
 
 void	print_cam_properties(t_rt *rt)
@@ -59,8 +65,8 @@ void	print_cam_properties(t_rt *rt)
 
 	cam = &rt->cam;
 	printf("Camera:\nC ");
-	print_vec3(cam->pos);
+	printf("%f,%f,%f", cam->pos.x, cam->pos.y, cam->pos.z);
 	printf(" ");
-	print_vec3(cam->dir);
+	printf("%f,%f,%f", cam->dir.x, cam->dir.y, cam->dir.z);
 	printf(" %f\n", cam->fov);
 }

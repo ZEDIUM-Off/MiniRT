@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:07:08 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/14 15:48:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 11:38:32 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,13 @@ static void	push_tris(t_mesh *mesh, t_cylinder_vars *vars)
 	}
 }
 
-static void	push_color(t_mesh *mesh, t_cylinder_params *params)
+static void	push_color(t_mesh *mesh, t_cylinder_vars *vars,
+		t_cylinder_params *params)
 {
 	t_uint	i;
 
 	i = 0;
-	while (i < mesh->verts_count)
+	while (i < mesh->verts_count - vars->verts_start)
 	{
 		mesh->colors = ft_realloc(mesh->colors, (mesh->colors_count + 1)
 				* sizeof(float) * 3, mesh->colors_count * sizeof(float) * 3);
@@ -119,10 +120,10 @@ static void	push_color(t_mesh *mesh, t_cylinder_params *params)
 
 void	make_cylinder(t_mesh *mesh, t_cylinder_params *params)
 {
-	t_cylinder_vars vars;
+	t_cylinder_vars	vars;
 
 	init_vars(mesh, params, &vars);
 	push_verts(mesh, params, &vars);
 	push_tris(mesh, &vars);
-	push_color(mesh, params);
+	push_color(mesh, &vars, params);
 }

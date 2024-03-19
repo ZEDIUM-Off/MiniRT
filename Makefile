@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/14 00:04:22 by  mchenava        ###   ########.fr        #
+#    Updated: 2024/03/19 14:42:28 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,10 +118,14 @@ SRC+= $(FT_SRC) $(WIN_SRC) $(UTILS_SRC) $(CAM_SRC) $(RENDER_SRC) $(CONTROLS_SRC)
 OBJECTS= $(SRC:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS= $(OBJECTS:.o=.d)
 
-FLAGS= -std=c99 -Wall -Wextra -Werror -MMD -g3 ${LIBS} -fsanitize=address
-OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -MMD -g3 -fsanitize=address
+FLAGS= -std=c99 -Wall -Wextra -Werror -MMD  ${LIBS} -g3 #-fsanitize=address
+OBJ_FLAGS=  -I$(SRC_DIR) -I$(GL_DIR) -I$(MLX_DIR) -Wall -Wextra -Werror -MMD -g3 #-fsanitize=address
 
 all: $(NAME)
+
+bonus : OBJ_FLAGS += -DBONUS
+bonus : re
+
 
 $(NAME): dirs compile
 
@@ -132,7 +136,7 @@ help :
 
 compile: $(OBJECTS) $(MLX) $(GL)
 	@echo "Compiling $(NAME)"
-	@ $(CC) $^ $(FLAGS) -o $(NAME)
+	 $(CC) $^ $(FLAGS) -o $(NAME)
 
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
 	@echo "Compiling $@"

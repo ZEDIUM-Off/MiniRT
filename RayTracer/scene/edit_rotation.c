@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edit_rotation.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 13:43:32 by mchenava          #+#    #+#             */
+/*   Updated: 2024/03/19 13:46:37 by mchenava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minirt.h>
 
 void	rotate_shape(t_shape *shape, t_vec3 axis, float rotation)
@@ -25,10 +37,10 @@ void	rotate_shape(t_shape *shape, t_vec3 axis, float rotation)
 
 bool	rotate_obj(t_obj *obj)
 {
-	char *input;
-	t_vec3 axis;
-	float rotation;
-	t_shape *shape;
+	char	*input;
+	t_vec3	axis;
+	float	rotation;
+	t_shape	*shape;
 
 	if (obj->type == LIGHT)
 		printf("You can't rotate a light\n");

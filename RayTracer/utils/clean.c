@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:15:27 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/04 14:29:53 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 16:23:02 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
+
+void	free_shapes(t_rt *rt)
+{
+	t_uint	i;
+
+	i = 0;
+	while (i < rt->sc_input.shapes_count)
+	{
+		free(rt->sc_input.shapes[i].properties);
+		i++;
+	}
+	free(rt->sc_input.shapes);
+}
+
+void	free_meshes(t_rt *rt)
+{
+	if (rt->all_meshes.verts)
+		free(rt->all_meshes.verts);
+	if (rt->all_meshes.tris)
+		free(rt->all_meshes.tris);
+	if (rt->all_meshes.colors)
+		free(rt->all_meshes.colors);
+}
 
 t_uint	clean_rt(t_rt *rt)
 {
@@ -21,7 +44,11 @@ t_uint	clean_rt(t_rt *rt)
 	if (rt->err_msg)
 		free(rt->err_msg);
 	if (rt->sc_input.shapes)
-		free(rt->sc_input.shapes);
+		free_shapes(rt);
+	if (rt->sc_input.s_lights)
+		free(rt->sc_input.s_lights);
+	free_meshes(rt);
+	free_gl_context(&rt->glx);
 	return (CONTINUE);
 }
 
