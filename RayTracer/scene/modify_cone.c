@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_cone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:47:47 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:14 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:22:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	modif_cone_angle(t_shape *shape)
 	{
 		write(1, "Enter the new angle: ", 22);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 180));
+	} while (!is_float(input) || !is_in_range(input, 0, 180));
 	((t_cone_props *)shape->properties)->angle = ft_atof(input);
 	free(input);
 	return (true);
@@ -34,7 +34,7 @@ bool	modif_cone_height(t_shape *shape)
 	{
 		write(1, "Enter the new height: ", 23);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1000));
+	} while (!is_float(input) || !is_in_range(input, 0, 1000));
 	((t_cone_props *)shape->properties)->height = ft_atof(input);
 	free(input);
 	return (true);

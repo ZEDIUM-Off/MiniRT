@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disp_shapes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:58 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:48:59 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:22:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	display_sphere_props(size_t i, t_shape *shape)
 	printf("[Sphere\t%3zu] | ", i);
 	printf("Position: %5.2f %5.2f %5.2f\t", shape->position.x,
 		shape->position.y, shape->position.z);
-	printf("Color: %d %d %d\n", shape->color.r, shape->color.g, shape->color.b);
-	printf("Diameter: %.2f\t", props->diameter);
+	printf("Color: %d %d %d\t", shape->color.r, shape->color.g, shape->color.b);
+	printf("Diameter: %.2f\n", props->diameter);
 }
 
 void	display_plane_props(size_t i, t_shape *shape)
@@ -32,8 +32,8 @@ void	display_plane_props(size_t i, t_shape *shape)
 	printf("[Plane\t%3zu] | ", i);
 	printf("Position: %5.2f %5.2f %5.2f\t", shape->position.x,
 		shape->position.y, shape->position.z);
-	printf("Color: %d %d %d\n", shape->color.r, shape->color.g, shape->color.b);
-	printf("Normal: %5.2f %5.2f %5.2f\t", props->normal.x, props->normal.y,
+	printf("Color: %d %d %d\t", shape->color.r, shape->color.g, shape->color.b);
+	printf("Normal: %5.2f %5.2f %5.2f\n", props->normal.x, props->normal.y,
 		props->normal.z);
 }
 
@@ -45,11 +45,11 @@ void	display_cylinder_props(size_t i, t_shape *shape)
 	printf("[Cylinder\t%3zu] | ", i);
 	printf("Position: %5.2f %5.2f %5.2f\t", shape->position.x,
 		shape->position.y, shape->position.z);
-	printf("Color: %d %d %d\n", shape->color.r, shape->color.g, shape->color.b);
+	printf("Color: %d %d %d\t", shape->color.r, shape->color.g, shape->color.b);
 	printf("Diameter: %.2f\t", props->diameter);
 	printf("Axis: %5.2f %5.2f %5.2f\t", props->axis.x, props->axis.y,
 		props->axis.z);
-	printf("Height: %.2f\t", props->height);
+	printf("Height: %.2f\n", props->height);
 }
 
 void	display_cone_props(size_t i, t_shape *shape)
@@ -60,11 +60,11 @@ void	display_cone_props(size_t i, t_shape *shape)
 	printf("[Cone\t%3zu] | ", i);
 	printf("Position: %5.2f %5.2f %5.2f\t", shape->position.x,
 		shape->position.y, shape->position.z);
-	printf("Color: %d %d %d\n", shape->color.r, shape->color.g, shape->color.b);
+	printf("Color: %d %d %d\t", shape->color.r, shape->color.g, shape->color.b);
 	printf("Axis: %5.2f %5.2f %5.2f\t", props->axis.x, props->axis.y,
 		props->axis.z);
 	printf("Angle: %.2f\t", props->angle);
-	printf("Height: %.2f\t", props->height);
+	printf("Height: %.2f\n", props->height);
 }
 
 void	display_light_props(size_t i, t_s_light *light)

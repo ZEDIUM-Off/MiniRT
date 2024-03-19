@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_ctrl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:48:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 18:44:42 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:52:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	key_pressed(int key, t_rt *rt)
 	if (key == XK_s)
 		rt->soft_shadows = !rt->soft_shadows;
 	if (key == XK_b)
-		change_bumpmap_mode(rt);
+		switch_bumpmap_mode(rt);
 	return (0);
 }

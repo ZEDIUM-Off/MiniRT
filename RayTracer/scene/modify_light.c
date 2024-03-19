@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_light.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:00 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 17:53:39 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:23:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	modif_light_brightness(t_s_light *light)
 	{
 		write(1, "Enter the new brightness: ", 27);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1));
+	} while (!is_float(input) || !is_in_range(input, 0, 1));
 	light->brightness_ratio = ft_atof(input);
 	free(input);
 	return (true);

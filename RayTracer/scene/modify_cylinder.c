@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:13 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:26 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:23:15 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	modif_cylinder_diameter(t_shape *shape)
 	{
 		write(1, "Enter the new diameter: ", 25);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1000));
+	} while (!is_float(input) || !is_in_range(input, 0, 1000));
 	((t_cylinder_props *)shape->properties)->diameter = ft_atof(input);
 	free(input);
 	return (true);
@@ -34,7 +34,7 @@ bool	modif_cylinder_height(t_shape *shape)
 	{
 		write(1, "Enter the new height: ", 23);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1000));
+	} while (!is_float(input) || !is_in_range(input, 0, 1000));
 	((t_cylinder_props *)shape->properties)->height = ft_atof(input);
 	free(input);
 	return (true);

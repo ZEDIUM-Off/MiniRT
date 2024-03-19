@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:49:46 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:49 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:23:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	modify_sphere_diameter(t_shape *sphere)
 	{
 		write(1, "Enter the new diameter: ", 25);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1000));
+	} while (!is_float(input) || !is_in_range(input, 0, 1000));
 	((t_sphere_props *)sphere->properties)->diameter = ft_atof(input);
 	free(input);
 	return (true);

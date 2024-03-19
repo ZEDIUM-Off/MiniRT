@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:01:16 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 18:35:36 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:23:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	modify_ckecker_scale(t_rt *rt)
 	{
 		write(1, "Enter the new scale: ", 21);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 64));
+	} while (!is_float(input) || !is_in_range(input, 0, 64));
 	rt->checker_scale = ft_atof(input);
 	free(input);
 	return (true);
@@ -34,7 +34,7 @@ bool	modify_sample(t_rt *rt)
 	{
 		write(1, "Enter the new sample: ", 22);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 1, 1000));
+	} while (!is_float(input) || !is_in_range(input, 1, 1000));
 	rt->samples = (size_t)ft_atof(input);
 	free(input);
 	return (true);
@@ -64,7 +64,7 @@ bool	modify_ambi_bright(t_rt *rt)
 	{
 		write(1, "Enter the new brightness: ", 27);
 		input = get_stdin();
-	} while (!is_float(input) && !is_in_range(input, 0, 1));
+	} while (!is_float(input) || !is_in_range(input, 0, 1));
 	rt->sc_input.a_light.ratio = ft_atof(input);
 	free(input);
 	return (true);

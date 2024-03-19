@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 18:33:34 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:51:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,6 +283,7 @@ struct					s_rt
 	t_bump_map_mode		bump_map_mode;
 	t_color				bg_color;
 	size_t				samples;
+	bool				soft_shadows;
 	float				mesh_detail;
 	char				*err_msg;
 };
