@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/19 22:51:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/19 23:59:32 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ struct					s_ambient_light
 struct					s_spot_light
 {
 	t_vec3				position;
+	t_vec3				dir;
 	float				brightness_ratio;
 	t_color				color;
 	float				radius;
@@ -282,8 +283,9 @@ struct					s_rt
 	float				checker_scale;
 	t_bump_map_mode		bump_map_mode;
 	t_color				bg_color;
-	size_t				samples;
-	bool				soft_shadows;
+	size_t				nb_samples;
+	float				sqrt_samples;
+	bool				soft_shadow;
 	float				mesh_detail;
 	char				*err_msg;
 };
