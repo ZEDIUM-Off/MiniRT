@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:48:21 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/11 00:35:26 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 12:11:50 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_color	get_spot_color(t_hit *hit, t_uniforms *u)
 	if (dot_nl > 0)
 	{
 		light_distance = vec3_lenght(light_dir);
-		attenuation = 1.0 / (light_distance * light_distance);
+		attenuation = get_shadow(hit, u, u->rt->sc_input.s_lights[0].position,
+				light_distance) / (light_distance * light_distance);
 		spot_light_color = mult_color_scalar(u->rt->sc_input.s_lights[0].color,
 				u->rt->sc_input.s_lights[0].brightness_ratio * dot_nl
 				* attenuation);
@@ -105,9 +106,10 @@ t_color	calculate_lighting(t_hit *hit, t_uniforms *u, float light_distance)
 	light_dir = sub_vec3s(u->rt->sc_input.s_lights[0].position, hit->point);
 	normalize_vec3(&light_dir);
 	shadow_hit = (t_hit){0};
-	if (!intersect_scene(&(t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
-					SHADOW_BIAS)), light_dir}, &shadow_hit, u)
-		|| shadow_hit.distance > light_distance)
+	if (u->rt->soft_shadow || (!u->rt->soft_shadow
+			&& (!intersect_scene(&(t_ray){add_vec3s(hit->point,
+						scale_vec3s(hit->normal, SHADOW_BIAS)), light_dir},
+					&shadow_hit, u) || shadow_hit.distance > light_distance)))
 	{
 		color = blend_colors(color, get_spot_color(hit, u));
 		if (!u->rt->is_mandatory)

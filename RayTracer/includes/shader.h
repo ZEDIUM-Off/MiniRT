@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/11 00:28:59 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 12:03:58 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_vec4			add_colors_vec4(t_vec4 c1, t_vec4 c2);
 t_color			get_spot_color(t_hit *hit, t_uniforms *u);
 t_color			calculate_specular(t_hit *hit, t_uniforms *u, t_vec3 light_dir);
 t_color			calculate_lighting(t_hit *hit, t_uniforms *u,
+					float light_distance);
+float			get_shadow(t_hit *hit, t_uniforms *u, t_vec3 light_pos,
 					float light_distance);
 t_color			trace_ray(t_ray *ray, size_t depth, t_uniforms *u);
 void			rt_frag_shader(float *fs_input, t_shader_builtins *builtins,

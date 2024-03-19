@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:44:57 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/11 00:29:39 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 10:49:12 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,7 @@ struct					s_rt
 	bool				checker_mode;
 	float				checker_scale;
 	t_bump_map_mode		bump_map_mode;
+	bool				soft_shadow;
 	char				*err_msg;
 };
 

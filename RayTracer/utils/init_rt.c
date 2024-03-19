@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/11 00:30:43 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 12:12:39 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_uint	init_rt(t_rt *rt)
 	rt->checker_mode = false;
 	rt->checker_scale = 2;
 	rt->bump_map_mode = NO_BUMP_MAP;
+	rt->soft_shadow = false;
 	return (CONTINUE);
 }
