@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:35:15 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/09 16:16:04 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 23:15:53 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	init_shapes(t_rt *rt)
 	rt->sc_input.shapes = NULL;
 	rt->intersect_shape[SPHERE] = intersect_sphere;
 	rt->intersect_shape[PLANE] = intersect_plane;
-	rt->intersect_shape[CYLINDER] = intersect_cylinder;
-	rt->intersect_shape[CONE] = intersect_cone;
+	rt->intersect_shape[CYLINDER] = intersect_revolution;
+	rt->intersect_shape[CONE] = intersect_revolution;
 }
 
 char	**parse_tokens(const char *str, const char *delims,

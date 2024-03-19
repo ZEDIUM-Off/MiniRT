@@ -6,7 +6,7 @@
 #    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/19 10:50:20 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/19 23:13:26 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,7 @@ SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/intersect.c \
 			$(SHADER_DIR)/intersect_planes.c \
 			$(SHADER_DIR)/intersect_spheres.c \
-			$(SHADER_DIR)/intersect_cylinders.c \
-			$(SHADER_DIR)/intersect_cones.c \
+			$(SHADER_DIR)/intersect_revolution.c \
 			$(SHADER_DIR)/scattering.c \
 			$(SHADER_DIR)/utils.c \
 			$(SHADER_DIR)/color_utils.c \

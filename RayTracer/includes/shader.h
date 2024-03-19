@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 18:07:51 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 23:16:17 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ bool			check_shapes_intersection(t_ray *ray, t_hit *closest_hit,
 
 bool			intersect_plane(t_ray *ray, t_shape *plane, t_hit *hit);
 bool			intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit);
-bool			intersect_cylinder(t_ray *ray, t_shape *cy, t_hit *hit);
-bool			intersect_cone(t_ray *ray, t_shape *cone, t_hit *hit);
+bool			intersect_revolution(t_ray *ray, t_shape *cy, t_hit *hit);
 bool			intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u);
 
 // Color utils
