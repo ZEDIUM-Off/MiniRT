@@ -6,7 +6,7 @@
 /*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:28 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 12:31:58 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:53:17 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	set_rt_vars(t_rt *rt)
 	rt->bump_map_mode = NO_BUMP_MAP;
 	rt->mesh_detail = MESH_DETAIL;
 	rt->soft_shadow = false;
-	rt->nb_samples = 30;
+	rt->nb_samples = 20;
 	rt->sqrt_samples = sqrt(rt->nb_samples);
 	rt->sc_input.shapes_count = 0;
 	rt->sc_input.shapes = NULL;
