@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/20 02:03:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 02:30:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ static int	parse_spot_light(char **tokens, size_t nb, t_rt *rt)
 		light->color = (t_color){255, 255, 255, 255};
 	else if (!parse_color(tokens[3], &light->color))
 		return (handle_error(ERR_PARSE_SPOT_COLOR, rt));
+	light->radius = 7;
 	rt->sc_input.s_lights_count++;
 	return (1);
 }
