@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/20 03:37:12 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/20 11:59:45 by mchenava         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ SCENE_SRC=	$(SCENE_DIR)/scene.c \
 			$(SCENE_DIR)/modify_plane.c \
 			$(SCENE_DIR)/modify_light.c \
 			$(SCENE_DIR)/modify_scene.c \
-			$(SCENE_DIR)/disp_shapes.c
+			$(SCENE_DIR)/disp_shapes.c \
+			$(SCENE_DIR)/input_tester.c
 
 SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/raytracing.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:13 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 02:10:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 11:57:20 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ bool	modif_cylinder_height(t_shape *shape)
 {
 	char	*input;
 
-
 	write(1, "Enter the new height: ", 23);
-	input = get_stdin();	
+	input = get_stdin();
 	while (!is_float(input) || !is_in_range(input, 0, 1000))
 	{
 		write(1, "Enter the new height: ", 23);

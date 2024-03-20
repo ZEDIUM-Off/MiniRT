@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_rotation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:43:32 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 01:49:00 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 12:12:13 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	rotate_shape(t_shape *shape, t_vec3 axis, float rotation)
 
 bool	rotate_obj(t_obj *obj)
 {
-	char	*input;
 	t_vec3	axis;
 	float	rotation;
 	t_shape	*shape;
@@ -50,14 +49,8 @@ bool	rotate_obj(t_obj *obj)
 	{
 		shape = (t_shape *)obj->data;
 		axis = get_axis("rotation");
-		do
-		{
-			write(1, "Enter the rotation degre: ", 26);
-			input = get_stdin();
-		} while (!is_float(input));
-		rotation = ft_atof(input);
+		rotation = get_float("Enter the rotation angle: ");
 		rotate_shape(shape, axis, rotation);
-		free(input);
 	}
 	return (true);
 }

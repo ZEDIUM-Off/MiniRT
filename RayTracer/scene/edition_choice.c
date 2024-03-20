@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edition_choice.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:49:34 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 02:19:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 11:57:06 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	translate_menu(t_rt *rt)
 	{
 		printf(CHOOSE_ELEM, "translation");
 		obj_menu(rt, &obj);
-	} 
+	}
 	return (true);
 }
 
@@ -30,14 +30,13 @@ bool	rotate_menu(t_rt *rt)
 {
 	t_obj	obj;
 
-
 	printf(CHOOSE_ELEM, "rotation");
 	obj_menu(rt, &obj);
 	while (!rotate_obj(&obj))
 	{
 		printf(CHOOSE_ELEM, "rotation");
 		obj_menu(rt, &obj);
-	} 
+	}
 	return (true);
 }
 

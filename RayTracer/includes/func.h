@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   func.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 02:19:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 12:21:49 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	switch_soft_shadow(t_rt *rt);
 int		render(t_rt *rt);
 void	new_frame(t_rt *rt);
 void	render_raytraced(t_rt *rt, bool up);
-// void	rt_draw_frame(t_rt *rt);
 void	set_hooks(t_rt *rt);
 void	init_cam(t_rt *rt);
 void	cam_rotate(t_rt *rt, float delta_x, float delta_y);
@@ -107,5 +106,6 @@ void	display_light_props(size_t i, t_s_light *light);
 void	update_scene(t_rt *rt);
 bool	modify_mesh_details(t_rt *rt);
 bool	input_scene_menu(t_rt *rt, char *input);
+float	get_float(char *message);
 
 #endif // FUNC_H

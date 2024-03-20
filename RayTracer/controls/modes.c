@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:27:52 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 01:55:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 11:49:24 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	switch_mandatory(t_rt *rt)
 {
 	rt->is_mandatory = !rt->is_mandatory;
 	if (rt->mode == MODE_RENDER)
-			render_raytraced(rt, true);
+		render_raytraced(rt, true);
 }

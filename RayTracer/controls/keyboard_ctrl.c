@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_ctrl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 11:48:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2024/03/20 01:55:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 11:47:38 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
-
-
 
 int	key_pressed(int key, t_rt *rt)
 {

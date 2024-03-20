@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:01:16 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 02:14:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 12:05:14 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ bool	modify_ckecker_scale(t_rt *rt)
 {
 	char	*input;
 
-	
 	write(1, "Enter the new scale: ", 21);
 	input = get_stdin();
 	while (!is_float(input) || !is_in_range(input, 1, 64))
@@ -32,7 +31,6 @@ bool	modify_ckecker_scale(t_rt *rt)
 bool	modify_sample(t_rt *rt)
 {
 	char	*input;
-
 
 	write(1, "Enter the new sample: ", 22);
 	input = get_stdin();
@@ -59,7 +57,7 @@ bool	modify_bg_color(t_rt *rt)
 		input = get_stdin();
 	}
 	parse_color(input, &rt->bg_color);
-	gl_clear_color(&rt->glx, (float[4]){(float)rt->bg_color.r / 255.0f,
+	gl_clear_color(&rt->glx, (float [4]){(float)rt->bg_color.r / 255.0f,
 		(float)rt->bg_color.g / 255.0f, (float)rt->bg_color.b / 255.0f, 1.0f});
 	free(input);
 	return (true);
@@ -68,7 +66,6 @@ bool	modify_bg_color(t_rt *rt)
 bool	modify_ambi_bright(t_rt *rt)
 {
 	char	*input;
-
 
 	write(1, "Enter the new brightness: ", 27);
 	input = get_stdin();

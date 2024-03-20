@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:48:36 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 02:12:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 11:57:13 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ bool	input_plane_menu(char *input, t_shape *shape)
 void	modify_plane_props(t_shape *shape)
 {
 	char	*input;
-
 
 	printf(MODIF_PLANE);
 	write(1, "Enter your command: ", 21);
