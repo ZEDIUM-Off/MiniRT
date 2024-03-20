@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   shader.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/20 03:33:43 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 12:44:48 by mchenava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHADER_H
 # define SHADER_H
 
-# include "materials.h"
 # include <stdlib.h>
 
 # define COLOR_BLACK (t_color){0.0, 0.0, 0.0, 1.0}

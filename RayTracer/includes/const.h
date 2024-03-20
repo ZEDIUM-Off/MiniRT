@@ -32,6 +32,8 @@
 #  define MANDATORY true
 # endif
 
+# define FLT_MAX 3.402823466e+38F
+
 # define RT_HEADER "\n\n" \
 "                                                                   ,----,\n" \
 "         ,--,                                                    ,/   .`|\n" \
