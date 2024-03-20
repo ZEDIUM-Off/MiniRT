@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:35:15 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 23:46:57 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 01:59:25 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_shapes(t_rt *rt)
 {
+	rt->all_meshes = (t_mesh){0};
 	rt->sc_input.has_a_light_been_parsed = false;
 	rt->sc_input.has_cam_been_parsed = false;
 	rt->sc_input.s_lights_count = 0;

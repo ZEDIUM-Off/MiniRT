@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:03:20 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 23:48:19 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 02:17:58 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_color	calculate_reflection(t_ray *ray, t_hit *hit, size_t depth,
 t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 {
 	t_hit	hit;
-	float	light_dist;
 	float	reflectance;
 	t_color	color;
 	t_color	reflect_color;
@@ -38,10 +37,7 @@ t_color	trace_ray(t_ray *ray, size_t depth, t_uniforms *u)
 	hit = (t_hit){0};
 	if (!intersect_scene(ray, &hit, u))
 		return (COLOR_BG);
-	if (u->rt->sc_input.s_lights_count != 0)
-		light_dist = vec3_lenght(sub_vec3s(u->rt->sc_input.s_lights[0].position,
-					hit.point));
-	color = calculate_lighting(&hit, u, light_dist);
+	color = calculate_lighting(&hit, u);
 	color = mult_colors(color, hit.color);
 	if (depth > 1)
 	{

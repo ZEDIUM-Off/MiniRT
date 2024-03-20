@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:41:48 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/20 00:00:26 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 02:21:52 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_s_light *light)
 	return (shadow / u->rt->nb_samples);
 }
 
-float	get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light,
-		float light_distance)
+float	get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light)
 {
 	t_hit	shadow_hit;
 
@@ -70,7 +69,7 @@ float	get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light,
 	normalize_vec3(&light->dir);
 	if (!intersect_scene(&(t_ray){add_vec3s(hit->point, scale_vec3s(hit->normal,
 					SHADOW_BIAS)), light->dir}, &shadow_hit, u)
-		|| shadow_hit.distance > light_distance)
+		|| shadow_hit.distance > light->distance)
 		return (1.0);
 	return (0.0);
 }
