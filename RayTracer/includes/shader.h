@@ -6,7 +6,7 @@
 /*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 03:43:04 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/20 02:22:10 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 03:33:43 by agaley           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 # include "materials.h"
 # include <stdlib.h>
 
-# define COLOR_BLACK        \
-	(t_color)              \
-	{                      \
-		0.0, 0.0, 0.0, 1.0 \
-	}
-# define COLOR_DGRAY        \
-	(t_color)              \
-	{                      \
-		0.1, 0.1, 0.1, 1.0 \
-	}
+# define COLOR_BLACK (t_color){0.0, 0.0, 0.0, 1.0}
+# define COLOR_DGRAY (t_color){0.1, 0.1, 0.1, 1.0}
 # define COLOR_BG COLOR_DGRAY
 
 # define SHADOW_BIAS 1e-3
@@ -42,9 +34,6 @@ float			schlick_approx(float cosine, float ref_index);
 // Intersections
 typedef bool	(*t_intersect_func)(t_ray *, t_shape *, t_hit *);
 
-bool			check_shapes_intersection(t_ray *ray, t_hit *closest_hit,
-					float *closest_so_far, t_rt *rt);
-
 bool			intersect_plane(t_ray *ray, t_shape *plane, t_hit *hit);
 bool			intersect_sphere(t_ray *ray, t_shape *sphere, t_hit *hit);
 bool			intersect_revolution(t_ray *ray, t_shape *cy, t_hit *hit);
@@ -58,8 +47,7 @@ t_vec4			mult_color_vec4_scalar(t_vec4 c, float s);
 t_vec4			add_colors_vec4(t_vec4 c1, t_vec4 c2);
 
 // Main ray tracing
-t_color			get_spot_color(t_hit *hit, t_uniforms *u, t_s_light *light);
-t_color			calculate_specular(t_hit *hit, t_uniforms *u, t_s_light *light);
+void			map_orange_peel(t_hit *hit);
 t_color			calculate_lighting(t_hit *hit, t_uniforms *u);
 float			get_shadow(t_hit *hit, t_uniforms *u, t_s_light *light);
 t_color			trace_ray(t_ray *ray, size_t depth, t_uniforms *u);

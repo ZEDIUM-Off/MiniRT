@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+         #
+#    By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 11:12:26 by mchenava          #+#    #+#              #
-#    Updated: 2024/03/19 23:13:26 by agaley           ###   ########lyon.fr    #
+#    Updated: 2024/03/20 03:37:12 by agaley           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SHADER_SRC=	$(SHADER_DIR)/loadshader.c \
 			$(SHADER_DIR)/intersect_spheres.c \
 			$(SHADER_DIR)/intersect_revolution.c \
 			$(SHADER_DIR)/scattering.c \
+			$(SHADER_DIR)/bump_map.c \
 			$(SHADER_DIR)/utils.c \
 			$(SHADER_DIR)/color_utils.c \
 			$(SHADER_DIR)/base_shaders.c

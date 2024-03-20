@@ -35,7 +35,7 @@ bool	intersect_scene(t_ray *ray, t_hit *hit, t_uniforms *u)
 	{
 		temp_hit.distance = FLT_MAX;
 		if (u->rt->intersect_shape[u->rt->sc_input.shapes[i].type](ray,
-				&u->rt->sc_input.shapes[i], &temp_hit))
+			&u->rt->sc_input.shapes[i], &temp_hit))
 		{
 			if (temp_hit.distance < closest_so_far)
 			{

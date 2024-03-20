@@ -50,7 +50,7 @@ static float	get_soft_shadow(t_hit *hit, t_uniforms *u, t_s_light *light)
 		shadow_hit = (t_hit){0};
 		if (!intersect_scene(&(t_ray){add_vec3s(hit->point,
 					scale_vec3s(hit->normal, SHADOW_BIAS)), light->dir},
-				&shadow_hit, u)
+			&shadow_hit, u)
 			|| shadow_hit.distance > vec3_lenght(sub_vec3s(sample_pos,
 					hit->point)))
 			shadow += 1.0;
