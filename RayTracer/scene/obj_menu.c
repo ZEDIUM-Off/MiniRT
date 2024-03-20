@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_menu.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:42:50 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:46:19 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 02:15:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ void	obj_menu(t_rt *rt, t_obj *obj)
 {
 	char	*input;
 
-	do
+	list_obj(rt);
+	write(1, "Enter the object number: ", 25);
+	input = get_stdin();
+	while (!get_obj(rt, input, obj))
 	{
 		list_obj(rt);
 		write(1, "Enter the object number: ", 25);
 		input = get_stdin();
-	} while (!get_obj(rt, input, obj));
+	}
 	free(input);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modify_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaley <agaley@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:01:16 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 23:50:39 by agaley           ###   ########lyon.fr   */
+/*   Updated: 2024/03/20 02:14:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ bool	modify_ckecker_scale(t_rt *rt)
 {
 	char	*input;
 
-	do
+	
+	write(1, "Enter the new scale: ", 21);
+	input = get_stdin();
+	while (!is_float(input) || !is_in_range(input, 1, 64))
 	{
 		write(1, "Enter the new scale: ", 21);
 		input = get_stdin();
-	} while (!is_float(input) || !is_in_range(input, 0, 64));
+	}
 	rt->checker_scale = ft_atof(input);
 	free(input);
 	return (true);
@@ -30,11 +33,14 @@ bool	modify_sample(t_rt *rt)
 {
 	char	*input;
 
-	do
+
+	write(1, "Enter the new sample: ", 22);
+	input = get_stdin();
+	while (!is_float(input) || !is_in_range(input, 1, 1000))
 	{
 		write(1, "Enter the new sample: ", 22);
 		input = get_stdin();
-	} while (!is_float(input) || !is_in_range(input, 1, 1000));
+	}
 	rt->nb_samples = (size_t)ft_atof(input);
 	rt->sqrt_samples = sqrt(rt->nb_samples);
 	free(input);
@@ -45,11 +51,13 @@ bool	modify_bg_color(t_rt *rt)
 {
 	char	*input;
 
-	do
+	write(1, "Enter the new color: ", 22);
+	input = get_stdin();
+	while (!is_color(input))
 	{
 		write(1, "Enter the new color: ", 22);
 		input = get_stdin();
-	} while (!is_color(input));
+	}
 	parse_color(input, &rt->bg_color);
 	gl_clear_color(&rt->glx, (float[4]){(float)rt->bg_color.r / 255.0f,
 		(float)rt->bg_color.g / 255.0f, (float)rt->bg_color.b / 255.0f, 1.0f});
@@ -61,11 +69,14 @@ bool	modify_ambi_bright(t_rt *rt)
 {
 	char	*input;
 
-	do
+
+	write(1, "Enter the new brightness: ", 27);
+	input = get_stdin();
+	while (!is_float(input) || !is_in_range(input, 0, 1))
 	{
 		write(1, "Enter the new brightness: ", 27);
 		input = get_stdin();
-	} while (!is_float(input) || !is_in_range(input, 0, 1));
+	}
 	rt->sc_input.a_light.ratio = ft_atof(input);
 	free(input);
 	return (true);

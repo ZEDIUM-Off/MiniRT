@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:19:35 by agaley            #+#    #+#             */
-/*   Updated: 2024/03/19 14:43:08 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 02:03:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,14 +142,14 @@ int	parse_read_file(const char *file_path, t_rt *rt)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		return (handle_error(ERR_PARSE_FILE_OPEN, rt));
-	do
+	while (line)
 	{
 		line = get_next_line(fd);
 		if (line && line[0] != '\n' && line[0] != '#' && !parse_element(line,
 				rt))
 			return (close(fd), free(line), 0);
 		free(line);
-	} while (line);
+	}
 	if (rt->sc_input.has_cam_been_parsed == false)
 		return (handle_error(ERR_PARSE_CAM_NONE, rt));
 	if (rt->sc_input.has_a_light_been_parsed == false)

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:17:17 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 00:30:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 02:19:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int		mouse_pressed(int btn, int x, int y, t_rt *rt);
 void	switch_mode(t_rt *rt);
 void	print_cam_properties(t_rt *rt);
 void	switch_bumpmap_mode(t_rt *rt);
+void	switch_checkerboard(t_rt *rt);
+void	switch_mandatory(t_rt *rt);
+void	switch_soft_shadow(t_rt *rt);
 
 // rendering
 int		render(t_rt *rt);
@@ -81,7 +84,7 @@ void	mesh_get_normals(t_mesh *mesh);
 
 // Scene Editor
 void	editor_menu(t_rt *rt);
-bool	input_fisrt_menu(t_rt *rt, char *input);
+bool	input_first_menu(t_rt *rt, char *input);
 void	obj_menu(t_rt *rt, t_obj *obj);
 bool	rotate_obj(t_obj *obj);
 bool	translate_obj(t_obj *obj);

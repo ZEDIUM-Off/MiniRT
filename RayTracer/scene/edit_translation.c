@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_translation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:47:13 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:47:21 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 02:03:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ t_vec3	get_translation(void)
 
 	axis = get_axis("translation");
 	printf("Enter the translation value: \n");
-	do
+	write(1, "value = ", 8);
+	input = get_stdin();
+	while (!is_float(input))
 	{
 		write(1, "value = ", 8);
 		input = get_stdin();
-	} while (!is_float(input));
+	}
 	value = ft_atof(input);
 	free(input);
 	return (scale_vec3s(axis, value));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_rotation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchenava <mchenava@student.42.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:43:32 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 13:46:37 by mchenava         ###   ########.fr       */
+/*   Updated: 2024/03/20 01:49:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	rotate_obj(t_obj *obj)
 		} while (!is_float(input));
 		rotation = ft_atof(input);
 		rotate_shape(shape, axis, rotation);
+		free(input);
 	}
-	free(input);
 	return (true);
 }

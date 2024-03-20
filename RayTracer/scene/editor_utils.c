@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:47:38 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/19 23:16:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 02:07:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,29 @@ t_vec3	get_axis(char *axis_name)
 	char	*input;
 
 	printf("Enter the %s axis (x, y, z): \n", axis_name);
-	do
+	write(1, "x = ", 4);
+	input = get_stdin();
+	while (!is_float(input))
 	{
 		write(1, "x = ", 4);
 		input = get_stdin();
-	} while (!is_float(input));
+	}
 	axis.x = ft_atof(input);
-	do
+	write(1, "\ny = ", 5);
+	input = get_stdin();
+	while (!is_float(input))
 	{
 		write(1, "\ny = ", 5);
 		input = get_stdin();
-	} while (!is_float(input));
+	}
 	axis.y = ft_atof(input);
-	do
+	write(1, "\nz = ", 5);
+	input = get_stdin();
+	while (!is_float(input))
 	{
 		write(1, "\nz = ", 5);
 		input = get_stdin();
-	} while (!is_float(input));
+	}
 	axis.z = ft_atof(input);
 	free(input);
 	return (norm_vec3(axis));
@@ -44,11 +50,13 @@ bool	modif_shape_color(t_shape *shape)
 {
 	char	*input;
 
-	do
+	write(1, "Enter the new color: ", 22);
+	input = get_stdin();
+	while (!is_color(input))
 	{
 		write(1, "Enter the new color: ", 22);
 		input = get_stdin();
-	} while (!is_color(input));
+	}
 	parse_color(input, &shape->color);
 	free(input);
 	return (true);

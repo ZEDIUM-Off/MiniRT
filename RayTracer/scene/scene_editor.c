@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:47:26 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 00:31:20 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 02:20:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ static void	get_user_input(t_rt *rt)
 {
 	char	*input;
 
-	do
+	printf(FIRST_MENU);
+	write(1, "Enter your command: ", 21);
+	input = get_stdin();
+	while (!input_first_menu(rt, input))
 	{
 		printf(FIRST_MENU);
 		write(1, "Enter your command: ", 21);
 		input = get_stdin();
-	} while (!input_fisrt_menu(rt, input));
+	}
 	free(input);
 }
 

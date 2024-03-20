@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:27:52 by mchenava          #+#    #+#             */
-/*   Updated: 2024/03/20 00:31:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2024/03/20 01:55:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,25 @@ void	switch_mode(t_rt *rt)
 	lgl_set_uniform(&rt->glx, &rt->uniforms);
 	if (rt->mode == MODE_RENDER)
 		render_raytraced(rt, false);
+}
+
+void	switch_checkerboard(t_rt *rt)
+{
+	rt->checker_mode = !rt->checker_mode;
+	if (rt->mode == MODE_RENDER)
+		render_raytraced(rt, true);
+}
+
+void	switch_soft_shadow(t_rt *rt)
+{
+	rt->soft_shadow = !rt->soft_shadow;
+	if (rt->mode == MODE_RENDER)
+		render_raytraced(rt, true);
+}
+
+void	switch_mandatory(t_rt *rt)
+{
+	rt->is_mandatory = !rt->is_mandatory;
+	if (rt->mode == MODE_RENDER)
+			render_raytraced(rt, true);
 }
